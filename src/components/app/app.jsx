@@ -1,13 +1,19 @@
 import React from "react";
 import {Main} from "../main/main";
+import pt from 'prop-types';
 
 const App = (props) => {
-  // eslint-disable-next-line react/prop-types
-  const {rentCount} = props;
+  const {rentCount, offers} = props;
 
   return <Main
     rentCount={rentCount}
+    offers={offers}
   />;
 };
 
 export default App;
+
+App.propTypes = {
+  rentCount: pt.number.isRequired,
+  offers: pt.arrayOf(pt.string).isRequired
+};
