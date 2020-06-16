@@ -2,12 +2,15 @@ import React from "react";
 import {Main} from "../main/main";
 import pt from 'prop-types';
 
+const onLocationClick = () => {};
+
 const App = (props) => {
   const {rentCount, offers} = props;
 
   return <Main
     rentCount={rentCount}
     offers={offers}
+    onLocationClick={onLocationClick}
   />;
 };
 

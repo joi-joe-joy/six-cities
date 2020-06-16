@@ -1,10 +1,12 @@
 import React from "react";
-import IconArrowSelect from "../../img/icon-arrow-select.svg";
+import IconArrowSelect from "../../Icons/icon-arrow-select.svg";
 import {PlaceCard} from "../place-card/place-card";
 import pt from 'prop-types';
 
+const onBookmarkClick = () => {};
+
 export const Main = (props) => {
-  const {rentCount = 0, offers = []} = props;
+  const {rentCount = 0, offers = [], onLocationClick} = props;
 
   return <main className="page__main page__main--index">
     <h1 className="visually-hidden">Cities</h1>
@@ -12,7 +14,7 @@ export const Main = (props) => {
       <section className="locations container">
         <ul className="locations__list tabs__list">
           <li className="locations__item">
-            <a className="locations__item-link tabs__item" href="#">
+            <a className="locations__item-link tabs__item tabs__item--active" href="#" onClick={onLocationClick}>
               <span>Paris</span>
             </a>
           </li>
@@ -27,7 +29,7 @@ export const Main = (props) => {
             </a>
           </li>
           <li className="locations__item">
-            <a className="locations__item-link tabs__item tabs__item--active">
+            <a className="locations__item-link tabs__item">
               <span>Amsterdam</span>
             </a>
           </li>
@@ -53,8 +55,7 @@ export const Main = (props) => {
             <span className="places__sorting-caption">Sort by</span>
             <span className="places__sorting-type" tabIndex="0">
               Popular
-              <img src={IconArrowSelect} alt=""/>
-              {/* <IconArrowSelect/> */}
+              <IconArrowSelect width="7" height="4"/>
             </span>
             <ul className="places__options places__options--custom places__options--opened">
               <li className="places__option places__option--active" tabIndex="0">Popular</li>
@@ -70,7 +71,13 @@ export const Main = (props) => {
             </select>
           </form>
           <div className="cities__places-list places__list tabs__content">
-            {offers.map((offer, i) => <PlaceCard key={offer + i} title={offer} />)}
+            {offers.map((offer, i) => {
+              return <PlaceCard
+                key={offer + i}
+                title={offer}
+                onBookmarkClick={onBookmarkClick}
+              />;
+            })}
           </div>
         </section>
         <div className="cities__right-section">
@@ -83,6 +90,7 @@ export const Main = (props) => {
 
 Main.propTypes = {
   rentCount: pt.number.isRequired,
-  offers: pt.arrayOf(pt.string).isRequired
+  offers: pt.arrayOf(pt.string).isRequired,
+  onLocationClick: pt.func.isRequired
 };
 
