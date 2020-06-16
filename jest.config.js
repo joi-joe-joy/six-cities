@@ -1,5 +1,5 @@
 module.exports = {
   moduleNameMapper: {
-    ".+\\.(svg|png|jpg)$": `identity-obj-proxy`
-  }
+    '\\.svg$': `<rootDir>/__mocks__/svgrMock.js`,
+  },
 };

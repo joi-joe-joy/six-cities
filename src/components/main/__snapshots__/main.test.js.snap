@@ -128,7 +128,10 @@ exports[`Render Main Main with offers and rentCount 1`] = `
             tabIndex="0"
           >
             Popular
-            <ReactComponent />
+            <SvgrURL
+              height="4"
+              width="7"
+            />
           </span>
           <ul
             className="places__options places__options--custom places__options--opened"
@@ -242,7 +245,10 @@ exports[`Render Main Main with offers and rentCount 1`] = `
                   onClick={[Function]}
                   type="button"
                 >
-                  <ReactComponent />
+                  <SvgrURL
+                    height="18"
+                    width="17"
+                  />
                   <span
                     className="visually-hidden"
                   >
@@ -336,7 +342,10 @@ exports[`Render Main Main with offers and rentCount 1`] = `
                   onClick={[Function]}
                   type="button"
                 >
-                  <ReactComponent />
+                  <SvgrURL
+                    height="18"
+                    width="17"
+                  />
                   <span
                     className="visually-hidden"
                   >
@@ -430,7 +439,10 @@ exports[`Render Main Main with offers and rentCount 1`] = `
                   onClick={[Function]}
                   type="button"
                 >
-                  <ReactComponent />
+                  <SvgrURL
+                    height="18"
+                    width="17"
+                  />
                   <span
                     className="visually-hidden"
                   >
@@ -524,7 +536,10 @@ exports[`Render Main Main with offers and rentCount 1`] = `
                   onClick={[Function]}
                   type="button"
                 >
-                  <ReactComponent />
+                  <SvgrURL
+                    height="18"
+                    width="17"
+                  />
                   <span
                     className="visually-hidden"
                   >
@@ -618,7 +633,10 @@ exports[`Render Main Main with offers and rentCount 1`] = `
                   onClick={[Function]}
                   type="button"
                 >
-                  <ReactComponent />
+                  <SvgrURL
+                    height="18"
+                    width="17"
+                  />
                   <span
                     className="visually-hidden"
                   >
@@ -804,7 +822,10 @@ exports[`Render Main Main without offers and rentCount 1`] = `
             tabIndex="0"
           >
             Popular
-            <ReactComponent />
+            <SvgrURL
+              height="4"
+              width="7"
+            />
           </span>
           <ul
             className="places__options places__options--custom places__options--opened"
@@ -918,7 +939,10 @@ exports[`Render Main Main without offers and rentCount 1`] = `
                   onClick={[Function]}
                   type="button"
                 >
-                  <ReactComponent />
+                  <SvgrURL
+                    height="18"
+                    width="17"
+                  />
                   <span
                     className="visually-hidden"
                   >

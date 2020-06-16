@@ -51,7 +51,10 @@ exports[`Render PlaceCard PlaceCard with title 1`] = `
         onClick={[Function]}
         type="button"
       >
-        <ReactComponent />
+        <SvgrURL
+          height="18"
+          width="17"
+        />
         <span
           className="visually-hidden"
         >
@@ -148,7 +151,10 @@ exports[`Render PlaceCard PlaceCard without title 1`] = `
         onClick={[Function]}
         type="button"
       >
-        <ReactComponent />
+        <SvgrURL
+          height="18"
+          width="17"
+        />
         <span
           className="visually-hidden"
         >
