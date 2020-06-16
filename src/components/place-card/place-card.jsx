@@ -1,9 +1,9 @@
 import React from "react";
-import IconBookmark from "../../img/icon-bookmark.svg";
+import IconBookmark from "../../Icons/icon-bookmark.svg";
 import pt from 'prop-types';
 
 export const PlaceCard = (props) => {
-  const {title = ``} = props;
+  const {title = ``, onBookmarkClick} = props;
 
   return <article className="cities__place-card place-card">
     <div className="place-card__mark">
@@ -20,9 +20,11 @@ export const PlaceCard = (props) => {
           <b className="place-card__price-value">&euro;120</b>
           <span className="place-card__price-text">&#47;&nbsp;night</span>
         </div>
-        <button className="place-card__bookmark-button button" type="button">
-          <img src={IconBookmark} alt=""/>
-          {/* <IconBookmark/> */}
+        <button
+          onClick={onBookmarkClick}
+          className="place-card__bookmark-button button"
+          type="button">
+          <IconBookmark width="17" height="18" />
           <span className="visually-hidden">To bookmarks</span>
         </button>
       </div>
@@ -41,5 +43,6 @@ export const PlaceCard = (props) => {
 };
 
 PlaceCard.propTypes = {
-  title: pt.string.isRequired
+  title: pt.string.isRequired,
+  onBookmarkClick: pt.func.isRequired
 };
