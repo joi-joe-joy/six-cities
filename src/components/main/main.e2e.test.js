@@ -1,18 +1,21 @@
 import React from "react";
 import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import {Main} from "./main";
+import Main from "./main";
 
 Enzyme.configure({
   adapter: new Adapter(),
 });
 
 const offers = [
-  `Beautiful &amp; luxurious apartment at great location`,
-  `Wood and stone place`,
-  `Canal View Prinsengracht`,
-  `Nice, cozy, warm big bed apartment`,
-  `Wood and stone place`
+  {
+    title: `Beautiful & luxurious apartment at great location`,
+    premium: true,
+    picture: `img/apartment-01.jpg`,
+    price: 380,
+    rating: 5,
+    type: `apartment`
+  }
 ];
 
 it(`Should tab-city be pressed`, () => {

@@ -1,22 +1,28 @@
-import React from "react";
-import {Main} from "../main/main";
+import React, {PureComponent} from "react";
+import Main from "../main/main";
 import pt from 'prop-types';
 
 const onLocationClick = () => {};
 
-const App = (props) => {
-  const {rentCount, offers} = props;
+class App extends PureComponent {
+  constructor(props) {
+    super(props);
+  }
 
-  return <Main
-    rentCount={rentCount}
-    offers={offers}
-    onLocationClick={onLocationClick}
-  />;
-};
+  render() {
+    const {rentCount, offers} = this.props;
 
-export default App;
+    return <Main
+      rentCount={rentCount}
+      offers={offers}
+      onLocationClick={onLocationClick}
+    />;
+  }
+}
 
 App.propTypes = {
   rentCount: pt.number.isRequired,
-  offers: pt.arrayOf(pt.string).isRequired
+  offers: pt.array.isRequired
 };
+
+export default App;
