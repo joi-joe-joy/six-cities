@@ -19,7 +19,7 @@ exports[`Render PlaceCard PlaceCard render correctly with Premium 1`] = `
       href="#"
     >
       <img
-        alt="Beautiful & luxurious apartment at great location"
+        alt="Canal View Prinsengracht"
         className="place-card__image"
         height="200"
         src="img/apartment-01.jpg"
@@ -40,7 +40,7 @@ exports[`Render PlaceCard PlaceCard render correctly with Premium 1`] = `
           className="place-card__price-value"
         >
           €
-          380
+          280
         </b>
         <span
           className="place-card__price-text"
@@ -73,7 +73,7 @@ exports[`Render PlaceCard PlaceCard render correctly with Premium 1`] = `
         <span
           style={
             Object {
-              "width": "100%",
+              "width": "80%",
             }
           }
         />
@@ -88,15 +88,15 @@ exports[`Render PlaceCard PlaceCard render correctly with Premium 1`] = `
       className="place-card__name"
     >
       <a
-        href="#"
+        onClick={[Function]}
       >
-        Beautiful & luxurious apartment at great location
+        Canal View Prinsengracht
       </a>
     </h2>
     <p
       className="place-card__type"
     >
-      apartment
+      House
     </p>
   </div>
 </article>
@@ -108,20 +108,13 @@ exports[`Render PlaceCard PlaceCard render correctly without Premium 1`] = `
   onMouseOver={[Function]}
 >
   <div
-    className="place-card__mark"
-  >
-    <span>
-      Premium
-    </span>
-  </div>
-  <div
     className="cities__image-wrapper place-card__image-wrapper"
   >
     <a
       href="#"
     >
       <img
-        alt="Beautiful & luxurious apartment at great location"
+        alt="Nice, cozy, warm big bed apartment"
         className="place-card__image"
         height="200"
         src="img/apartment-01.jpg"
@@ -142,7 +135,7 @@ exports[`Render PlaceCard PlaceCard render correctly without Premium 1`] = `
           className="place-card__price-value"
         >
           €
-          380
+          80
         </b>
         <span
           className="place-card__price-text"
@@ -175,7 +168,7 @@ exports[`Render PlaceCard PlaceCard render correctly without Premium 1`] = `
         <span
           style={
             Object {
-              "width": "100%",
+              "width": "80%",
             }
           }
         />
@@ -190,15 +183,15 @@ exports[`Render PlaceCard PlaceCard render correctly without Premium 1`] = `
       className="place-card__name"
     >
       <a
-        href="#"
+        onClick={[Function]}
       >
-        Beautiful & luxurious apartment at great location
+        Nice, cozy, warm big bed apartment
       </a>
     </h2>
     <p
       className="place-card__type"
     >
-      apartment
+      Private Room
     </p>
   </div>
 </article>

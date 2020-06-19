@@ -9,7 +9,7 @@ class Main extends PureComponent {
   }
 
   render() {
-    const {rentCount, offers, onLocationClick} = this.props;
+    const {rentCount, offers, onLocationClick, onCardClick} = this.props;
 
     return <main className="page__main page__main--index">
       <h1 className="visually-hidden">Cities</h1>
@@ -73,7 +73,10 @@ class Main extends PureComponent {
                 <option className="places__option" value="top-rated">Top rated first</option>
               </select>
             </form>
-            <PlacesList offers={offers}/>
+            <PlacesList
+              offers={offers}
+              onCardClick={onCardClick}
+            />
           </section>
           <div className="cities__right-section">
             <section className="cities__map map"></section>
@@ -87,7 +90,8 @@ class Main extends PureComponent {
 Main.propTypes = {
   rentCount: pt.number.isRequired,
   offers: pt.array.isRequired,
-  onLocationClick: pt.func.isRequired
+  onLocationClick: pt.func.isRequired,
+  onCardClick: pt.func.isRequired
 };
 
 export default Main;
