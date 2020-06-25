@@ -301,7 +301,16 @@ exports[`Render Main Main with offers and rentCount 1`] = `
       >
         <section
           className="cities__map map"
-        />
+        >
+          <div
+            id="map"
+            style={
+              Object {
+                "height": "100%",
+              }
+            }
+          />
+        </section>
       </div>
     </div>
   </div>
@@ -609,7 +618,16 @@ exports[`Render Main Main without offers and rentCount 1`] = `
       >
         <section
           className="cities__map map"
-        />
+        >
+          <div
+            id="map"
+            style={
+              Object {
+                "height": "100%",
+              }
+            }
+          />
+        </section>
       </div>
     </div>
   </div>
