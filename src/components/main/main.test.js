@@ -22,7 +22,8 @@ const offers = [
       photo: ``,
       name: `John Donn`,
       super: true
-    }
+    },
+    coordinations: [52.3809553943508, 4.939309666406198]
   }
 ];
 
@@ -34,7 +35,11 @@ describe(`Render Main`, () => {
         rentCount={5}
         onLocationClick={()=>{}}
         onCardClick={()=>{}}
-      />)
+      />, {
+        createNodeMock: () => {
+          return {};
+        }
+      })
       .toJSON();
 
     expect(tree).toMatchSnapshot();
@@ -47,7 +52,11 @@ describe(`Render Main`, () => {
         rentCount={0}
         onLocationClick={()=>{}}
         onCardClick={()=>{}}
-      />)
+      />, {
+        createNodeMock: () => {
+          return {};
+        }
+      })
       .toJSON();
 
     expect(tree).toMatchSnapshot();

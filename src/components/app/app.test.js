@@ -21,7 +21,8 @@ const offers = [{
     photo: ``,
     name: `John Donn`,
     super: true
-  }
+  },
+  coordinations: [52.3909553943508, 4.929309666406198]
 },
 {
   title: `Nice, cozy, warm big bed apartment`,
@@ -40,7 +41,8 @@ const offers = [{
     photo: ``,
     name: `Alicia Bell`,
     super: false
-  }
+  },
+  coordinations: [52.3909553943508, 4.929309666406198]
 }];
 
 describe(`Render App`, () => {
@@ -49,7 +51,11 @@ describe(`Render App`, () => {
       .create(<App
         rentCount={3}
         offers={offers}
-      />)
+      />, {
+        createNodeMock: () => {
+          return {};
+        }
+      })
       .toJSON();
 
     expect(tree).toMatchSnapshot();
@@ -60,7 +66,11 @@ describe(`Render App`, () => {
       .create(<App
         offers={offers}
         rentCount={0}
-      />)
+      />, {
+        createNodeMock: () => {
+          return {};
+        }
+      })
       .toJSON();
 
     expect(tree).toMatchSnapshot();

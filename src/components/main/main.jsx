@@ -1,7 +1,8 @@
 import React, {PureComponent} from "react";
 import IconArrowSelect from "../../Icons/icon-arrow-select.svg";
 import PlacesList from "../places-list/places-list";
-import pt from 'prop-types';
+import Map from "../map/map";
+import pt from "prop-types";
 
 class Main extends PureComponent {
   constructor(props) {
@@ -10,6 +11,7 @@ class Main extends PureComponent {
 
   render() {
     const {rentCount, offers, onLocationClick, onCardClick} = this.props;
+    const offerCords = offers.map((offer) => offer.coordinations);
 
     return <main className="page__main page__main--index">
       <h1 className="visually-hidden">Cities</h1>
@@ -75,11 +77,10 @@ class Main extends PureComponent {
             </form>
             <PlacesList
               offers={offers}
-              onCardClick={onCardClick}
-            />
+              onCardClick={onCardClick}/>
           </section>
           <div className="cities__right-section">
-            <section className="cities__map map"></section>
+            <Map offerCords={offerCords}/>
           </div>
         </div>
       </div>

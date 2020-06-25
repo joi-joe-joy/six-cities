@@ -22,7 +22,8 @@ const offers = [
       photo: ``,
       name: `John Donn`,
       super: true
-    }
+    },
+    coordinations: [52.3909553943508, 4.929309666406198]
   }
 ];
 
