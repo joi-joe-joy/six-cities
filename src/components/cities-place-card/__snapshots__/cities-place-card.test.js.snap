@@ -1,25 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Render PlaceCard PlaceCard render correctly with Premium 1`] = `
+exports[`Render CitiesPlaceCard Render CitiesPlaceCard correctly 1`] = `
 <article
-  className="place-card undefined"
+  className="place-card cities__place-card "
   onMouseOver={[Function]}
 >
   <div
-    className="place-card__mark"
-  >
-    <span>
-      Premium
-    </span>
-  </div>
-  <div
-    className="undefined place-card__image-wrapper"
+    className="cities__image-wrapper  place-card__image-wrapper"
   >
     <a
       href="#"
     >
       <img
-        alt="Canal View Prinsengracht"
+        alt="Wood and stone place"
         className="place-card__image"
         height="200"
         src="img/apartment-01.jpg"
@@ -40,7 +33,7 @@ exports[`Render PlaceCard PlaceCard render correctly with Premium 1`] = `
           className="place-card__price-value"
         >
           €
-          280
+          180
         </b>
         <span
           className="place-card__price-text"
@@ -90,31 +83,31 @@ exports[`Render PlaceCard PlaceCard render correctly with Premium 1`] = `
       <a
         onClick={[Function]}
       >
-        Canal View Prinsengracht
+        Wood and stone place
       </a>
     </h2>
     <p
       className="place-card__type"
     >
-      House
+      Hotel
     </p>
   </div>
 </article>
 `;
 
-exports[`Render PlaceCard PlaceCard render correctly without Premium 1`] = `
+exports[`Render CitiesPlaceCard Render CitiesPlaceCard correctly with classNames 1`] = `
 <article
-  className="place-card undefined"
+  className="place-card cities__place-card test"
   onMouseOver={[Function]}
 >
   <div
-    className="undefined place-card__image-wrapper"
+    className="cities__image-wrapper test place-card__image-wrapper"
   >
     <a
       href="#"
     >
       <img
-        alt="Nice, cozy, warm big bed apartment"
+        alt="Wood and stone place"
         className="place-card__image"
         height="200"
         src="img/apartment-01.jpg"
@@ -135,7 +128,7 @@ exports[`Render PlaceCard PlaceCard render correctly without Premium 1`] = `
           className="place-card__price-value"
         >
           €
-          80
+          180
         </b>
         <span
           className="place-card__price-text"
@@ -185,13 +178,13 @@ exports[`Render PlaceCard PlaceCard render correctly without Premium 1`] = `
       <a
         onClick={[Function]}
       >
-        Nice, cozy, warm big bed apartment
+        Wood and stone place
       </a>
     </h2>
     <p
       className="place-card__type"
     >
-      Private Room
+      Hotel
     </p>
   </div>
 </article>

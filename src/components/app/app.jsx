@@ -28,6 +28,7 @@ class App extends PureComponent {
     if (this.state.currentCard) {
       return (
         <Property
+          onCardClick={this.onCardClick}
           offer={this.state.currentCard}
         />
       );
@@ -54,6 +55,7 @@ class App extends PureComponent {
           </Route>
           <Route exact path="/dev-property">
             <Property
+              onCardClick={this.onCardClick}
               offer={offers[0]}
             />
           </Route>
