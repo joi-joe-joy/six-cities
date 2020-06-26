@@ -1,6 +1,7 @@
 import React, {PureComponent} from "react";
 import IconArrowSelect from "../../Icons/icon-arrow-select.svg";
 import PlacesList from "../places-list/places-list";
+import {PlaceCardType} from "../../const";
 import Map from "../map/map";
 import pt from "prop-types";
 
@@ -11,7 +12,7 @@ class Main extends PureComponent {
 
   render() {
     const {rentCount, offers, onLocationClick, onCardClick} = this.props;
-    const offerCords = offers.map((offer) => offer.coordinations);
+    const offersCords = offers.map((offer) => offer.coordinations);
 
     return <main className="page__main page__main--index">
       <h1 className="visually-hidden">Cities</h1>
@@ -76,11 +77,15 @@ class Main extends PureComponent {
               </select>
             </form>
             <PlacesList
+              type={PlaceCardType.CITIES}
               offers={offers}
-              onCardClick={onCardClick}/>
+              onCardClick={onCardClick}
+            />
           </section>
           <div className="cities__right-section">
-            <Map offerCords={offerCords}/>
+            <section className="cities__map map">
+              <Map offersCords={offersCords}/>
+            </section>
           </div>
         </div>
       </div>

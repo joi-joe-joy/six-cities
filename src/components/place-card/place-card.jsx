@@ -20,17 +20,17 @@ class PlaceCard extends PureComponent {
   }
 
   render() {
-    const {offer, onBookmarkClick} = this.props;
+    const {offer, onBookmarkClick, classNames} = this.props;
 
     return (
-      <article className="cities__place-card place-card"
+      <article className={`place-card ${classNames && classNames.card}`}
         onMouseOver={this.handleCardHover.bind(this, offer)}>
         {offer.premium &&
           <div className="place-card__mark">
             <span>Premium</span>
           </div>
         }
-        <div className="cities__image-wrapper place-card__image-wrapper">
+        <div className={`${classNames && classNames.imgWrap} place-card__image-wrapper`}>
           <a href="#">
             <img className="place-card__image" src={offer.pictures[0]} width="260" height="200" alt={offer.title}></img>
           </a>
@@ -77,6 +77,10 @@ PlaceCard.propTypes = {
   onBookmarkClick: pt.func.isRequired,
   onCardHover: pt.func.isRequired,
   onCardClick: pt.func.isRequired,
+  classNames: pt.shape({
+    card: pt.string,
+    imgWrap: pt.string
+  }),
 };
 
 export default PlaceCard;

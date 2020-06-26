@@ -18,10 +18,10 @@ class Map extends PureComponent {
 
   _initMap() {
     const city = [52.38333, 4.9];
-    const {offerCords} = this.props;
+    const {offersCords, currentCords} = this.props;
     const icon = leaflet.icon({
       iconUrl: `img/pin.svg`,
-      iconSize: [30, 30]
+      iconSize: [27, 39]
     });
     const zoom = 12;
     const map = leaflet.map(this._mapRef.current, {
@@ -40,25 +40,35 @@ class Map extends PureComponent {
         })
         .addTo(map);
 
-      offerCords.forEach((cord) => {
+      offersCords.forEach((cord) => {
         leaflet
           .marker(cord, {icon})
           .addTo(map);
       });
+
+      if (currentCords) {
+        const currentIcon = leaflet.icon({
+          iconUrl: `img/pin-active.svg`,
+          iconSize: [27, 39]
+        });
+        leaflet
+          .marker(currentCords, {icon: currentIcon})
+          .addTo(map);
+      }
     }
   }
 
   render() {
     return (
-      <section className="cities__map map">
-        <div id="map" ref={this._mapRef} style={{height: `100%`}}></div>
-      </section>
+      <div id="map" ref={this._mapRef} style={{height: `100%`}}></div>
     );
   }
 }
 
 Map.propTypes = {
-  offerCords: pt.arrayOf(pt.arrayOf(pt.number)).isRequired
+  offersCords: pt.arrayOf(pt.arrayOf(pt.number)).isRequired,
+  currentCords: pt.arrayOf(pt.number),
+  type: pt.string
 };
 
 export default Map;

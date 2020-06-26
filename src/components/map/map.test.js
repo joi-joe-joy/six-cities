@@ -9,14 +9,29 @@ const coordinations = [
   [52.3809553943508, 4.939309666406198]
 ];
 
-it(`Renderer Map correctly`, () => {
-  const tree = renderer.create(
-      <Map
-        offerCords={coordinations}
-      />, {
-        createNodeMock: () => {}
-      }
-  ).toJSON();
+describe(`Render Map`, () => {
+  it(`Renderer Map correctly`, () => {
+    const tree = renderer.create(
+        <Map
+          offersCords={coordinations}
+        />, {
+          createNodeMock: () => {}
+        }
+    ).toJSON();
 
-  expect(tree).toMatchSnapshot();
+    expect(tree).toMatchSnapshot();
+  });
+
+  it(`Renderer Map correctly with current`, () => {
+    const tree = renderer.create(
+        <Map
+          currentCords={coordinations[0]}
+          offersCords={coordinations}
+        />, {
+          createNodeMock: () => {}
+        }
+    ).toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
 });

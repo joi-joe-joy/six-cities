@@ -1,6 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import PlacesList from "./places-list.jsx";
+import {PlaceCardType} from "../../const";
 
 const offers = [
   {
@@ -49,6 +50,30 @@ describe(`Render PlacesList`, () => {
   it(`render PlacesList correctly`, () => {
     const tree = renderer.create(
         <PlacesList
+          offers={offers}
+          onCardClick={()=>{}}
+        />
+    ).toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+
+  it(`render PlacesList correctly type Cities`, () => {
+    const tree = renderer.create(
+        <PlacesList
+          type={PlaceCardType.CITIES}
+          offers={offers}
+          onCardClick={()=>{}}
+        />
+    ).toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+
+  it(`render PlacesList correctly Near`, () => {
+    const tree = renderer.create(
+        <PlacesList
+          type={PlaceCardType.NEAR}
           offers={offers}
           onCardClick={()=>{}}
         />

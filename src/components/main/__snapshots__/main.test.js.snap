@@ -193,10 +193,12 @@ exports[`Render Main Main with offers and rentCount 1`] = `
           </select>
         </form>
         <div
-          className="cities__places-list places__list tabs__content"
+          className="
+          cities__places-list tabs__content
+           places__list"
         >
           <article
-            className="cities__place-card place-card"
+            className="place-card near-places__card "
             onMouseOver={[Function]}
           >
             <div
@@ -207,7 +209,7 @@ exports[`Render Main Main with offers and rentCount 1`] = `
               </span>
             </div>
             <div
-              className="cities__image-wrapper place-card__image-wrapper"
+              className="near-places__image-wrapper  place-card__image-wrapper"
             >
               <a
                 href="#"
@@ -510,10 +512,12 @@ exports[`Render Main Main without offers and rentCount 1`] = `
           </select>
         </form>
         <div
-          className="cities__places-list places__list tabs__content"
+          className="
+          cities__places-list tabs__content
+           places__list"
         >
           <article
-            className="cities__place-card place-card"
+            className="place-card near-places__card "
             onMouseOver={[Function]}
           >
             <div
@@ -524,7 +528,7 @@ exports[`Render Main Main without offers and rentCount 1`] = `
               </span>
             </div>
             <div
-              className="cities__image-wrapper place-card__image-wrapper"
+              className="near-places__image-wrapper  place-card__image-wrapper"
             >
               <a
                 href="#"
