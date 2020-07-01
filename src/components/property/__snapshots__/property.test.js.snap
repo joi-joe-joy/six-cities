@@ -389,16 +389,14 @@ exports[`Property render correctly without Premium 1`] = `
         Other places in the neighbourhood
       </h2>
       <div
-        className="
-          
-          near-places__list places__list"
+        className="places__list near-places__list"
       >
         <article
-          className="place-card cities__place-card "
+          className="place-card near-places__card"
           onMouseOver={[Function]}
         >
           <div
-            className="cities__image-wrapper  place-card__image-wrapper"
+            className="place-card__image-wrapper near-places__image-wrapper"
           >
             <a
               href="#"
@@ -880,16 +878,14 @@ exports[`Render Property correctly 1`] = `
         Other places in the neighbourhood
       </h2>
       <div
-        className="
-          
-          near-places__list places__list"
+        className="places__list near-places__list"
       >
         <article
-          className="place-card cities__place-card "
+          className="place-card near-places__card"
           onMouseOver={[Function]}
         >
           <div
-            className="cities__image-wrapper  place-card__image-wrapper"
+            className="place-card__image-wrapper near-places__image-wrapper"
           >
             <a
               href="#"

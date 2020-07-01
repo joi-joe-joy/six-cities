@@ -1,6 +1,10 @@
 import React from "react";
 import renderer from "react-test-renderer";
+import {Provider} from "react-redux";
+import configureStore from "redux-mock-store";
 import Main from "./main";
+
+const mockStore = configureStore([]);
 
 const offers = [
   {
@@ -28,35 +32,49 @@ const offers = [
 ];
 
 describe(`Render Main`, () => {
-  it(`Main with offers and rentCount`, () => {
+  it(`Main with offers`, () => {
+    const store = mockStore({
+      city: `Paris`,
+      offersCityList: offers
+    });
+
     const tree = renderer
-      .create(<Main
-        offers={offers}
-        rentCount={5}
-        onLocationClick={()=>{}}
-        onCardClick={()=>{}}
-      />, {
-        createNodeMock: () => {
-          return {};
-        }
-      })
+      .create(
+          <Provider store={store}>
+            <Main
+              offers={offers}
+              onLocationClick={()=>{}}
+              onCardClick={()=>{}}
+            />
+          </Provider>, {
+            createNodeMock: () => {
+              return {};
+            }
+          })
       .toJSON();
 
     expect(tree).toMatchSnapshot();
   });
 
-  it(`Main without offers and rentCount`, () => {
+  it(`Main without offers`, () => {
+    const store = mockStore({
+      city: `Paris`,
+      offersCityList: offers
+    });
+
     const tree = renderer
-      .create(<Main
-        offers={offers}
-        rentCount={0}
-        onLocationClick={()=>{}}
-        onCardClick={()=>{}}
-      />, {
-        createNodeMock: () => {
-          return {};
-        }
-      })
+      .create(
+          <Provider store={store}>
+            <Main
+              offers={offers}
+              onLocationClick={()=>{}}
+              onCardClick={()=>{}}
+            />
+          </Provider>, {
+            createNodeMock: () => {
+              return {};
+            }
+          })
       .toJSON();
 
     expect(tree).toMatchSnapshot();
