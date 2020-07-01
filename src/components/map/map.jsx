@@ -15,9 +15,11 @@ class Map extends PureComponent {
     this._initMap();
   }
 
-  componentDidUpdate() {
-    this.map.remove();
-    this._initMap();
+  componentDidUpdate(prevProps) {
+    if ((this.props.offersCords !== prevProps.offersCords) || (this.props.currentCords !== prevProps.currentCords)) {
+      this.map.remove();
+      this._initMap();
+    }
   }
 
   componentWillUnmount() {
@@ -65,10 +67,6 @@ class Map extends PureComponent {
       }
     }
   }
-
-  // _removeMap() {
-  //   remove()
-  // }
 
   render() {
     return (

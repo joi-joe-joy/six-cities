@@ -10,7 +10,6 @@ import pt from "prop-types";
 const Main = (props) => {
   const {offers, currentCity, onCardClick} = props;
   let offersCords = offers.map((offer) => offer.coordinations);
-  // console.log(`offersCords1`, offersCords);
 
   return <main className="page__main page__main--index">
     <h1 className="visually-hidden">Cities</h1>
