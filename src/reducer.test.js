@@ -5,11 +5,10 @@ let initOffers = offers.filter((offer) => offer.city === `Paris`);
 let offersCityList = [
   {city: `Paris`},
   {city: `Paris`},
-  {city: `Amsterdam`},
-  {city: `Brussels`},
 ];
 
-const offers = [{
+const offersList = [{
+  city: `Paris`,
   title: `Canal View Prinsengracht`,
   premium: true,
   pictures: [
@@ -83,6 +82,7 @@ const offers = [{
   ]
 },
 {
+  city: `Amsterdam`,
   title: `Nice, cozy, warm big bed apartment`,
   premium: false,
   pictures: [
@@ -154,15 +154,15 @@ const offers = [{
   ]
 }];
 
-const citiesList = [`Paris`, `Paris`, `Amsterdam`, `Brussels`];
+const citiesList = [`Paris`, `Amsterdam`, `Brussels`];
 
-describe(`Action creators work correctly`, () => {
+describe(`Reducer work correctly`, () => {
   it(`Reducer without additional parameters should return initial state`, () => {
     expect(reducer(undefined, {})).toEqual({
       city: `Paris`,
       offersCityList: initOffers,
       offers,
-      citiesList
+      citiesList: [`Paris`, `Amsterdam`, `Brussels`]
     });
   });
 
@@ -170,7 +170,7 @@ describe(`Action creators work correctly`, () => {
     expect(reducer({
       city: `Paris`,
       offersCityList,
-      offers,
+      offers: offersList,
       citiesList
     }, {
       type: ActionType.CHANGE_CITY,
@@ -178,7 +178,7 @@ describe(`Action creators work correctly`, () => {
     })).toEqual({
       city: `Amsterdam`,
       offersCityList,
-      offers,
+      offers: offersList,
       citiesList
     });
   });
@@ -187,7 +187,7 @@ describe(`Action creators work correctly`, () => {
     expect(reducer({
       city: `Paris`,
       offersCityList,
-      offers,
+      offers: offersList,
       citiesList
     }, {
       type: ActionType.CHANGE_CITY,
@@ -195,7 +195,7 @@ describe(`Action creators work correctly`, () => {
     })).toEqual({
       city: `Paris`,
       offersCityList,
-      offers,
+      offers: offersList,
       citiesList
     });
   });
@@ -204,15 +204,15 @@ describe(`Action creators work correctly`, () => {
     expect(reducer({
       city: `Amsterdam`,
       offersCityList: initOffers,
-      offers,
+      offers: offersList,
       citiesList
     }, {
-      type: ActionType.GET_OFFERS_LIST,
+      type: ActionType.GET_OFFERS_CITY_LIST,
       payload: offersCityList
     })).toEqual({
       city: `Amsterdam`,
       offersCityList,
-      offers,
+      offers: offersList,
       citiesList
     });
   });
@@ -221,15 +221,15 @@ describe(`Action creators work correctly`, () => {
     expect(reducer({
       city: `Amsterdam`,
       offersCityList,
-      offers,
+      offers: offersList,
       citiesList
     }, {
-      type: ActionType.GET_OFFERS_LIST,
+      type: ActionType.GET_OFFERS_CITY_LIST,
       payload: offersCityList
     })).toEqual({
       city: `Amsterdam`,
       offersCityList,
-      offers,
+      offers: offersList,
       citiesList
     });
   });

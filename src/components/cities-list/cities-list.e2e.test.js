@@ -1,14 +1,25 @@
 import React from "react";
-import {shallow} from "enzyme";
+import {shallow, mount} from "enzyme";
+import {Provider} from "react-redux";
+import configureStore from "redux-mock-store";
 import {CitiesList} from "./cities-list";
 
+const mockStore = configureStore([]);
+
 it(`Tab should be pressed`, () => {
+  const store = mockStore({
+    city: `Paris`,
+    citiesList: [`Paris`, `Amsterdam`, `Brussels`]
+  });
   const onLocationClick = jest.fn();
 
-  const citiesList = shallow(
-      <CitiesList
-        onLocationClick={onLocationClick}
-      />
+  const citiesList = mount(
+      <Provider store={store}>
+        <CitiesList
+          citiesList={[`Paris`, `Amsterdam`, `Brussels`]}
+          onLocationClick={onLocationClick}
+        />
+      </Provider>
   );
 
   const cityTab = citiesList.find(`a.locations__item-link.tabs__item`).at(1);
@@ -17,12 +28,19 @@ it(`Tab should be pressed`, () => {
 });
 
 it(`When presses tab, link does not link`, () => {
+  const store = mockStore({
+    city: `Paris`,
+    citiesList: [`Paris`, `Amsterdam`, `Brussels`]
+  });
   const onLocationClick = jest.fn();
 
-  const citiesList = shallow(
-      <CitiesList
-        onLocationClick={onLocationClick}
-      />
+  const citiesList = mount(
+      <Provider store={store}>
+        <CitiesList
+          citiesList={[`Paris`, `Amsterdam`, `Brussels`]}
+          onLocationClick={onLocationClick}
+        />
+      </Provider>
   );
 
   const cityTab = citiesList.find(`a.locations__item-link.tabs__item`).at(1);
@@ -37,13 +55,20 @@ it(`When presses tab, link does not link`, () => {
 });
 
 it(`User click passed to callback is consistent with "city" prop`, () => {
+  const store = mockStore({
+    city: `Paris`,
+    citiesList: [`Paris`, `Amsterdam`, `Brussels`]
+  });
   const onLocationClick = jest.fn((...args) => [...args]);
   const city = `Paris`;
 
-  const citiesList = shallow(
-      <CitiesList
-        onLocationClick={onLocationClick}
-      />
+  const citiesList = mount(
+      <Provider store={store}>
+        <CitiesList
+          citiesList={[`Paris`, `Amsterdam`, `Brussels`]}
+          onLocationClick={onLocationClick}
+        />
+      </Provider>
   );
 
   const cityTab = citiesList.find(`a.locations__item-link.tabs__item`).at(0);

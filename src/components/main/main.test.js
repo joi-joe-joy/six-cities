@@ -35,7 +35,8 @@ describe(`Render Main`, () => {
   it(`Main with offers`, () => {
     const store = mockStore({
       city: `Paris`,
-      offersCityList: offers
+      offersCityList: offers,
+      citiesList: [`Paris`, `Amsterdam`, `Brussels`]
     });
 
     const tree = renderer
@@ -59,7 +60,8 @@ describe(`Render Main`, () => {
   it(`Main without offers`, () => {
     const store = mockStore({
       city: `Paris`,
-      offersCityList: offers
+      offersCityList: offers,
+      citiesList: [`Paris`, `Amsterdam`, `Brussels`]
     });
 
     const tree = renderer

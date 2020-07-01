@@ -61,7 +61,7 @@ exports[`Render CitiesList correctly Render CitiesList correctly without current
       className="locations__item"
     >
       <a
-        className="locations__item-link tabs__item tabs__item--active"
+        className="locations__item-link tabs__item"
         href="#"
         onClick={[Function]}
       >

@@ -7,6 +7,7 @@ import {App} from "./app.jsx";
 const mockStore = configureStore([]);
 
 const offers = [{
+  city: `Paris`,
   title: `Canal View Prinsengracht`,
   premium: true,
   pictures: [
@@ -80,6 +81,7 @@ const offers = [{
   ]
 },
 {
+  city: `Paris`,
   title: `Nice, cozy, warm big bed apartment`,
   premium: false,
   pictures: [
@@ -155,7 +157,8 @@ describe(`Render App`, () => {
   it(`Render with offers`, () => {
     const store = mockStore({
       city: `Paris`,
-      offersCityList: offers
+      offersCityList: offers,
+      citiesList: [`Paris`, `Amsterdam`, `Brussels`]
     });
 
     const tree = renderer
