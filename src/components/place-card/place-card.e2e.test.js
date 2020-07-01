@@ -1,6 +1,7 @@
 import React from "react";
 import {shallow} from "enzyme";
 import PlaceCard from "./place-card";
+import {PlaceCardType} from "../../const.js";
 
 const offer = {
   title: `Canal View Prinsengracht`,
@@ -33,6 +34,7 @@ it(`Should bookmark-button be pressed`, () => {
         onCardHover={()=>{}}
         onCardClick={()=>{}}
         onBookmarkClick={onBookmarkButtonClick}
+        type={PlaceCardType.CITIES}
       />
   );
 
@@ -50,6 +52,7 @@ it(`Should take card info on hover`, () => {
         onCardHover={onCardHover}
         onBookmarkClick={()=>{}}
         onCardClick={()=>{}}
+        type={PlaceCardType.CITIES}
       />
   );
 
@@ -68,6 +71,7 @@ it(`Should get a card by clicking on the title`, () => {
         onCardHover={()=>{}}
         onBookmarkClick={()=>{}}
         onCardClick={onCardClick}
+        type={PlaceCardType.CITIES}
       />
   );
 

@@ -1,9 +1,9 @@
 import React, {PureComponent} from "react";
-import NearPlaceCard from "../near-place-card/near-place-card";
-import CitiesPlaceCard from "../cities-place-card/cities-place-card";
 import PlaceCard from "../place-card/place-card";
 import {PlaceCardType} from "../../const";
+import classnames from "classnames";
 import pt from 'prop-types';
+
 
 class PlacesList extends PureComponent {
   constructor(props) {
@@ -25,46 +25,24 @@ class PlacesList extends PureComponent {
     }
   }
 
-  _getComponentByType(type, offer) {
-    const {onCardClick} = this.props;
-
-    switch (type) {
-      case PlaceCardType.CITIES:
-        return <NearPlaceCard
-          key={offer.id}
-          offer={offer}
-          onCardHover={this.onCardHover}
-          onBookmarkClick={this.onBookmarkClick}
-          onCardClick={onCardClick}
-        />;
-      case PlaceCardType.NEAR:
-        return <CitiesPlaceCard
-          key={offer.id}
-          offer={offer}
-          onCardHover={this.onCardHover}
-          onBookmarkClick={this.onBookmarkClick}
-          onCardClick={onCardClick}
-        />;
-      default:
-        return <PlaceCard
-          key={offer.id}
-          offer={offer}
-          onCardHover={this.onCardHover}
-          onBookmarkClick={this.onBookmarkClick}
-          onCardClick={onCardClick}
-        />;
-    }
-  }
-
   render() {
-    const {offers, type} = this.props;
+    const {offers, type, onCardClick} = this.props;
+    const classNamesString = classnames(`places__list`, {
+      'cities__places-list tabs__content': type === PlaceCardType.CITIES,
+      'near-places__list': type === PlaceCardType.NEAR
+    });
 
     return (
-      <div className={`
-          ${type === PlaceCardType.CITIES ? `cities__places-list tabs__content` : ``}
-          ${type === PlaceCardType.NEAR ? `near-places__list` : ``} places__list`}>
+      <div className={classNamesString}>
         {offers.map((offer) => (
-          this._getComponentByType(type, offer)
+          <PlaceCard
+            key={offer.id}
+            offer={offer}
+            type={type}
+            onCardHover={this.onCardHover}
+            onBookmarkClick={this.onBookmarkClick}
+            onCardClick={onCardClick}
+          />
         ))}
       </div>
     );
@@ -74,7 +52,7 @@ class PlacesList extends PureComponent {
 PlacesList.propTypes = {
   offers: pt.array.isRequired,
   onCardClick: pt.func.isRequired,
-  type: pt.string
+  type: pt.string.isRequired
 };
 
 export default PlacesList;

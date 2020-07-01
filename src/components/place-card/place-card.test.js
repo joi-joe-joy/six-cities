@@ -1,6 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import PlaceCard from "./place-card";
+import {PlaceCardType} from "../../const.js";
 
 const offerPremium = {
   title: `Canal View Prinsengracht`,
@@ -52,6 +53,7 @@ describe(`Render PlaceCard`, () => {
         onBookmarkClick={()=>{}}
         onCardHover={()=>{}}
         onCardClick={()=>{}}
+        type={PlaceCardType.CITIES}
       />)
       .toJSON();
 
@@ -65,6 +67,21 @@ describe(`Render PlaceCard`, () => {
         onBookmarkClick={()=>{}}
         onCardHover={()=>{}}
         onCardClick={()=>{}}
+        type={PlaceCardType.CITIES}
+      />)
+      .toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+
+  it(`PlaceCard render correctly NEAR`, () => {
+    const tree = renderer
+      .create(<PlaceCard
+        offer={offerWithoutPremium}
+        onBookmarkClick={()=>{}}
+        onCardHover={()=>{}}
+        onCardClick={()=>{}}
+        type={PlaceCardType.NEAR}
       />)
       .toJSON();
 

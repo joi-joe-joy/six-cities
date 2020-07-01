@@ -1,6 +1,7 @@
 export default [
   {
     id: 1,
+    city: `Paris`,
     title: `Beautiful & luxurious apartment at great location`,
     premium: true,
     pictures: [
@@ -258,6 +259,7 @@ export default [
   },
   {
     id: 2,
+    city: `Paris`,
     title: `Wood and stone place`,
     premium: false,
     pictures: [
@@ -413,6 +415,7 @@ export default [
   },
   {
     id: 3,
+    city: `Amsterdam`,
     title: `Canal View Prinsengracht`,
     premium: true,
     pictures: [
@@ -544,6 +547,7 @@ export default [
   },
   {
     id: 4,
+    city: `Brussels`,
     title: `Nice, cozy, warm big bed apartment`,
     premium: false,
     pictures: [

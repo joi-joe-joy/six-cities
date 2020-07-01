@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Render Main Main with offers and rentCount 1`] = `
+exports[`Render Main Main with offers 1`] = `
 <main
   className="page__main page__main--index"
 >
@@ -37,29 +37,7 @@ exports[`Render Main Main with offers and rentCount 1`] = `
           <a
             className="locations__item-link tabs__item"
             href="#"
-          >
-            <span>
-              Cologne
-            </span>
-          </a>
-        </li>
-        <li
-          className="locations__item"
-        >
-          <a
-            className="locations__item-link tabs__item"
-            href="#"
-          >
-            <span>
-              Brussels
-            </span>
-          </a>
-        </li>
-        <li
-          className="locations__item"
-        >
-          <a
-            className="locations__item-link tabs__item"
+            onClick={[Function]}
           >
             <span>
               Amsterdam
@@ -72,21 +50,10 @@ exports[`Render Main Main with offers and rentCount 1`] = `
           <a
             className="locations__item-link tabs__item"
             href="#"
+            onClick={[Function]}
           >
             <span>
-              Hamburg
-            </span>
-          </a>
-        </li>
-        <li
-          className="locations__item"
-        >
-          <a
-            className="locations__item-link tabs__item"
-            href="#"
-          >
-            <span>
-              Dusseldorf
+              Brussels
             </span>
           </a>
         </li>
@@ -110,8 +77,9 @@ exports[`Render Main Main with offers and rentCount 1`] = `
         <b
           className="places__found"
         >
-          5
-           places to stay in Amsterdam
+          1
+           places to stay in 
+          Paris
         </b>
         <form
           action="#"
@@ -193,12 +161,10 @@ exports[`Render Main Main with offers and rentCount 1`] = `
           </select>
         </form>
         <div
-          className="
-          cities__places-list tabs__content
-           places__list"
+          className="places__list cities__places-list tabs__content"
         >
           <article
-            className="place-card near-places__card "
+            className="place-card cities__place-card"
             onMouseOver={[Function]}
           >
             <div
@@ -209,7 +175,7 @@ exports[`Render Main Main with offers and rentCount 1`] = `
               </span>
             </div>
             <div
-              className="near-places__image-wrapper  place-card__image-wrapper"
+              className="place-card__image-wrapper cities__image-wrapper"
             >
               <a
                 href="#"
@@ -319,7 +285,7 @@ exports[`Render Main Main with offers and rentCount 1`] = `
 </main>
 `;
 
-exports[`Render Main Main without offers and rentCount 1`] = `
+exports[`Render Main Main without offers 1`] = `
 <main
   className="page__main page__main--index"
 >
@@ -356,29 +322,7 @@ exports[`Render Main Main without offers and rentCount 1`] = `
           <a
             className="locations__item-link tabs__item"
             href="#"
-          >
-            <span>
-              Cologne
-            </span>
-          </a>
-        </li>
-        <li
-          className="locations__item"
-        >
-          <a
-            className="locations__item-link tabs__item"
-            href="#"
-          >
-            <span>
-              Brussels
-            </span>
-          </a>
-        </li>
-        <li
-          className="locations__item"
-        >
-          <a
-            className="locations__item-link tabs__item"
+            onClick={[Function]}
           >
             <span>
               Amsterdam
@@ -391,21 +335,10 @@ exports[`Render Main Main without offers and rentCount 1`] = `
           <a
             className="locations__item-link tabs__item"
             href="#"
+            onClick={[Function]}
           >
             <span>
-              Hamburg
-            </span>
-          </a>
-        </li>
-        <li
-          className="locations__item"
-        >
-          <a
-            className="locations__item-link tabs__item"
-            href="#"
-          >
-            <span>
-              Dusseldorf
+              Brussels
             </span>
           </a>
         </li>
@@ -429,8 +362,9 @@ exports[`Render Main Main without offers and rentCount 1`] = `
         <b
           className="places__found"
         >
-          0
-           places to stay in Amsterdam
+          1
+           places to stay in 
+          Paris
         </b>
         <form
           action="#"
@@ -512,12 +446,10 @@ exports[`Render Main Main without offers and rentCount 1`] = `
           </select>
         </form>
         <div
-          className="
-          cities__places-list tabs__content
-           places__list"
+          className="places__list cities__places-list tabs__content"
         >
           <article
-            className="place-card near-places__card "
+            className="place-card cities__place-card"
             onMouseOver={[Function]}
           >
             <div
@@ -528,7 +460,7 @@ exports[`Render Main Main without offers and rentCount 1`] = `
               </span>
             </div>
             <div
-              className="near-places__image-wrapper  place-card__image-wrapper"
+              className="place-card__image-wrapper cities__image-wrapper"
             >
               <a
                 href="#"

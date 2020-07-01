@@ -1,12 +1,13 @@
-import React from "react";
-import renderer from "react-test-renderer";
-import {Provider} from "react-redux";
-import configureStore from "redux-mock-store";
-import {App} from "./app.jsx";
+import {reducer, ActionType, ActionCreator} from "./reducer.js";
+import offers from "./mocks/offers.js";
 
-const mockStore = configureStore([]);
+let initOffers = offers.filter((offer) => offer.city === `Paris`);
+let offersCityList = [
+  {city: `Paris`},
+  {city: `Paris`},
+];
 
-const offers = [{
+const offersList = [{
   city: `Paris`,
   title: `Canal View Prinsengracht`,
   premium: true,
@@ -81,7 +82,7 @@ const offers = [{
   ]
 },
 {
-  city: `Paris`,
+  city: `Amsterdam`,
   title: `Nice, cozy, warm big bed apartment`,
   premium: false,
   pictures: [
@@ -153,28 +154,100 @@ const offers = [{
   ]
 }];
 
-describe(`Render App`, () => {
-  it(`Render with offers`, () => {
-    const store = mockStore({
+const citiesList = [`Paris`, `Amsterdam`, `Brussels`];
+
+describe(`Reducer work correctly`, () => {
+  it(`Reducer without additional parameters should return initial state`, () => {
+    expect(reducer(undefined, {})).toEqual({
       city: `Paris`,
-      offersCityList: offers,
+      offersCityList: initOffers,
+      offers,
       citiesList: [`Paris`, `Amsterdam`, `Brussels`]
     });
+  });
 
-    const tree = renderer
-      .create(
-          <Provider store={store}>
-            <App
-              offers={offers}
-            />
-          </Provider>, {
-            createNodeMock: () => {
-              return {};
-            }
-          })
-      .toJSON();
+  it(`Reducer should change city by a given value`, () => {
+    expect(reducer({
+      city: `Paris`,
+      offersCityList,
+      offers: offersList,
+      citiesList
+    }, {
+      type: ActionType.CHANGE_CITY,
+      payload: `Amsterdam`
+    })).toEqual({
+      city: `Amsterdam`,
+      offersCityList,
+      offers: offersList,
+      citiesList
+    });
+  });
 
-    expect(tree).toMatchSnapshot();
+  it(`Reducer should not change city by the same given value`, () => {
+    expect(reducer({
+      city: `Paris`,
+      offersCityList,
+      offers: offersList,
+      citiesList
+    }, {
+      type: ActionType.CHANGE_CITY,
+      payload: `Paris`
+    })).toEqual({
+      city: `Paris`,
+      offersCityList,
+      offers: offersList,
+      citiesList
+    });
+  });
+
+  it(`Reducer should change offers list by a given value`, () => {
+    expect(reducer({
+      city: `Amsterdam`,
+      offersCityList: initOffers,
+      offers: offersList,
+      citiesList
+    }, {
+      type: ActionType.GET_OFFERS_CITY_LIST,
+      payload: offersCityList
+    })).toEqual({
+      city: `Amsterdam`,
+      offersCityList,
+      offers: offersList,
+      citiesList
+    });
+  });
+
+  it(`Reducer should not change offers list by the same given value`, () => {
+    expect(reducer({
+      city: `Amsterdam`,
+      offersCityList,
+      offers: offersList,
+      citiesList
+    }, {
+      type: ActionType.GET_OFFERS_CITY_LIST,
+      payload: offersCityList
+    })).toEqual({
+      city: `Amsterdam`,
+      offersCityList,
+      offers: offersList,
+      citiesList
+    });
+  });
+});
+
+describe(`Action creators work correctly`, () => {
+  it(`Action creator for change city returns correct action`, () => {
+    expect(ActionCreator.changeCity(`Amsterdam`)).toEqual({
+      type: ActionType.CHANGE_CITY,
+      payload: `Amsterdam`,
+    });
+  });
+
+  it(`Action creator for change city returns correct action without city`, () => {
+    expect(ActionCreator.changeCity()).toEqual({
+      type: ActionType.CHANGE_CITY,
+      payload: `Paris`,
+    });
   });
 });
 

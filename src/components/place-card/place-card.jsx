@@ -1,7 +1,8 @@
 import React, {PureComponent} from "react";
 import IconBookmark from "../../Icons/icon-bookmark.svg";
+import {HouseType, HouseTypeTemplate, PlaceCardType} from "../../const.js";
+import classnames from "classnames";
 import pt from "prop-types";
-import {HouseType, HouseTypeTemplate} from "../../const.js";
 
 class PlaceCard extends PureComponent {
   constructor(props) {
@@ -10,8 +11,8 @@ class PlaceCard extends PureComponent {
     this.handleCardClick = this.handleCardClick.bind(this);
   }
 
-  handleCardHover(card) {
-    this.props.onCardHover(card);
+  handleCardHover() {
+    this.props.onCardHover(this.props.offer);
   }
 
   handleCardClick(event, card) {
@@ -20,17 +21,25 @@ class PlaceCard extends PureComponent {
   }
 
   render() {
-    const {offer, onBookmarkClick, classNames} = this.props;
+    const {offer, onBookmarkClick, type} = this.props;
+    const classNamesCard = classnames(`place-card`, {
+      'cities__place-card': type === PlaceCardType.CITIES,
+      'near-places__card': type === PlaceCardType.NEAR
+    });
+    const classNamesImgWrap = classnames(`place-card__image-wrapper`, {
+      'cities__image-wrapper': type === PlaceCardType.CITIES,
+      'near-places__image-wrapper': type === PlaceCardType.NEAR
+    });
 
     return (
-      <article className={`place-card ${classNames && classNames.card}`}
-        onMouseOver={this.handleCardHover.bind(this, offer)}>
+      <article className={classNamesCard}
+        onMouseOver={this.handleCardHover}>
         {offer.premium &&
           <div className="place-card__mark">
             <span>Premium</span>
           </div>
         }
-        <div className={`${classNames && classNames.imgWrap} place-card__image-wrapper`}>
+        <div className={classNamesImgWrap}>
           <a href="#">
             <img className="place-card__image" src={offer.pictures[0]} width="260" height="200" alt={offer.title}></img>
           </a>
@@ -77,10 +86,7 @@ PlaceCard.propTypes = {
   onBookmarkClick: pt.func.isRequired,
   onCardHover: pt.func.isRequired,
   onCardClick: pt.func.isRequired,
-  classNames: pt.shape({
-    card: pt.string,
-    imgWrap: pt.string
-  }),
+  type: pt.string.isRequired
 };
 
 export default PlaceCard;

@@ -8,13 +8,23 @@ class Map extends PureComponent {
 
     this._mapRef = createRef();
     this._initMap = this._initMap.bind(this);
+    this.map = {};
   }
 
   componentDidMount() {
     this._initMap();
   }
 
-  componentWillUnmount() {}
+  componentDidUpdate(prevProps) {
+    if ((this.props.offersCords !== prevProps.offersCords) || (this.props.currentCords !== prevProps.currentCords)) {
+      this.map.remove();
+      this._initMap();
+    }
+  }
+
+  componentWillUnmount() {
+    this.map.remove();
+  }
 
   _initMap() {
     const city = [52.38333, 4.9];
@@ -24,26 +34,26 @@ class Map extends PureComponent {
       iconSize: [27, 39]
     });
     const zoom = 12;
-    const map = leaflet.map(this._mapRef.current, {
+    this.map = leaflet.map(this._mapRef.current, {
       center: city,
       zoom,
       zoomControl: false,
       marker: true
     });
 
-    if (map) {
-      map.setView(city, zoom);
+    if (this.map) {
+      this.map.setView(city, zoom);
 
       leaflet
         .tileLayer(`https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png`, {
           attribution: `&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors`
         })
-        .addTo(map);
+        .addTo(this.map);
 
       offersCords.forEach((cord) => {
         leaflet
           .marker(cord, {icon})
-          .addTo(map);
+          .addTo(this.map);
       });
 
       if (currentCords) {
@@ -53,7 +63,7 @@ class Map extends PureComponent {
         });
         leaflet
           .marker(currentCords, {icon: currentIcon})
-          .addTo(map);
+          .addTo(this.map);
       }
     }
   }

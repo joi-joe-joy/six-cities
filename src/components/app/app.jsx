@@ -1,8 +1,9 @@
 import React, {PureComponent} from "react";
-import Main from "../main/main";
-import pt from 'prop-types';
 import {BrowserRouter, Route, Switch} from "react-router-dom";
+import {connect} from "react-redux";
+import Main from "../main/main";
 import Property from "../property/property";
+import pt from 'prop-types';
 
 class App extends PureComponent {
   constructor(props) {
@@ -10,11 +11,8 @@ class App extends PureComponent {
     this.state = {
       currentCard: null
     };
-    this.onLocationClick = this.onLocationClick.bind(this);
     this.onCardClick = this.onCardClick.bind(this);
   }
-
-  onLocationClick() {}
 
   onCardClick(card) {
     this.setState({
@@ -23,7 +21,7 @@ class App extends PureComponent {
   }
 
   _renderApp() {
-    const {rentCount, offers} = this.props;
+    const {offers} = this.props;
 
     if (this.state.currentCard) {
       return (
@@ -35,9 +33,7 @@ class App extends PureComponent {
     } else {
       return (
         <Main
-          rentCount={rentCount}
           offers={offers}
-          onLocationClick={this.onLocationClick}
           onCardClick={this.onCardClick}
         />
       );
@@ -66,8 +62,12 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  rentCount: pt.number.isRequired,
   offers: pt.array.isRequired
 };
 
-export default App;
+const mapStateToProps = (state) => ({
+  offers: state.offersCityList
+});
+
+export {App};
+export default connect(mapStateToProps)(App);
