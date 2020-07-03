@@ -67,7 +67,7 @@ exports[`Property render correctly without Premium 1`] = `
             className="property__bookmark-button button"
             type="button"
           >
-            <SvgrURL
+            <svg
               height="33"
               width="31"
             />
@@ -252,7 +252,7 @@ exports[`Property render correctly without Premium 1`] = `
                 htmlFor="5-stars"
                 title="perfect"
               >
-                <SvgrURL
+                <svg
                   height="33"
                   width="37"
                 />
@@ -269,7 +269,7 @@ exports[`Property render correctly without Premium 1`] = `
                 htmlFor="4-stars"
                 title="good"
               >
-                <SvgrURL
+                <svg
                   height="33"
                   width="37"
                 />
@@ -286,7 +286,7 @@ exports[`Property render correctly without Premium 1`] = `
                 htmlFor="3-stars"
                 title="not bad"
               >
-                <SvgrURL
+                <svg
                   height="33"
                   width="37"
                 />
@@ -303,7 +303,7 @@ exports[`Property render correctly without Premium 1`] = `
                 htmlFor="2-stars"
                 title="badly"
               >
-                <SvgrURL
+                <svg
                   height="33"
                   width="37"
                 />
@@ -320,7 +320,7 @@ exports[`Property render correctly without Premium 1`] = `
                 htmlFor="1-star"
                 title="terribly"
               >
-                <SvgrURL
+                <svg
                   height="33"
                   width="37"
                 />
@@ -436,7 +436,7 @@ exports[`Property render correctly without Premium 1`] = `
                 onClick={[Function]}
                 type="button"
               >
-                <SvgrURL
+                <svg
                   height="18"
                   width="17"
                 />
@@ -556,7 +556,7 @@ exports[`Render Property correctly 1`] = `
             className="property__bookmark-button button"
             type="button"
           >
-            <SvgrURL
+            <svg
               height="33"
               width="31"
             />
@@ -741,7 +741,7 @@ exports[`Render Property correctly 1`] = `
                 htmlFor="5-stars"
                 title="perfect"
               >
-                <SvgrURL
+                <svg
                   height="33"
                   width="37"
                 />
@@ -758,7 +758,7 @@ exports[`Render Property correctly 1`] = `
                 htmlFor="4-stars"
                 title="good"
               >
-                <SvgrURL
+                <svg
                   height="33"
                   width="37"
                 />
@@ -775,7 +775,7 @@ exports[`Render Property correctly 1`] = `
                 htmlFor="3-stars"
                 title="not bad"
               >
-                <SvgrURL
+                <svg
                   height="33"
                   width="37"
                 />
@@ -792,7 +792,7 @@ exports[`Render Property correctly 1`] = `
                 htmlFor="2-stars"
                 title="badly"
               >
-                <SvgrURL
+                <svg
                   height="33"
                   width="37"
                 />
@@ -809,7 +809,7 @@ exports[`Render Property correctly 1`] = `
                 htmlFor="1-star"
                 title="terribly"
               >
-                <SvgrURL
+                <svg
                   height="33"
                   width="37"
                 />
@@ -925,7 +925,7 @@ exports[`Render Property correctly 1`] = `
                 onClick={[Function]}
                 type="button"
               >
-                <SvgrURL
+                <svg
                   height="18"
                   width="17"
                 />

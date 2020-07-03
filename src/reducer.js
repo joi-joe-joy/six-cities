@@ -20,7 +20,7 @@ const initialState = {
 const ActionType = {
   CHANGE_CITY: `CHANGE_CITY`,
   GET_OFFERS_CITY_LIST: `GET_OFFERS_CITY_LIST`,
-  GET_CARD: `GET_CARD`
+  CHANGE_CARD: `CHANGE_CARD`
 };
 
 const ActionCreator = {
@@ -40,9 +40,9 @@ const ActionCreator = {
       payload: offersCityList
     };
   },
-  getCard: (card) => {
+  changeCard: (card) => {
     return {
-      type: ActionType.GET_CARD,
+      type: ActionType.CHANGE_CARD,
       payload: card
     };
   }
@@ -58,7 +58,7 @@ const reducer = (state = initialState, action) => {
       return extend(state, {
         offersCityList: action.payload
       });
-    case ActionType.GET_CARD:
+    case ActionType.CHANGE_CARD:
       return extend(state, {
         currentCard: action.payload
       });

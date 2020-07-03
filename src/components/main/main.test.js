@@ -8,6 +8,7 @@ const mockStore = configureStore([]);
 
 const offers = [
   {
+    id: 7,
     title: `Canal View Prinsengracht`,
     premium: true,
     pictures: [

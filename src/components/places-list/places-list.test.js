@@ -9,6 +9,7 @@ const mockStore = configureStore([]);
 
 const offers = [
   {
+    id: 1,
     title: `Canal View Prinsengracht`,
     premium: true,
     pictures: [
@@ -30,6 +31,7 @@ const offers = [
     }
   },
   {
+    id: 5,
     title: `Nice, cozy, warm big bed apartment`,
     premium: false,
     pictures: [
@@ -59,6 +61,8 @@ describe(`Render PlacesList`, () => {
     const tree = renderer.create(
         <Provider store={store}>
           <PlacesList
+            onCardHover={()=>{}}
+            type={PlaceCardType.CITIES}
             offers={offers}
           />
         </Provider>
@@ -75,6 +79,7 @@ describe(`Render PlacesList`, () => {
     const tree = renderer.create(
         <Provider store={store}>
           <PlacesList
+            onCardHover={()=>{}}
             type={PlaceCardType.CITIES}
             offers={offers}
           />
@@ -92,6 +97,7 @@ describe(`Render PlacesList`, () => {
     const tree = renderer.create(
         <Provider store={store}>
           <PlacesList
+            onCardHover={()=>{}}
             type={PlaceCardType.NEAR}
             offers={offers}
           />

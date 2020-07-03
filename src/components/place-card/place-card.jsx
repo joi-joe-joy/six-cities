@@ -98,7 +98,7 @@ const mapStateToProps = null;
 
 const mapDispatchToProps = (dispatch) => ({
   onCardClick(card) {
-    dispatch(ActionCreator.getCard(card));
+    dispatch(ActionCreator.changeCard(card));
   }
 });
 

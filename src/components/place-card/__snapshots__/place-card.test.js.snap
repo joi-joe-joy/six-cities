@@ -46,7 +46,7 @@ exports[`Render PlaceCard PlaceCard render correctly NEAR 1`] = `
         onClick={[Function]}
         type="button"
       >
-        <SvgrURL
+        <svg
           height="18"
           width="17"
         />
@@ -148,7 +148,7 @@ exports[`Render PlaceCard PlaceCard render correctly with Premium 1`] = `
         onClick={[Function]}
         type="button"
       >
-        <SvgrURL
+        <svg
           height="18"
           width="17"
         />
@@ -243,7 +243,7 @@ exports[`Render PlaceCard PlaceCard render correctly without Premium 1`] = `
         onClick={[Function]}
         type="button"
       >
-        <SvgrURL
+        <svg
           height="18"
           width="17"
         />

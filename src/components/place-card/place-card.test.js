@@ -8,6 +8,7 @@ import configureStore from "redux-mock-store";
 const mockStore = configureStore([]);
 
 const offerPremium = {
+  id: 7,
   title: `Canal View Prinsengracht`,
   premium: true,
   pictures: [
@@ -30,6 +31,7 @@ const offerPremium = {
 };
 
 const offerWithoutPremium = {
+  id: 7,
   title: `Nice, cozy, warm big bed apartment`,
   premium: false,
   pictures: [

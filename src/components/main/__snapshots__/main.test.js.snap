@@ -96,7 +96,7 @@ exports[`Render Main Main with offers 1`] = `
             tabIndex="0"
           >
             Popular
-            <SvgrURL
+            <svg
               height="4"
               width="7"
             />
@@ -215,7 +215,7 @@ exports[`Render Main Main with offers 1`] = `
                   onClick={[Function]}
                   type="button"
                 >
-                  <SvgrURL
+                  <svg
                     height="18"
                     width="17"
                   />
@@ -381,7 +381,7 @@ exports[`Render Main Main without offers 1`] = `
             tabIndex="0"
           >
             Popular
-            <SvgrURL
+            <svg
               height="4"
               width="7"
             />
@@ -500,7 +500,7 @@ exports[`Render Main Main without offers 1`] = `
                   onClick={[Function]}
                   type="button"
                 >
-                  <SvgrURL
+                  <svg
                     height="18"
                     width="17"
                   />

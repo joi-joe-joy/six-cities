@@ -1,5 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
+import {MapType} from "../../const";
 import Map from "./map.jsx";
 
 jest.mock(`leaflet`);
@@ -13,8 +14,10 @@ describe(`Render Map`, () => {
   it(`Renderer Map correctly`, () => {
     const tree = renderer.create(
         <Map
-          offersCords={coordinations}
-        />, {
+          type={MapType.PROPERTY}
+          offersCords={coordinations}>
+          <div/>
+        </Map>, {
           createNodeMock: () => {}
         }
     ).toJSON();
@@ -25,9 +28,12 @@ describe(`Render Map`, () => {
   it(`Renderer Map correctly with current`, () => {
     const tree = renderer.create(
         <Map
+          type={MapType.PROPERTY}
           currentCords={coordinations[0]}
           offersCords={coordinations}
-        />, {
+        >
+          <div/>
+        </Map>, {
           createNodeMock: () => {}
         }
     ).toJSON();

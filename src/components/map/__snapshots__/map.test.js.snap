@@ -2,12 +2,16 @@
 
 exports[`Render Map Renderer Map correctly 1`] = `
 <section
-  className="map"
-/>
+  className="map property__map"
+>
+  <div />
+</section>
 `;
 
 exports[`Render Map Renderer Map correctly with current 1`] = `
 <section
-  className="map"
-/>
+  className="map property__map"
+>
+  <div />
+</section>
 `;
