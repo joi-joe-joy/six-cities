@@ -365,7 +365,7 @@ exports[`Property render correctly without Premium 1`] = `
       </div>
     </div>
     <section
-      className="property__map map"
+      className="map property__map"
     >
       <div
         id="map"
@@ -854,7 +854,7 @@ exports[`Render Property correctly 1`] = `
       </div>
     </div>
     <section
-      className="property__map map"
+      className="map property__map"
     >
       <div
         id="map"

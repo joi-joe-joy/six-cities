@@ -360,7 +360,7 @@ exports[`Render App Render with offers 1`] = `
         className="cities__right-section"
       >
         <section
-          className="cities__map map"
+          className="map cities__map"
         >
           <div
             id="map"

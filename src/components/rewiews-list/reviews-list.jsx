@@ -1,14 +1,12 @@
-import React, {PureComponent} from "react";
+import React from "react";
 import Review from "../review/review";
 import {MAX_REVIEW_COUNT} from "../../const";
 import pt from "prop-types";
 
-class ReviewsList extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
+const ReviewsList = (props) => {
+  const {reviews} = props;
 
-  _generateReviewList(reviews) {
+  const _generateReviewList = () => {
     if (reviews.length) {
       return (reviews
         .sort((a, b) => a.date - b.date)
@@ -23,18 +21,14 @@ class ReviewsList extends PureComponent {
     } else {
       return null;
     }
-  }
+  };
 
-  render() {
-    const {reviews} = this.props;
-
-    return (
-      <ul className="reviews__list">
-        {this._generateReviewList(reviews)}
-      </ul>
-    );
-  }
-}
+  return (
+    <ul className="reviews__list">
+      {_generateReviewList(reviews)}
+    </ul>
+  );
+};
 
 ReviewsList.propTypes = {
   reviews: pt.array.isRequired

@@ -162,7 +162,8 @@ describe(`Reducer work correctly`, () => {
       city: `Paris`,
       offersCityList: initOffers,
       offers,
-      citiesList: [`Paris`, `Amsterdam`, `Brussels`]
+      citiesList: [`Paris`, `Amsterdam`, `Brussels`],
+      currentCard: null
     });
   });
 

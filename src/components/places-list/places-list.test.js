@@ -2,6 +2,10 @@ import React from "react";
 import renderer from "react-test-renderer";
 import PlacesList from "./places-list.jsx";
 import {PlaceCardType} from "../../const";
+import {Provider} from "react-redux";
+import configureStore from "redux-mock-store";
+
+const mockStore = configureStore([]);
 
 const offers = [
   {
@@ -48,35 +52,50 @@ const offers = [
 
 describe(`Render PlacesList`, () => {
   it(`render PlacesList correctly`, () => {
+    const store = mockStore({
+      card: {}
+    });
+
     const tree = renderer.create(
-        <PlacesList
-          offers={offers}
-          onCardClick={()=>{}}
-        />
+        <Provider store={store}>
+          <PlacesList
+            offers={offers}
+          />
+        </Provider>
     ).toJSON();
 
     expect(tree).toMatchSnapshot();
   });
 
   it(`render PlacesList correctly type Cities`, () => {
+    const store = mockStore({
+      card: {}
+    });
+
     const tree = renderer.create(
-        <PlacesList
-          type={PlaceCardType.CITIES}
-          offers={offers}
-          onCardClick={()=>{}}
-        />
+        <Provider store={store}>
+          <PlacesList
+            type={PlaceCardType.CITIES}
+            offers={offers}
+          />
+        </Provider>
     ).toJSON();
 
     expect(tree).toMatchSnapshot();
   });
 
   it(`render PlacesList correctly Near`, () => {
+    const store = mockStore({
+      card: {}
+    });
+
     const tree = renderer.create(
-        <PlacesList
-          type={PlaceCardType.NEAR}
-          offers={offers}
-          onCardClick={()=>{}}
-        />
+        <Provider store={store}>
+          <PlacesList
+            type={PlaceCardType.NEAR}
+            offers={offers}
+          />
+        </Provider>
     ).toJSON();
 
     expect(tree).toMatchSnapshot();

@@ -8,25 +8,13 @@ import pt from 'prop-types';
 class PlacesList extends PureComponent {
   constructor(props) {
     super(props);
-    this.state = {
-      activeCard: {}
-    };
     this.onBookmarkClick = this.onBookmarkClick.bind(this);
-    this.onCardHover = this.onCardHover.bind(this);
   }
 
   onBookmarkClick() {}
 
-  onCardHover(card) {
-    if (this.state.activeCard !== card) {
-      this.setState({
-        activeCard: card
-      });
-    }
-  }
-
   render() {
-    const {offers, type, onCardClick} = this.props;
+    const {offers, type, onCardHover, activeItemId} = this.props;
     const classNamesString = classnames(`places__list`, {
       'cities__places-list tabs__content': type === PlaceCardType.CITIES,
       'near-places__list': type === PlaceCardType.NEAR
@@ -36,12 +24,12 @@ class PlacesList extends PureComponent {
       <div className={classNamesString}>
         {offers.map((offer) => (
           <PlaceCard
+            currentCard={activeItemId === offer.id}
             key={offer.id}
             offer={offer}
             type={type}
-            onCardHover={this.onCardHover}
+            onCardHover={onCardHover}
             onBookmarkClick={this.onBookmarkClick}
-            onCardClick={onCardClick}
           />
         ))}
       </div>
@@ -51,8 +39,9 @@ class PlacesList extends PureComponent {
 
 PlacesList.propTypes = {
   offers: pt.array.isRequired,
-  onCardClick: pt.func.isRequired,
-  type: pt.string.isRequired
+  type: pt.string.isRequired,
+  onCardHover: pt.func.isRequired,
+  activeItemId: pt.number
 };
 
 export default PlacesList;

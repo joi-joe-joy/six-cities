@@ -1,23 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Render Map Renderer Map correctly 1`] = `
-<div
-  id="map"
-  style={
-    Object {
-      "height": "100%",
-    }
-  }
+<section
+  className="map"
 />
 `;
 
 exports[`Render Map Renderer Map correctly with current 1`] = `
-<div
-  id="map"
-  style={
-    Object {
-      "height": "100%",
-    }
-  }
+<section
+  className="map"
 />
 `;

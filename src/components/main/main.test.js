@@ -45,7 +45,6 @@ describe(`Render Main`, () => {
             <Main
               offers={offers}
               onLocationClick={()=>{}}
-              onCardClick={()=>{}}
             />
           </Provider>, {
             createNodeMock: () => {
@@ -70,7 +69,6 @@ describe(`Render Main`, () => {
             <Main
               offers={offers}
               onLocationClick={()=>{}}
-              onCardClick={()=>{}}
             />
           </Provider>, {
             createNodeMock: () => {

@@ -2,6 +2,10 @@ import React from "react";
 import renderer from "react-test-renderer";
 import PlaceCard from "./place-card";
 import {PlaceCardType} from "../../const.js";
+import {Provider} from "react-redux";
+import configureStore from "redux-mock-store";
+
+const mockStore = configureStore([]);
 
 const offerPremium = {
   title: `Canal View Prinsengracht`,
@@ -47,43 +51,64 @@ const offerWithoutPremium = {
 
 describe(`Render PlaceCard`, () => {
   it(`PlaceCard render correctly with Premium`, () => {
+    const store = mockStore({
+      card: {}
+    });
+
     const tree = renderer
-      .create(<PlaceCard
-        offer={offerPremium}
-        onBookmarkClick={()=>{}}
-        onCardHover={()=>{}}
-        onCardClick={()=>{}}
-        type={PlaceCardType.CITIES}
-      />)
-      .toJSON();
+      .create(
+          <Provider store={store}>
+            <PlaceCard
+              offer={offerPremium}
+              onBookmarkClick={()=>{}}
+              onCardHover={()=>{}}
+              onCardClick={()=>{}}
+              type={PlaceCardType.CITIES}
+            />
+          </Provider>
+      ).toJSON();
 
     expect(tree).toMatchSnapshot();
   });
 
   it(`PlaceCard render correctly without Premium`, () => {
+    const store = mockStore({
+      card: {}
+    });
+
     const tree = renderer
-      .create(<PlaceCard
-        offer={offerWithoutPremium}
-        onBookmarkClick={()=>{}}
-        onCardHover={()=>{}}
-        onCardClick={()=>{}}
-        type={PlaceCardType.CITIES}
-      />)
-      .toJSON();
+      .create(
+          <Provider store={store}>
+            <PlaceCard
+              offer={offerWithoutPremium}
+              onBookmarkClick={()=>{}}
+              onCardHover={()=>{}}
+              onCardClick={()=>{}}
+              type={PlaceCardType.CITIES}
+            />
+          </Provider>
+      ).toJSON();
 
     expect(tree).toMatchSnapshot();
   });
 
   it(`PlaceCard render correctly NEAR`, () => {
+    const store = mockStore({
+      card: {}
+    });
+
     const tree = renderer
-      .create(<PlaceCard
-        offer={offerWithoutPremium}
-        onBookmarkClick={()=>{}}
-        onCardHover={()=>{}}
-        onCardClick={()=>{}}
-        type={PlaceCardType.NEAR}
-      />)
-      .toJSON();
+      .create(
+          <Provider store={store}>
+            <PlaceCard
+              offer={offerWithoutPremium}
+              onBookmarkClick={()=>{}}
+              onCardHover={()=>{}}
+              onCardClick={()=>{}}
+              type={PlaceCardType.NEAR}
+            />
+          </Provider>
+      ).toJSON();
 
     expect(tree).toMatchSnapshot();
   });

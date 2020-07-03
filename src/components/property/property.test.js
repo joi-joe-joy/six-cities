@@ -1,6 +1,10 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import Property from "./property.jsx";
+import {Provider} from "react-redux";
+import configureStore from "redux-mock-store";
+
+const mockStore = configureStore([]);
 
 const offerWithPremium = {
   title: `Canal View Prinsengracht`,
@@ -151,21 +155,31 @@ const offerWithoutPremium = {
 };
 
 it(`Render Property correctly`, () => {
+  const store = mockStore({
+    card: {}
+  });
+
   const tree = renderer.create(
-      <Property
-        onCardClick={()=>{}}
-        offer={offerWithPremium}/>
+      <Provider store={store}>
+        <Property
+          offer={offerWithPremium}/>
+      </Provider>
   ).toJSON();
 
   expect(tree).toMatchSnapshot();
 });
 
 it(`Property render correctly without Premium`, () => {
+  const store = mockStore({
+    card: {}
+  });
+
   const tree = renderer
     .create(
-        <Property
-          onCardClick={()=>{}}
-          offer={offerWithoutPremium}/>
+        <Provider store={store}>
+          <Property
+            offer={offerWithoutPremium}/>
+        </Provider>
     )
     .toJSON();
 
