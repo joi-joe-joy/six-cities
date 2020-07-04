@@ -1,5 +1,7 @@
 import React, {PureComponent} from "react";
 import IconBookmark from "../../Icons/icon-bookmark.svg";
+import {connect} from "react-redux";
+import {ActionCreator} from "../../reducer.js";
 import {HouseType, HouseTypeTemplate, PlaceCardType} from "../../const.js";
 import classnames from "classnames";
 import pt from "prop-types";
@@ -12,12 +14,14 @@ class PlaceCard extends PureComponent {
   }
 
   handleCardHover() {
-    this.props.onCardHover(this.props.offer);
+    const {offer, onCardHover} = this.props;
+    onCardHover(offer.id);
   }
 
-  handleCardClick(event, card) {
-    event.preventDefault();
-    this.props.onCardClick(card);
+  handleCardClick(e) {
+    const {offer, onCardClick} = this.props;
+    e.preventDefault();
+    onCardClick(offer);
   }
 
   render() {
@@ -65,7 +69,7 @@ class PlaceCard extends PureComponent {
             </div>
           </div>
           <h2 className="place-card__name">
-            <a onClick={(e) => this.handleCardClick(e, offer)}>{offer.title}</a>
+            <a onClick={this.handleCardClick}>{offer.title}</a>
           </h2>
           <p className="place-card__type">{HouseTypeTemplate[offer.type]}</p>
         </div>
@@ -76,6 +80,7 @@ class PlaceCard extends PureComponent {
 
 PlaceCard.propTypes = {
   offer: pt.shape({
+    id: pt.number.isRequired,
     title: pt.string.isRequired,
     premium: pt.bool.isRequired,
     pictures: pt.arrayOf(pt.string).isRequired,
@@ -89,4 +94,13 @@ PlaceCard.propTypes = {
   type: pt.string.isRequired
 };
 
-export default PlaceCard;
+const mapStateToProps = null;
+
+const mapDispatchToProps = (dispatch) => ({
+  onCardClick(card) {
+    dispatch(ActionCreator.changeCard(card));
+  }
+});
+
+export {PlaceCard};
+export default connect(mapStateToProps, mapDispatchToProps)(PlaceCard);

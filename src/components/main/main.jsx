@@ -4,11 +4,17 @@ import IconArrowSelect from "../../Icons/icon-arrow-select.svg";
 import PlacesList from "../places-list/places-list";
 import CitiesList from "../cities-list/cities-list";
 import {PlaceCardType} from "../../const";
+import {MapType} from "../../const";
 import Map from "../map/map";
+import withMap from "../../hocs/with-map/with-map";
+import withActiveItem from "../../hocs/with-active-item/with-active-item";
 import pt from "prop-types";
 
+const MapWrap = withMap(Map);
+const PlacesListWrap = withActiveItem(PlacesList);
+
 const Main = (props) => {
-  const {offers, currentCity, onCardClick} = props;
+  const {offers, currentCity} = props;
   let offersCords = offers.map((offer) => offer.coordinations);
 
   return <main className="page__main page__main--index">
@@ -40,16 +46,16 @@ const Main = (props) => {
               <option className="places__option" value="top-rated">Top rated first</option>
             </select>
           </form>
-          <PlacesList
+          <PlacesListWrap
             type={PlaceCardType.CITIES}
             offers={offers}
-            onCardClick={onCardClick}
           />
         </section>
         <div className="cities__right-section">
-          <section className="cities__map map">
-            <Map offersCords={offersCords}/>
-          </section>
+          <MapWrap
+            offersCords={offersCords}
+            type={MapType.MAIN}
+          />
         </div>
       </div>
     </div>
@@ -59,7 +65,6 @@ const Main = (props) => {
 Main.propTypes = {
   offers: pt.array.isRequired,
   currentCity: pt.string.isRequired,
-  onCardClick: pt.func.isRequired
 };
 
 const mapStateToProps = (state) => ({

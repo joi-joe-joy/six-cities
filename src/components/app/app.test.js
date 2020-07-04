@@ -7,6 +7,7 @@ import {App} from "./app.jsx";
 const mockStore = configureStore([]);
 
 const offers = [{
+  id: 7,
   city: `Paris`,
   title: `Canal View Prinsengracht`,
   premium: true,
@@ -81,6 +82,7 @@ const offers = [{
   ]
 },
 {
+  id: 4,
   city: `Paris`,
   title: `Nice, cozy, warm big bed apartment`,
   premium: false,

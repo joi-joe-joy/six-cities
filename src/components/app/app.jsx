@@ -8,33 +8,20 @@ import pt from 'prop-types';
 class App extends PureComponent {
   constructor(props) {
     super(props);
-    this.state = {
-      currentCard: null
-    };
-    this.onCardClick = this.onCardClick.bind(this);
-  }
-
-  onCardClick(card) {
-    this.setState({
-      currentCard: card
-    });
   }
 
   _renderApp() {
-    const {offers} = this.props;
-
-    if (this.state.currentCard) {
+    const {offers, currentCard} = this.props;
+    if (currentCard) {
       return (
         <Property
-          onCardClick={this.onCardClick}
-          offer={this.state.currentCard}
+          offer={currentCard}
         />
       );
     } else {
       return (
         <Main
           offers={offers}
-          onCardClick={this.onCardClick}
         />
       );
     }
@@ -42,7 +29,6 @@ class App extends PureComponent {
 
   render() {
     const {offers} = this.props;
-
     return (
       <BrowserRouter>
         <Switch>
@@ -51,7 +37,6 @@ class App extends PureComponent {
           </Route>
           <Route exact path="/dev-property">
             <Property
-              onCardClick={this.onCardClick}
               offer={offers[0]}
             />
           </Route>
@@ -62,11 +47,13 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  offers: pt.array.isRequired
+  offers: pt.array.isRequired,
+  currentCard: pt.any
 };
 
 const mapStateToProps = (state) => ({
-  offers: state.offersCityList
+  offers: state.offersCityList,
+  currentCard: state.currentCard
 });
 
 export {App};

@@ -7,18 +7,20 @@ let initOffers = offers.filter((offer) => offer.city === initCity);
 // Получаем все значения городов
 let cities = offers.map((offer)=>offer.city);
 // Получаем уникальные значения городов
-let citiesList = Array.from(new Set(cities));
+let citiesList = [...new Set(cities)];
 
 const initialState = {
   city: initCity,
   offersCityList: initOffers,
   offers,
-  citiesList
+  citiesList,
+  currentCard: null
 };
 
 const ActionType = {
   CHANGE_CITY: `CHANGE_CITY`,
   GET_OFFERS_CITY_LIST: `GET_OFFERS_CITY_LIST`,
+  CHANGE_CARD: `CHANGE_CARD`
 };
 
 const ActionCreator = {
@@ -37,6 +39,12 @@ const ActionCreator = {
       type: ActionType.GET_OFFERS_CITY_LIST,
       payload: offersCityList
     };
+  },
+  changeCard: (card) => {
+    return {
+      type: ActionType.CHANGE_CARD,
+      payload: card
+    };
   }
 };
 
@@ -49,6 +57,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.GET_OFFERS_CITY_LIST:
       return extend(state, {
         offersCityList: action.payload
+      });
+    case ActionType.CHANGE_CARD:
+      return extend(state, {
+        currentCard: action.payload
       });
   }
 

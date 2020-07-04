@@ -1,9 +1,14 @@
 import React from "react";
-import {shallow} from "enzyme";
+import {mount} from "enzyme";
 import PlaceCard from "./place-card";
 import {PlaceCardType} from "../../const.js";
+import {Provider} from "react-redux";
+import configureStore from "redux-mock-store";
+
+const mockStore = configureStore([]);
 
 const offer = {
+  id: 5,
   title: `Canal View Prinsengracht`,
   premium: true,
   pictures: [
@@ -26,16 +31,22 @@ const offer = {
 };
 
 it(`Should bookmark-button be pressed`, () => {
+  const store = mockStore({
+    city: `Paris`,
+    citiesList: [`Paris`, `Amsterdam`, `Brussels`]
+  });
   const onBookmarkButtonClick = jest.fn();
 
-  const placeCard = shallow(
-      <PlaceCard
-        offer={offer}
-        onCardHover={()=>{}}
-        onCardClick={()=>{}}
-        onBookmarkClick={onBookmarkButtonClick}
-        type={PlaceCardType.CITIES}
-      />
+  const placeCard = mount(
+      <Provider store={store}>
+        <PlaceCard
+          offer={offer}
+          onCardHover={()=>{}}
+          onCardClick={()=>{}}
+          onBookmarkClick={onBookmarkButtonClick}
+          type={PlaceCardType.CITIES}
+        />
+      </Provider>
   );
 
   const bookmarkButton = placeCard.find(`button.place-card__bookmark-button.button`);
@@ -44,45 +55,26 @@ it(`Should bookmark-button be pressed`, () => {
 });
 
 it(`Should take card info on hover`, () => {
+  const store = mockStore({
+    city: `Paris`,
+    citiesList: [`Paris`, `Amsterdam`, `Brussels`]
+  });
   const onCardHover = jest.fn((...args) => [...args]);
 
-  const placeCard = shallow(
-      <PlaceCard
-        offer={offer}
-        onCardHover={onCardHover}
-        onBookmarkClick={()=>{}}
-        onCardClick={()=>{}}
-        type={PlaceCardType.CITIES}
-      />
+  const placeCard = mount(
+      <Provider store={store}>
+        <PlaceCard
+          offer={offer}
+          onCardHover={onCardHover}
+          onBookmarkClick={()=>{}}
+          onCardClick={()=>{}}
+          type={PlaceCardType.CITIES}
+        />
+      </Provider>
   );
 
-  placeCard.props().onMouseOver();
+  placeCard.simulate(`mouseOver`);
 
-  expect(onCardHover.mock.calls[0][0]).toMatchObject(offer);
-});
-
-it(`Should get a card by clicking on the title`, () => {
-  const onCardClick = jest.fn((...args) => [...args]);
-  const linkPrevention = jest.fn();
-
-  const placeCard = shallow(
-      <PlaceCard
-        offer={offer}
-        onCardHover={()=>{}}
-        onBookmarkClick={()=>{}}
-        onCardClick={onCardClick}
-        type={PlaceCardType.CITIES}
-      />
-  );
-
-  const link = placeCard.find(`h2.place-card__name a`);
-
-  link.simulate(`click`, {
-    preventDefault: linkPrevention
-  });
-
-  expect(onCardClick).toHaveBeenCalledTimes(1);
-  expect(linkPrevention).toHaveBeenCalledTimes(1);
-  expect(onCardClick.mock.calls[0][0]).toMatchObject(offer);
+  expect(onCardHover.mock.calls[0][0]).toEqual(5);
 });
 
