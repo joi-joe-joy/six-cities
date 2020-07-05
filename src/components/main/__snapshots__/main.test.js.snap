@@ -93,78 +93,60 @@ exports[`Render Main Main with offers 1`] = `
           </span>
           <span
             className="places__sorting-type"
+            onClick={[Function]}
             tabIndex="0"
           >
             Popular
             <svg
               height="4"
+              style={
+                Object {
+                  "marginBottom": "1px",
+                  "marginLeft": "5px",
+                }
+              }
               width="7"
             />
           </span>
           <ul
-            className="places__options places__options--custom places__options--opened"
+            className="places__options places__options--custom"
           >
             <li
               className="places__option places__option--active"
+              onClick={[Function]}
               tabIndex="0"
             >
               Popular
             </li>
             <li
               className="places__option"
+              onClick={[Function]}
               tabIndex="0"
             >
               Price: low to high
             </li>
             <li
               className="places__option"
+              onClick={[Function]}
               tabIndex="0"
             >
               Price: high to low
             </li>
             <li
               className="places__option"
+              onClick={[Function]}
               tabIndex="0"
             >
               Top rated first
             </li>
           </ul>
-          <select
-            className="places__sorting-type"
-            defaultValue="popular"
-            id="places-sorting"
-          >
-            <option
-              className="places__option"
-              value="popular"
-            >
-              Popular
-            </option>
-            <option
-              className="places__option"
-              value="to-high"
-            >
-              Price: low to high
-            </option>
-            <option
-              className="places__option"
-              value="to-low"
-            >
-              Price: high to low
-            </option>
-            <option
-              className="places__option"
-              value="top-rated"
-            >
-              Top rated first
-            </option>
-          </select>
         </form>
         <div
           className="places__list cities__places-list tabs__content"
         >
           <article
             className="place-card cities__place-card"
+            onMouseOut={[Function]}
             onMouseOver={[Function]}
           >
             <div
@@ -378,78 +360,60 @@ exports[`Render Main Main without offers 1`] = `
           </span>
           <span
             className="places__sorting-type"
+            onClick={[Function]}
             tabIndex="0"
           >
             Popular
             <svg
               height="4"
+              style={
+                Object {
+                  "marginBottom": "1px",
+                  "marginLeft": "5px",
+                }
+              }
               width="7"
             />
           </span>
           <ul
-            className="places__options places__options--custom places__options--opened"
+            className="places__options places__options--custom"
           >
             <li
               className="places__option places__option--active"
+              onClick={[Function]}
               tabIndex="0"
             >
               Popular
             </li>
             <li
               className="places__option"
+              onClick={[Function]}
               tabIndex="0"
             >
               Price: low to high
             </li>
             <li
               className="places__option"
+              onClick={[Function]}
               tabIndex="0"
             >
               Price: high to low
             </li>
             <li
               className="places__option"
+              onClick={[Function]}
               tabIndex="0"
             >
               Top rated first
             </li>
           </ul>
-          <select
-            className="places__sorting-type"
-            defaultValue="popular"
-            id="places-sorting"
-          >
-            <option
-              className="places__option"
-              value="popular"
-            >
-              Popular
-            </option>
-            <option
-              className="places__option"
-              value="to-high"
-            >
-              Price: low to high
-            </option>
-            <option
-              className="places__option"
-              value="to-low"
-            >
-              Price: high to low
-            </option>
-            <option
-              className="places__option"
-              value="top-rated"
-            >
-              Top rated first
-            </option>
-          </select>
         </form>
         <div
           className="places__list cities__places-list tabs__content"
         >
           <article
             className="place-card cities__place-card"
+            onMouseOut={[Function]}
             onMouseOver={[Function]}
           >
             <div

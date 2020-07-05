@@ -3,6 +3,7 @@
 exports[`Render PlaceCard PlaceCard render correctly NEAR 1`] = `
 <article
   className="place-card near-places__card"
+  onMouseOut={[Function]}
   onMouseOver={[Function]}
 >
   <div
@@ -98,6 +99,7 @@ exports[`Render PlaceCard PlaceCard render correctly NEAR 1`] = `
 exports[`Render PlaceCard PlaceCard render correctly with Premium 1`] = `
 <article
   className="place-card cities__place-card"
+  onMouseOut={[Function]}
   onMouseOver={[Function]}
 >
   <div
@@ -200,6 +202,7 @@ exports[`Render PlaceCard PlaceCard render correctly with Premium 1`] = `
 exports[`Render PlaceCard PlaceCard render correctly without Premium 1`] = `
 <article
   className="place-card cities__place-card"
+  onMouseOut={[Function]}
   onMouseOver={[Function]}
 >
   <div

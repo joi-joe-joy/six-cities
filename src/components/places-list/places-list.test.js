@@ -1,7 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import PlacesList from "./places-list.jsx";
-import {PlaceCardType} from "../../const";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 
@@ -62,7 +61,8 @@ describe(`Render PlacesList`, () => {
         <Provider store={store}>
           <PlacesList
             onCardHover={()=>{}}
-            type={PlaceCardType.CITIES}
+            onCardHoverOut={()=>{}}
+            type={`cities`}
             offers={offers}
           />
         </Provider>
@@ -80,7 +80,8 @@ describe(`Render PlacesList`, () => {
         <Provider store={store}>
           <PlacesList
             onCardHover={()=>{}}
-            type={PlaceCardType.CITIES}
+            onCardHoverOut={()=>{}}
+            type={`cities`}
             offers={offers}
           />
         </Provider>
@@ -98,7 +99,8 @@ describe(`Render PlacesList`, () => {
         <Provider store={store}>
           <PlacesList
             onCardHover={()=>{}}
-            type={PlaceCardType.NEAR}
+            onCardHoverOut={()=>{}}
+            type={`near`}
             offers={offers}
           />
         </Provider>

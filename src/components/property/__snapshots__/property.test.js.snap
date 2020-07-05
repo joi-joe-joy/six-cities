@@ -393,6 +393,7 @@ exports[`Property render correctly without Premium 1`] = `
       >
         <article
           className="place-card near-places__card"
+          onMouseOut={[Function]}
           onMouseOver={[Function]}
         >
           <div
@@ -882,6 +883,7 @@ exports[`Render Property correctly 1`] = `
       >
         <article
           className="place-card near-places__card"
+          onMouseOut={[Function]}
           onMouseOver={[Function]}
         >
           <div

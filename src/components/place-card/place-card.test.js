@@ -64,6 +64,7 @@ describe(`Render PlaceCard`, () => {
               offer={offerPremium}
               onBookmarkClick={()=>{}}
               onCardHover={()=>{}}
+              onCardHoverOut={()=>{}}
               onCardClick={()=>{}}
               type={PlaceCardType.CITIES}
             />
@@ -85,6 +86,7 @@ describe(`Render PlaceCard`, () => {
               offer={offerWithoutPremium}
               onBookmarkClick={()=>{}}
               onCardHover={()=>{}}
+              onCardHoverOut={()=>{}}
               onCardClick={()=>{}}
               type={PlaceCardType.CITIES}
             />
@@ -106,6 +108,7 @@ describe(`Render PlaceCard`, () => {
               offer={offerWithoutPremium}
               onBookmarkClick={()=>{}}
               onCardHover={()=>{}}
+              onCardHoverOut={()=>{}}
               onCardClick={()=>{}}
               type={PlaceCardType.NEAR}
             />

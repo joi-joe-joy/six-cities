@@ -1,7 +1,8 @@
 import React from 'react';
 import renderer from "react-test-renderer";
 import withActiveItem from "./with-active-item";
-import {PlaceCardType} from "../../const";
+import {Provider} from "react-redux";
+import configureStore from "redux-mock-store";
 
 const MockComponent = () => <div/>;
 
@@ -32,12 +33,19 @@ const offers = [
   }
 ];
 
+const mockStore = configureStore([]);
+
 it(`should render withActiveItem correctly`, () => {
+  const store = mockStore({
+    hoverCard: null
+  });
   const tree = renderer.create(
-      <MockComponentWrap
-        type={PlaceCardType.CITIES}
-        offers={offers}
-      />
+      <Provider store={store}>
+        <MockComponentWrap
+          type={`cities`}
+          offers={offers}
+        />
+      </Provider>
   ).toJSON();
 
   expect(tree).toMatchSnapshot();
