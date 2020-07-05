@@ -11,7 +11,7 @@ class App extends PureComponent {
   }
 
   _renderApp() {
-    const {offers, currentCard} = this.props;
+    const {currentCard} = this.props;
     if (currentCard) {
       return (
         <Property
@@ -20,9 +20,7 @@ class App extends PureComponent {
       );
     } else {
       return (
-        <Main
-          offers={offers}
-        />
+        <Main/>
       );
     }
   }

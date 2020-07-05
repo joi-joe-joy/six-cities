@@ -1,7 +1,6 @@
 import React from 'react';
-import withActiveItem from "./with-active-item";
-import {PlaceCardType} from "../../const";
 import {shallow} from "enzyme";
+import withActiveItem from "./with-active-item";
 
 const MockComponent = () => <div/>;
 
@@ -35,7 +34,7 @@ const offers = [
 it(`should change active item`, () => {
   const componentWrap = shallow(
       <MockComponentWrap
-        type={PlaceCardType.CITIES}
+        type={`cities`}
         offers={offers}
       />
   );

@@ -163,7 +163,8 @@ describe(`Reducer work correctly`, () => {
       offersCityList: initOffers,
       offers,
       citiesList: [`Paris`, `Amsterdam`, `Brussels`],
-      currentCard: null
+      currentCard: null,
+      sorting: `popular`
     });
   });
 
@@ -172,7 +173,9 @@ describe(`Reducer work correctly`, () => {
       city: `Paris`,
       offersCityList,
       offers: offersList,
-      citiesList
+      citiesList,
+      currentCard: null,
+      sorting: `popular`
     }, {
       type: ActionType.CHANGE_CITY,
       payload: `Amsterdam`
@@ -180,7 +183,9 @@ describe(`Reducer work correctly`, () => {
       city: `Amsterdam`,
       offersCityList,
       offers: offersList,
-      citiesList
+      citiesList,
+      currentCard: null,
+      sorting: `popular`
     });
   });
 
@@ -189,7 +194,9 @@ describe(`Reducer work correctly`, () => {
       city: `Paris`,
       offersCityList,
       offers: offersList,
-      citiesList
+      citiesList,
+      currentCard: null,
+      sorting: `popular`
     }, {
       type: ActionType.CHANGE_CITY,
       payload: `Paris`
@@ -197,7 +204,9 @@ describe(`Reducer work correctly`, () => {
       city: `Paris`,
       offersCityList,
       offers: offersList,
-      citiesList
+      citiesList,
+      currentCard: null,
+      sorting: `popular`
     });
   });
 
@@ -206,7 +215,9 @@ describe(`Reducer work correctly`, () => {
       city: `Amsterdam`,
       offersCityList: initOffers,
       offers: offersList,
-      citiesList
+      citiesList,
+      currentCard: null,
+      sorting: `popular`
     }, {
       type: ActionType.GET_OFFERS_CITY_LIST,
       payload: offersCityList
@@ -214,7 +225,9 @@ describe(`Reducer work correctly`, () => {
       city: `Amsterdam`,
       offersCityList,
       offers: offersList,
-      citiesList
+      citiesList,
+      currentCard: null,
+      sorting: `popular`
     });
   });
 
@@ -223,7 +236,9 @@ describe(`Reducer work correctly`, () => {
       city: `Amsterdam`,
       offersCityList,
       offers: offersList,
-      citiesList
+      citiesList,
+      currentCard: null,
+      sorting: `popular`
     }, {
       type: ActionType.GET_OFFERS_CITY_LIST,
       payload: offersCityList
@@ -231,7 +246,51 @@ describe(`Reducer work correctly`, () => {
       city: `Amsterdam`,
       offersCityList,
       offers: offersList,
-      citiesList
+      citiesList,
+      currentCard: null,
+      sorting: `popular`
+    });
+  });
+
+  it(`Reducer should change sorting by a given value`, () => {
+    expect(reducer({
+      city: `Amsterdam`,
+      offersCityList,
+      offers: offersList,
+      citiesList,
+      currentCard: null,
+      sorting: `popular`
+    }, {
+      type: ActionType.CHANGE_SORTING,
+      payload: `top-rated`
+    })).toEqual({
+      city: `Amsterdam`,
+      offersCityList,
+      offers: offersList,
+      citiesList,
+      currentCard: null,
+      sorting: `top-rated`
+    });
+  });
+
+  it(`Reducer should not change sorting by the same given value`, () => {
+    expect(reducer({
+      city: `Amsterdam`,
+      offersCityList,
+      offers: offersList,
+      citiesList,
+      currentCard: null,
+      sorting: `popular`
+    }, {
+      type: ActionType.CHANGE_SORTING,
+      payload: `popular`
+    })).toEqual({
+      city: `Amsterdam`,
+      offersCityList,
+      offers: offersList,
+      citiesList,
+      currentCard: null,
+      sorting: `popular`
     });
   });
 });
@@ -393,6 +452,20 @@ describe(`Action creators work correctly`, () => {
     expect(ActionCreator.changeCard(offersList[0])).toEqual({
       type: ActionType.CHANGE_CARD,
       payload: offersList[0],
+    });
+  });
+
+  it(`Action creator for change sorting returns correct action`, () => {
+    expect(ActionCreator.changeSorting(`top-rated`)).toEqual({
+      type: ActionType.CHANGE_SORTING,
+      payload: `top-rated`,
+    });
+  });
+
+  it(`Action creator for change sorting returns correct action without sorting`, () => {
+    expect(ActionCreator.changeSorting()).toEqual({
+      type: ActionType.CHANGE_SORTING,
+      payload: `popular`,
     });
   });
 });

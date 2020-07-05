@@ -44,7 +44,6 @@ describe(`Render Main`, () => {
       .create(
           <Provider store={store}>
             <Main
-              offers={offers}
               onLocationClick={()=>{}}
             />
           </Provider>, {
@@ -68,7 +67,6 @@ describe(`Render Main`, () => {
       .create(
           <Provider store={store}>
             <Main
-              offers={offers}
               onLocationClick={()=>{}}
             />
           </Provider>, {
