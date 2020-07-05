@@ -1,101 +1,109 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Render CitiesList correctly Render CitiesList correctly with currentCity 1`] = `
-<section
-  className="locations container"
+<div
+  className="tabs"
 >
-  <ul
-    className="locations__list tabs__list"
+  <section
+    className="locations container"
   >
-    <li
-      className="locations__item"
+    <ul
+      className="locations__list tabs__list"
     >
-      <a
-        className="locations__item-link tabs__item tabs__item--active"
-        href="#"
-        onClick={[Function]}
+      <li
+        className="locations__item"
       >
-        <span>
-          Paris
-        </span>
-      </a>
-    </li>
-    <li
-      className="locations__item"
-    >
-      <a
-        className="locations__item-link tabs__item"
-        href="#"
-        onClick={[Function]}
+        <a
+          className="locations__item-link tabs__item tabs__item--active"
+          href="#"
+          onClick={[Function]}
+        >
+          <span>
+            Paris
+          </span>
+        </a>
+      </li>
+      <li
+        className="locations__item"
       >
-        <span>
-          Amsterdam
-        </span>
-      </a>
-    </li>
-    <li
-      className="locations__item"
-    >
-      <a
-        className="locations__item-link tabs__item"
-        href="#"
-        onClick={[Function]}
+        <a
+          className="locations__item-link tabs__item"
+          href="#"
+          onClick={[Function]}
+        >
+          <span>
+            Amsterdam
+          </span>
+        </a>
+      </li>
+      <li
+        className="locations__item"
       >
-        <span>
-          Brussels
-        </span>
-      </a>
-    </li>
-  </ul>
-</section>
+        <a
+          className="locations__item-link tabs__item"
+          href="#"
+          onClick={[Function]}
+        >
+          <span>
+            Brussels
+          </span>
+        </a>
+      </li>
+    </ul>
+  </section>
+</div>
 `;
 
 exports[`Render CitiesList correctly Render CitiesList correctly without currentCity 1`] = `
-<section
-  className="locations container"
+<div
+  className="tabs"
 >
-  <ul
-    className="locations__list tabs__list"
+  <section
+    className="locations container"
   >
-    <li
-      className="locations__item"
+    <ul
+      className="locations__list tabs__list"
     >
-      <a
-        className="locations__item-link tabs__item"
-        href="#"
-        onClick={[Function]}
+      <li
+        className="locations__item"
       >
-        <span>
-          Paris
-        </span>
-      </a>
-    </li>
-    <li
-      className="locations__item"
-    >
-      <a
-        className="locations__item-link tabs__item"
-        href="#"
-        onClick={[Function]}
+        <a
+          className="locations__item-link tabs__item"
+          href="#"
+          onClick={[Function]}
+        >
+          <span>
+            Paris
+          </span>
+        </a>
+      </li>
+      <li
+        className="locations__item"
       >
-        <span>
-          Amsterdam
-        </span>
-      </a>
-    </li>
-    <li
-      className="locations__item"
-    >
-      <a
-        className="locations__item-link tabs__item"
-        href="#"
-        onClick={[Function]}
+        <a
+          className="locations__item-link tabs__item"
+          href="#"
+          onClick={[Function]}
+        >
+          <span>
+            Amsterdam
+          </span>
+        </a>
+      </li>
+      <li
+        className="locations__item"
       >
-        <span>
-          Brussels
-        </span>
-      </a>
-    </li>
-  </ul>
-</section>
+        <a
+          className="locations__item-link tabs__item"
+          href="#"
+          onClick={[Function]}
+        >
+          <span>
+            Brussels
+          </span>
+        </a>
+      </li>
+    </ul>
+  </section>
+</div>
 `;
