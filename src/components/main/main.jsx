@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import {MapType} from "../../const";
 import CitiesList from "../cities-list/cities-list";
 import CitiesPlaces from "../cities-places/cities-places";
+import Empty from "../empty/empty";
 import Map from "../map/map";
 import withMap from "../../hocs/with-map/with-map";
 import pt from "prop-types";
@@ -15,32 +16,60 @@ class Main extends PureComponent {
   }
 
   render() {
-    const {offers, hoverCard} = this.props;
+    const {offers, hoverCard, city} = this.props;
     let offersCords = offers.map((offer) => offer.coordinations);
 
-    return <main className="page__main page__main--index">
-      <h1 className="visually-hidden">Cities</h1>
-      <div className="tabs">
-        <CitiesList/>
-      </div>
-      <div className="cities">
-        <div className="cities__places-container container">
-          <CitiesPlaces/>
-          <div className="cities__right-section">
-            <MapWrap
-              currentCords={hoverCard && hoverCard.coordinations}
-              offersCords={offersCords}
-              type={MapType.MAIN}
-            />
+    return (
+      <div className="page page--gray page--main">
+        <header className="header">
+          <div className="container">
+            <div className="header__wrapper">
+              <div className="header__left">
+                <a className="header__logo-link header__logo-link--active">
+                  <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41"/>
+                </a>
+              </div>
+              <nav className="header__nav">
+                <ul className="header__nav-list">
+                  <li className="header__nav-item user">
+                    <a className="header__nav-link header__nav-link--profile" href="#">
+                      <div className="header__avatar-wrapper user__avatar-wrapper">
+                      </div>
+                      <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
           </div>
-        </div>
+        </header>
+        <main className="page__main page__main--index">
+          <h1 className="visually-hidden">Cities</h1>
+          <CitiesList/>
+          {!!offers.length && (
+            <div className="cities">
+              <div className="cities__places-container container">
+                <CitiesPlaces/>
+                <div className="cities__right-section">
+                  <MapWrap
+                    currentCords={hoverCard && hoverCard.coordinations}
+                    offersCords={offersCords}
+                    type={MapType.MAIN}
+                  />
+                </div>
+              </div>
+            </div>
+          )}
+          {!offers.length && <Empty city={city}/>}
+        </main>
       </div>
-    </main>;
+    );
   }
 }
 
 Main.propTypes = {
   offers: pt.array.isRequired,
+  city: pt.string.isRequired,
   hoverCard: pt.shape({
     coordinations: pt.arrayOf(pt.number).isRequired,
   })
@@ -48,7 +77,8 @@ Main.propTypes = {
 
 const mapStateToProps = (state) => ({
   offers: state.offersCityList,
-  hoverCard: state.hoverCard
+  hoverCard: state.hoverCard,
+  city: state.city
 });
 
 export {Main};

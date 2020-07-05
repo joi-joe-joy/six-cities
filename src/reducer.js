@@ -2,8 +2,8 @@ import {extend} from "./utils.js";
 import offers from "./mocks/offers.js";
 import {SortType} from "./const";
 
-let initCity = offers[0].city;
-let initOffers = offers.filter((offer) => offer.city === initCity);
+let initCity = offers && offers.length && offers[0].city || ``;
+let initOffers = offers && offers.length && offers.filter((offer) => offer.city === initCity) || [];
 
 // Получаем все значения городов
 let cities = offers.map((offer)=>offer.city);
