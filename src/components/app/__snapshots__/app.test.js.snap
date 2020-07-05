@@ -146,6 +146,7 @@ exports[`Render App Render with offers 1`] = `
         >
           <article
             className="place-card cities__place-card"
+            onMouseOut={[Function]}
             onMouseOver={[Function]}
           >
             <div
@@ -245,6 +246,7 @@ exports[`Render App Render with offers 1`] = `
           </article>
           <article
             className="place-card cities__place-card"
+            onMouseOut={[Function]}
             onMouseOver={[Function]}
           >
             <div

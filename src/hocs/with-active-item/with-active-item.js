@@ -1,38 +1,61 @@
 import React, {PureComponent} from 'react';
+import {connect} from "react-redux";
+import {ActionCreator} from "../../reducer.js";
+import pt from 'prop-types';
 
 const withActiveItem = (Component) => {
   class WithActiveItem extends PureComponent {
     constructor(props) {
       super(props);
       this.state = {
-        activeItemId: null
+        activeCard: null
       };
-      this.handleItemGetActive = this.handleItemGetActive.bind(this);
+      this.handleCardActivate = this.handleCardActivate.bind(this);
+      this.handleCardDeactivate = this.handleCardDeactivate.bind(this);
     }
 
-    handleItemGetActive(itemId) {
-      if (this.state.activeItemId !== itemId) {
+    handleCardActivate(card) {
+      const {changeHoverCard} = this.props;
+      if (this.state.activeCard !== card) {
         this.setState({
-          activeItemId: itemId
+          activeCard: card
         });
+        changeHoverCard(card);
       }
     }
 
+    handleCardDeactivate() {
+      const {changeHoverCard} = this.props;
+      this.setState({
+        activeCard: null
+      });
+      changeHoverCard();
+    }
+
     render() {
-      const {activeItemId} = this.state;
+      const {activeCard} = this.state;
       return (
         <Component
           {...this.props}
-          activeItemId={activeItemId}
-          onCardHover={this.handleItemGetActive}
+          activeCard={activeCard}
+          onCardHover={this.handleCardActivate}
+          onCardHoverOut={this.handleCardDeactivate}
         />
       );
     }
   }
 
-  WithActiveItem.propTypes = {};
+  WithActiveItem.propTypes = {
+    changeHoverCard: pt.func.isRequired
+  };
 
-  return WithActiveItem;
+  const mapDispatchToProps = (dispatch) => ({
+    changeHoverCard(card) {
+      dispatch(ActionCreator.changeHoverCard(card));
+    }
+  });
+
+  return connect(undefined, mapDispatchToProps)(WithActiveItem);
 };
 
 export default withActiveItem;

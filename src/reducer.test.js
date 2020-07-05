@@ -8,6 +8,7 @@ let offersCityList = [
 ];
 
 const offersList = [{
+  id: 6,
   city: `Paris`,
   title: `Canal View Prinsengracht`,
   premium: true,
@@ -82,6 +83,7 @@ const offersList = [{
   ]
 },
 {
+  id: 4,
   city: `Amsterdam`,
   title: `Nice, cozy, warm big bed apartment`,
   premium: false,
@@ -164,7 +166,8 @@ describe(`Reducer work correctly`, () => {
       offers,
       citiesList: [`Paris`, `Amsterdam`, `Brussels`],
       currentCard: null,
-      sorting: `popular`
+      sorting: `popular`,
+      hoverCard: null
     });
   });
 
@@ -175,7 +178,8 @@ describe(`Reducer work correctly`, () => {
       offers: offersList,
       citiesList,
       currentCard: null,
-      sorting: `popular`
+      sorting: `popular`,
+      hoverCard: null
     }, {
       type: ActionType.CHANGE_CITY,
       payload: `Amsterdam`
@@ -185,7 +189,8 @@ describe(`Reducer work correctly`, () => {
       offers: offersList,
       citiesList,
       currentCard: null,
-      sorting: `popular`
+      sorting: `popular`,
+      hoverCard: null
     });
   });
 
@@ -196,7 +201,8 @@ describe(`Reducer work correctly`, () => {
       offers: offersList,
       citiesList,
       currentCard: null,
-      sorting: `popular`
+      sorting: `popular`,
+      hoverCard: null
     }, {
       type: ActionType.CHANGE_CITY,
       payload: `Paris`
@@ -206,7 +212,8 @@ describe(`Reducer work correctly`, () => {
       offers: offersList,
       citiesList,
       currentCard: null,
-      sorting: `popular`
+      sorting: `popular`,
+      hoverCard: null
     });
   });
 
@@ -217,7 +224,8 @@ describe(`Reducer work correctly`, () => {
       offers: offersList,
       citiesList,
       currentCard: null,
-      sorting: `popular`
+      sorting: `popular`,
+      hoverCard: null
     }, {
       type: ActionType.GET_OFFERS_CITY_LIST,
       payload: offersCityList
@@ -227,7 +235,8 @@ describe(`Reducer work correctly`, () => {
       offers: offersList,
       citiesList,
       currentCard: null,
-      sorting: `popular`
+      sorting: `popular`,
+      hoverCard: null
     });
   });
 
@@ -238,7 +247,8 @@ describe(`Reducer work correctly`, () => {
       offers: offersList,
       citiesList,
       currentCard: null,
-      sorting: `popular`
+      sorting: `popular`,
+      hoverCard: null
     }, {
       type: ActionType.GET_OFFERS_CITY_LIST,
       payload: offersCityList
@@ -248,7 +258,8 @@ describe(`Reducer work correctly`, () => {
       offers: offersList,
       citiesList,
       currentCard: null,
-      sorting: `popular`
+      sorting: `popular`,
+      hoverCard: null
     });
   });
 
@@ -259,7 +270,8 @@ describe(`Reducer work correctly`, () => {
       offers: offersList,
       citiesList,
       currentCard: null,
-      sorting: `popular`
+      sorting: `popular`,
+      hoverCard: null
     }, {
       type: ActionType.CHANGE_SORTING,
       payload: `top-rated`
@@ -269,7 +281,8 @@ describe(`Reducer work correctly`, () => {
       offers: offersList,
       citiesList,
       currentCard: null,
-      sorting: `top-rated`
+      sorting: `top-rated`,
+      hoverCard: null
     });
   });
 
@@ -280,7 +293,8 @@ describe(`Reducer work correctly`, () => {
       offers: offersList,
       citiesList,
       currentCard: null,
-      sorting: `popular`
+      sorting: `popular`,
+      hoverCard: null
     }, {
       type: ActionType.CHANGE_SORTING,
       payload: `popular`
@@ -290,7 +304,56 @@ describe(`Reducer work correctly`, () => {
       offers: offersList,
       citiesList,
       currentCard: null,
-      sorting: `popular`
+      sorting: `popular`,
+      hoverCard: null
+    });
+  });
+
+  it(`Reducer should change hover card by a given value`, () => {
+    const [offer] = offersList;
+
+    expect(reducer({
+      city: `Amsterdam`,
+      offersCityList,
+      offers: offersList,
+      citiesList,
+      currentCard: null,
+      sorting: `popular`,
+      hoverCard: null
+    }, {
+      type: ActionType.CHANGE_HOVER_CARD,
+      payload: offer
+    })).toEqual({
+      city: `Amsterdam`,
+      offersCityList,
+      offers: offersList,
+      citiesList,
+      currentCard: null,
+      sorting: `popular`,
+      hoverCard: offer
+    });
+  });
+
+  it(`Reducer should not change sorting by the same given value`, () => {
+    expect(reducer({
+      city: `Amsterdam`,
+      offersCityList,
+      offers: offersList,
+      citiesList,
+      currentCard: null,
+      sorting: `popular`,
+      hoverCard: null
+    }, {
+      type: ActionType.CHANGE_HOVER_CARD,
+      payload: null
+    })).toEqual({
+      city: `Amsterdam`,
+      offersCityList,
+      offers: offersList,
+      citiesList,
+      currentCard: null,
+      sorting: `popular`,
+      hoverCard: null
     });
   });
 });
@@ -466,6 +529,21 @@ describe(`Action creators work correctly`, () => {
     expect(ActionCreator.changeSorting()).toEqual({
       type: ActionType.CHANGE_SORTING,
       payload: `popular`,
+    });
+  });
+
+  it(`Action creator for change hover card returns correct action`, () => {
+    const [offer] = offersList;
+    expect(ActionCreator.changeHoverCard(offer)).toEqual({
+      type: ActionType.CHANGE_HOVER_CARD,
+      payload: offer,
+    });
+  });
+
+  it(`Action creator for change hover card returns correct action without card`, () => {
+    expect(ActionCreator.changeHoverCard()).toEqual({
+      type: ActionType.CHANGE_HOVER_CARD,
+      payload: null,
     });
   });
 });

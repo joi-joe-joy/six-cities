@@ -14,7 +14,7 @@ class PlacesList extends PureComponent {
   onBookmarkClick() {}
 
   render() {
-    const {offers, type, onCardHover, activeItemId} = this.props;
+    const {offers, type, onCardHover, onCardHoverOut, activeCard} = this.props;
     const classNamesString = classnames(`places__list`, {
       'cities__places-list tabs__content': type === PlaceCardType.CITIES,
       'near-places__list': type === PlaceCardType.NEAR
@@ -24,11 +24,12 @@ class PlacesList extends PureComponent {
       <div className={classNamesString}>
         {offers.map((offer) => (
           <PlaceCard
-            currentCard={activeItemId === offer.id}
+            currentCard={activeCard && (activeCard.id === offer.id)}
             key={offer.id}
             offer={offer}
             type={type}
             onCardHover={onCardHover}
+            onCardHoverOut={onCardHoverOut}
             onBookmarkClick={this.onBookmarkClick}
           />
         ))}
@@ -41,7 +42,10 @@ PlacesList.propTypes = {
   offers: pt.array.isRequired,
   type: pt.string.isRequired,
   onCardHover: pt.func.isRequired,
-  activeItemId: pt.number
+  onCardHoverOut: pt.func.isRequired,
+  activeCard: pt.shape({
+    id: pt.number.isRequired
+  })
 };
 
 export default PlacesList;

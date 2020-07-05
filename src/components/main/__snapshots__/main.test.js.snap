@@ -146,6 +146,7 @@ exports[`Render Main Main with offers 1`] = `
         >
           <article
             className="place-card cities__place-card"
+            onMouseOut={[Function]}
             onMouseOver={[Function]}
           >
             <div
@@ -412,6 +413,7 @@ exports[`Render Main Main without offers 1`] = `
         >
           <article
             className="place-card cities__place-card"
+            onMouseOut={[Function]}
             onMouseOver={[Function]}
           >
             <div

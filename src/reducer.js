@@ -16,7 +16,8 @@ const initialState = {
   offers,
   citiesList,
   currentCard: null,
-  sorting: SortType.POPULAR
+  sorting: SortType.POPULAR,
+  hoverCard: null
 };
 
 const ActionType = {
@@ -24,6 +25,7 @@ const ActionType = {
   GET_OFFERS_CITY_LIST: `GET_OFFERS_CITY_LIST`,
   CHANGE_CARD: `CHANGE_CARD`,
   CHANGE_SORTING: `CHANGE_SORTING`,
+  CHANGE_HOVER_CARD: `CHANGE_HOVER_CARD`
 };
 
 const ActionCreator = {
@@ -56,7 +58,20 @@ const ActionCreator = {
       type: ActionType.CHANGE_SORTING,
       payload: changedSorting
     };
-  }
+  },
+  changeHoverCard: (card) => {
+    if (card) {
+      return {
+        type: ActionType.CHANGE_HOVER_CARD,
+        payload: card
+      };
+    } else {
+      return {
+        type: ActionType.CHANGE_HOVER_CARD,
+        payload: null
+      };
+    }
+  },
 };
 
 const reducer = (state = initialState, action) => {
@@ -76,6 +91,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.CHANGE_SORTING:
       return extend(state, {
         sorting: action.payload
+      });
+    case ActionType.CHANGE_HOVER_CARD:
+      return extend(state, {
+        hoverCard: action.payload
       });
   }
 

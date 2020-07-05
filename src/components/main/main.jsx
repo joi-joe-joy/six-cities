@@ -15,7 +15,7 @@ class Main extends PureComponent {
   }
 
   render() {
-    const {offers} = this.props;
+    const {offers, hoverCard} = this.props;
     let offersCords = offers.map((offer) => offer.coordinations);
 
     return <main className="page__main page__main--index">
@@ -28,6 +28,7 @@ class Main extends PureComponent {
           <CitiesPlaces/>
           <div className="cities__right-section">
             <MapWrap
+              currentCords={hoverCard && hoverCard.coordinations}
               offersCords={offersCords}
               type={MapType.MAIN}
             />
@@ -39,11 +40,15 @@ class Main extends PureComponent {
 }
 
 Main.propTypes = {
-  offers: pt.array.isRequired
+  offers: pt.array.isRequired,
+  hoverCard: pt.shape({
+    coordinations: pt.arrayOf(pt.number).isRequired,
+  })
 };
 
 const mapStateToProps = (state) => ({
-  offers: state.offersCityList
+  offers: state.offersCityList,
+  hoverCard: state.hoverCard
 });
 
 export {Main};

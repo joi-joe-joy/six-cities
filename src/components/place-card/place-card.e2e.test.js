@@ -42,6 +42,7 @@ it(`Should bookmark-button be pressed`, () => {
         <PlaceCard
           offer={offer}
           onCardHover={()=>{}}
+          onCardHoverOut={()=>{}}
           onCardClick={()=>{}}
           onBookmarkClick={onBookmarkButtonClick}
           type={PlaceCardType.CITIES}
@@ -66,6 +67,7 @@ it(`Should take card info on hover`, () => {
         <PlaceCard
           offer={offer}
           onCardHover={onCardHover}
+          onCardHoverOut={()=>{}}
           onBookmarkClick={()=>{}}
           onCardClick={()=>{}}
           type={PlaceCardType.CITIES}
@@ -75,6 +77,32 @@ it(`Should take card info on hover`, () => {
 
   placeCard.simulate(`mouseOver`);
 
-  expect(onCardHover.mock.calls[0][0]).toEqual(5);
+  expect(onCardHover.mock.calls.length).toBe(1);
+  expect(onCardHover.mock.calls[0][0]).toEqual(offer);
+});
+
+it(`Should work when hover out`, () => {
+  const store = mockStore({
+    city: `Paris`,
+    citiesList: [`Paris`, `Amsterdam`, `Brussels`]
+  });
+  const onCardHoverOut = jest.fn();
+
+  const placeCard = mount(
+      <Provider store={store}>
+        <PlaceCard
+          offer={offer}
+          onCardHover={()=>{}}
+          onCardHoverOut={onCardHoverOut}
+          onBookmarkClick={()=>{}}
+          onCardClick={()=>{}}
+          type={PlaceCardType.CITIES}
+        />
+      </Provider>
+  );
+
+  placeCard.simulate(`mouseOut`);
+
+  expect(onCardHoverOut.mock.calls.length).toBe(1);
 });
 

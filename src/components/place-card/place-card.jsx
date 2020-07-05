@@ -10,12 +10,18 @@ class PlaceCard extends PureComponent {
   constructor(props) {
     super(props);
     this.handleCardHover = this.handleCardHover.bind(this);
+    this.handleCardHoverOut = this.handleCardHoverOut.bind(this);
     this.handleCardClick = this.handleCardClick.bind(this);
   }
 
   handleCardHover() {
     const {offer, onCardHover} = this.props;
-    onCardHover(offer.id);
+    onCardHover(offer);
+  }
+
+  handleCardHoverOut() {
+    const {onCardHoverOut} = this.props;
+    onCardHoverOut();
   }
 
   handleCardClick(e) {
@@ -37,7 +43,9 @@ class PlaceCard extends PureComponent {
 
     return (
       <article className={classNamesCard}
-        onMouseOver={this.handleCardHover}>
+        onMouseOver={this.handleCardHover}
+        onMouseOut={this.handleCardHoverOut}
+      >
         {offer.premium &&
           <div className="place-card__mark">
             <span>Premium</span>
@@ -90,6 +98,7 @@ PlaceCard.propTypes = {
   }).isRequired,
   onBookmarkClick: pt.func.isRequired,
   onCardHover: pt.func.isRequired,
+  onCardHoverOut: pt.func.isRequired,
   onCardClick: pt.func.isRequired,
   type: pt.string.isRequired
 };
