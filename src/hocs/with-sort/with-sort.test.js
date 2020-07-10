@@ -3,6 +3,7 @@ import renderer from "react-test-renderer";
 import withSort from "./with-sort";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
+import {NameSpace} from "../../reducer/name-space.js";
 import pt from "prop-types";
 
 const MockComponent = (props) => {
@@ -23,7 +24,9 @@ const MockComponentWrap = withSort(MockComponent);
 
 it(`should render withSort correctly`, () => {
   const store = mockStore({
-    sorting: `popular`
+    [NameSpace.PLACE]: {
+      sorting: `popular`
+    }
   });
 
   const tree = renderer.create(

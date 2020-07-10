@@ -1,7 +1,7 @@
 import React, {PureComponent} from 'react';
 import classnames from "classnames";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../reducer.js";
+import {ActionCreator} from "../../reducer/place/place.js";
 import IconArrowSelect from "../../Icons/icon-arrow-select.svg";
 import pt from 'prop-types';
 

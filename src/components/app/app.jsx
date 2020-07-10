@@ -3,6 +3,8 @@ import {BrowserRouter, Route, Switch} from "react-router-dom";
 import {connect} from "react-redux";
 import Main from "../main/main";
 import Property from "../property/property";
+import {getOffersCityList, getCity} from "../../reducer/data/selectors.js";
+import {getCurrentCard} from "../../reducer/place/selectors.js";
 import pt from 'prop-types';
 
 class App extends PureComponent {
@@ -11,10 +13,11 @@ class App extends PureComponent {
   }
 
   _renderApp() {
-    const {currentCard} = this.props;
+    const {currentCard, city} = this.props;
     if (currentCard) {
       return (
         <Property
+          city={city}
           offer={currentCard}
         />
       );
@@ -26,7 +29,7 @@ class App extends PureComponent {
   }
 
   render() {
-    const {offers} = this.props;
+    const {offers, city} = this.props;
     return (
       <BrowserRouter>
         <Switch>
@@ -35,6 +38,7 @@ class App extends PureComponent {
           </Route>
           <Route exact path="/dev-property">
             <Property
+              city={city}
               offer={offers[0]}
             />
           </Route>
@@ -46,12 +50,21 @@ class App extends PureComponent {
 
 App.propTypes = {
   offers: pt.array.isRequired,
-  currentCard: pt.any
+  currentCard: pt.any,
+  city: pt.shape({
+    name: pt.string.isRequired,
+    location: pt.shape({
+      latitude: pt.number.isRequired,
+      longitude: pt.number.isRequired,
+      zoom: pt.number.isRequired
+    }).isRequired
+  }),
 };
 
 const mapStateToProps = (state) => ({
-  offers: state.offersCityList,
-  currentCard: state.currentCard
+  offers: getOffersCityList(state),
+  currentCard: getCurrentCard(state),
+  city: getCity(state)
 });
 
 export {App};

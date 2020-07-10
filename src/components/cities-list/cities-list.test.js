@@ -3,21 +3,53 @@ import renderer from "react-test-renderer";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import {CitiesList} from "./cities-list";
+import {NameSpace} from "../../reducer/name-space.js";
 
 const mockStore = configureStore([]);
 
 describe(`Render CitiesList correctly`, () => {
   it(`Render CitiesList correctly without currentCity`, () => {
     const store = mockStore({
-      city: `Paris`,
-      citiesList: [`Paris`, `Amsterdam`, `Brussels`]
+      [NameSpace.DATA]: {
+        city: {
+          name: `Paris`,
+          location: {
+            latitude: 48.85661,
+            longitude: 2.351499,
+            zoom: 13
+          }
+        },
+        citiesList: [{
+          name: `Paris`,
+          location: {
+            latitude: 48.85661,
+            longitude: 2.351499,
+            zoom: 13
+          }
+        }]
+      }
     });
 
     const tree = renderer.create(
         <Provider store={store}>
           <CitiesList
-            citiesList={[`Paris`, `Amsterdam`, `Brussels`]}
+            citiesList={[{
+              name: `Paris`,
+              location: {
+                latitude: 48.85661,
+                longitude: 2.351499,
+                zoom: 13
+              }
+            }]}
             onLocationClick={()=>{}}
+            currentCity={{
+              name: `Paris`,
+              location: {
+                latitude: 48.85661,
+                longitude: 2.351499,
+                zoom: 13
+              }
+            }}
           />
         </Provider>
     ).toJSON();
@@ -27,15 +59,45 @@ describe(`Render CitiesList correctly`, () => {
 
   it(`Render CitiesList correctly with currentCity`, () => {
     const store = mockStore({
-      city: `Paris`,
-      citiesList: [`Paris`, `Amsterdam`, `Brussels`]
+      [NameSpace.DATA]: {
+        city: {
+          name: `Paris`,
+          location: {
+            latitude: 48.85661,
+            longitude: 2.351499,
+            zoom: 13
+          }
+        },
+        citiesList: [{
+          name: `Paris`,
+          location: {
+            latitude: 48.85661,
+            longitude: 2.351499,
+            zoom: 13
+          }
+        }]
+      }
     });
 
     const tree = renderer.create(
         <Provider store={store}>
           <CitiesList
-            currentCity={`Paris`}
-            citiesList={[`Paris`, `Amsterdam`, `Brussels`]}
+            currentCity={{
+              name: `Paris`,
+              location: {
+                latitude: 48.85661,
+                longitude: 2.351499,
+                zoom: 13
+              }
+            }}
+            citiesList={[{
+              name: `Paris`,
+              location: {
+                latitude: 48.85661,
+                longitude: 2.351499,
+                zoom: 13
+              }
+            }]}
             onLocationClick={()=>{}}
           />
         </Provider>

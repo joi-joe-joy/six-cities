@@ -3,41 +3,133 @@ import {mount} from "enzyme";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import {CitiesList} from "./cities-list";
+import {NameSpace} from "../../reducer/name-space.js";
 
 const mockStore = configureStore([]);
 
 it(`Tab should be pressed`, () => {
   const store = mockStore({
-    city: `Paris`,
-    citiesList: [`Paris`, `Amsterdam`, `Brussels`]
+    [NameSpace.DATA]: {
+      city: {
+        name: `Paris`,
+        location: {
+          latitude: 48.85661,
+          longitude: 2.351499,
+          zoom: 13
+        }
+      },
+      citiesList: [{
+        name: `Paris`,
+        location: {
+          latitude: 48.85661,
+          longitude: 2.351499,
+          zoom: 13
+        }
+      }, {
+        name: `Amsterdam`,
+        location: {
+          latitude: 48.85661,
+          longitude: 2.351499,
+          zoom: 13
+        }
+      }]
+    }
   });
   const onLocationClick = jest.fn();
 
   const citiesList = mount(
       <Provider store={store}>
         <CitiesList
-          citiesList={[`Paris`, `Amsterdam`, `Brussels`]}
+          currentCity={{
+            name: `Paris`,
+            location: {
+              latitude: 48.85661,
+              longitude: 2.351499,
+              zoom: 13
+            }
+          }}
+          citiesList={[{
+            name: `Paris`,
+            location: {
+              latitude: 48.85661,
+              longitude: 2.351499,
+              zoom: 13
+            },
+          }, {
+            name: `Amsterdam`,
+            location: {
+              latitude: 48.85661,
+              longitude: 2.351499,
+              zoom: 13
+            }
+          }]}
           onLocationClick={onLocationClick}
         />
       </Provider>
   );
 
   const cityTab = citiesList.find(`a.locations__item-link.tabs__item`).at(1);
+
   cityTab.simulate(`click`, {preventDefault() {}});
   expect(onLocationClick).toHaveBeenCalledTimes(1);
 });
 
 it(`When presses tab, link does not link`, () => {
   const store = mockStore({
-    city: `Paris`,
-    citiesList: [`Paris`, `Amsterdam`, `Brussels`]
+    [NameSpace.DATA]: {
+      city: {
+        name: `Paris`,
+        location: {
+          latitude: 48.85661,
+          longitude: 2.351499,
+          zoom: 13
+        }
+      },
+      citiesList: [{
+        name: `Paris`,
+        location: {
+          latitude: 48.85661,
+          longitude: 2.351499,
+          zoom: 13
+        }
+      }, {
+        name: `Amsterdam`,
+        location: {
+          latitude: 48.85661,
+          longitude: 2.351499,
+          zoom: 13
+        }
+      }]
+    }
   });
   const onLocationClick = jest.fn();
 
   const citiesList = mount(
       <Provider store={store}>
         <CitiesList
-          citiesList={[`Paris`, `Amsterdam`, `Brussels`]}
+          currentCity={{
+            name: `Paris`,
+            location: {
+              latitude: 48.85661,
+              longitude: 2.351499,
+              zoom: 13
+            }
+          }}
+          citiesList={[{
+            name: `Paris`,
+            location: {
+              latitude: 48.85661,
+              longitude: 2.351499,
+              zoom: 13
+            }
+          }, {
+            name: `Amsterdam`,
+            location: {
+              latitude: 48.85661,
+              longitude: 2.351499,
+              zoom: 13
+            }
+          }]}
           onLocationClick={onLocationClick}
         />
       </Provider>
@@ -56,16 +148,61 @@ it(`When presses tab, link does not link`, () => {
 
 it(`User click passed to callback is consistent with "city" prop`, () => {
   const store = mockStore({
-    city: `Paris`,
-    citiesList: [`Paris`, `Amsterdam`, `Brussels`]
+    [NameSpace.DATA]: {
+      city: {
+        name: `Paris`,
+        location: {
+          latitude: 48.85661,
+          longitude: 2.351499,
+          zoom: 13
+        }
+      },
+      citiesList: [{
+        name: `Paris`,
+        location: {
+          latitude: 48.85661,
+          longitude: 2.351499,
+          zoom: 13
+        }
+      }, {
+        name: `Amsterdam`,
+        location: {
+          latitude: 48.85661,
+          longitude: 2.351499,
+          zoom: 13
+        }
+      }]
+    }
   });
   const onLocationClick = jest.fn((...args) => [...args]);
-  const city = `Paris`;
+  const city = {
+    name: `Paris`,
+    location: {
+      latitude: 48.85661,
+      longitude: 2.351499,
+      zoom: 13
+    }
+  };
 
   const citiesList = mount(
       <Provider store={store}>
         <CitiesList
-          citiesList={[`Paris`, `Amsterdam`, `Brussels`]}
+          currentCity={{
+            name: `Paris`,
+            location: {
+              latitude: 48.85661,
+              longitude: 2.351499,
+              zoom: 13
+            }
+          }}
+          citiesList={[{
+            name: `Paris`,
+            location: {
+              latitude: 48.85661,
+              longitude: 2.351499,
+              zoom: 13
+            }
+          }]}
           onLocationClick={onLocationClick}
         />
       </Provider>

@@ -4,36 +4,67 @@ import PlaceCard from "./place-card";
 import {PlaceCardType} from "../../const.js";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
+import {NameSpace} from "../../reducer/name-space.js";
 
 const mockStore = configureStore([]);
 
 const offer = {
-  id: 5,
-  title: `Canal View Prinsengracht`,
-  premium: true,
-  pictures: [
-    `img/apartment-01.jpg`,
-    `img/apartment-02.jpg`,
-    `img/studio-photos.jpg`
-  ],
-  price: 280,
-  rating: 3.8,
-  type: `house`,
-  bedrooms: 3,
-  amenities: [`Indoor fireplace`, `Kitchen`, `Wifi`, `Washer`],
-  maxGuestsNumber: `Max 2 adults, 1 children`,
-  description: `The apartment has a Queen size bed and a very wide modern couch that turns into a bed for a single person by moving the single portion of the couch to the bottom part of the love seat portion of the couch to create a long comfortable bed for a 3rd person. I hope you will enjoy the decor, it has a european feel towards the French side. You will be in the heart of the East Village in Manhattan, considered to be one of the most exciting and dynamic neighborhoods of the world.`,
-  host: {
-    photo: ``,
-    name: `John Donn`,
-    super: true
-  }
+  bedrooms: 2,
+  city: {
+    name: `Paris`,
+    location: {
+      latitude: 48.85661,
+      longitude: 2.351499,
+      zoom: 13
+    }
+  },
+  description: `Discover daily local life in city center, friendly neighborhood, clandestine casino, karaoke, old-style artisans, art gallery and artist studio downstairs.`,
+  goods: [`Air conditioning`, `Laptop friendly workspace`, `Baby seat`, `Fridge`, `Breakfast`, `Washer`, `Washing machine`, `Dishwasher`, `Coffee machine`, `Towels`],
+  host: {id: 25, name: `Angelina`, isPro: true, avatarUrl: `img/avatar-angelina.jpg`},
+  id: 1,
+  images: [`https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/3.jpg`],
+  isFavorite: false,
+  isPremium: true,
+  location: {
+    latitude: 48.865610000000004,
+    longitude: 2.350499,
+    zoom: 16
+  },
+  maxAdults: 8,
+  previewImage: `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/5.jpg`,
+  price: 397,
+  rating: 3.6,
+  title: `Penthouse, 4-5 rooms + 5 balconies`,
+  type: `hotel`
 };
 
 it(`Should bookmark-button be pressed`, () => {
   const store = mockStore({
-    city: `Paris`,
-    citiesList: [`Paris`, `Amsterdam`, `Brussels`]
+    [NameSpace.DATA]: {
+      city: {
+        name: `Paris`,
+        location: {
+          latitude: 48.85661,
+          longitude: 2.351499,
+          zoom: 13
+        }
+      },
+      citiesList: [{
+        name: `Paris`,
+        location: {
+          latitude: 48.85661,
+          longitude: 2.351499,
+          zoom: 13
+        }
+      }, {
+        name: `Amsterdam`,
+        location: {
+          latitude: 48.85661,
+          longitude: 2.351499,
+          zoom: 13
+        }
+      }]
+    }
   });
   const onBookmarkButtonClick = jest.fn();
 
@@ -57,8 +88,31 @@ it(`Should bookmark-button be pressed`, () => {
 
 it(`Should take card info on hover`, () => {
   const store = mockStore({
-    city: `Paris`,
-    citiesList: [`Paris`, `Amsterdam`, `Brussels`]
+    [NameSpace.DATA]: {
+      city: {
+        name: `Paris`,
+        location: {
+          latitude: 48.85661,
+          longitude: 2.351499,
+          zoom: 13
+        }
+      },
+      citiesList: [{
+        name: `Paris`,
+        location: {
+          latitude: 48.85661,
+          longitude: 2.351499,
+          zoom: 13
+        }
+      }, {
+        name: `Amsterdam`,
+        location: {
+          latitude: 48.85661,
+          longitude: 2.351499,
+          zoom: 13
+        }
+      }]
+    }
   });
   const onCardHover = jest.fn((...args) => [...args]);
 
@@ -83,8 +137,31 @@ it(`Should take card info on hover`, () => {
 
 it(`Should work when hover out`, () => {
   const store = mockStore({
-    city: `Paris`,
-    citiesList: [`Paris`, `Amsterdam`, `Brussels`]
+    [NameSpace.DATA]: {
+      city: {
+        name: `Paris`,
+        location: {
+          latitude: 48.85661,
+          longitude: 2.351499,
+          zoom: 13
+        }
+      },
+      citiesList: [{
+        name: `Paris`,
+        location: {
+          latitude: 48.85661,
+          longitude: 2.351499,
+          zoom: 13
+        }
+      }, {
+        name: `Amsterdam`,
+        location: {
+          latitude: 48.85661,
+          longitude: 2.351499,
+          zoom: 13
+        }
+      }]
+    }
   });
   const onCardHoverOut = jest.fn();
 

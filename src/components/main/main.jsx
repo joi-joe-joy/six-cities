@@ -6,6 +6,8 @@ import CitiesPlaces from "../cities-places/cities-places";
 import Empty from "../empty/empty";
 import Map from "../map/map";
 import withMap from "../../hocs/with-map/with-map";
+import {getCity, getOffers} from "../../reducer/data/selectors.js";
+import {getHoverCard} from "../../reducer/place/selectors.js";
 import pt from "prop-types";
 
 const MapWrap = withMap(Map);
@@ -17,7 +19,7 @@ class Main extends PureComponent {
 
   render() {
     const {offers, hoverCard, city} = this.props;
-    let offersCords = offers.map((offer) => offer.coordinations);
+    let offersCords = offers.map((offer) => offer.location);
 
     return (
       <div className="page page--gray page--main">
@@ -52,7 +54,8 @@ class Main extends PureComponent {
                 <CitiesPlaces/>
                 <div className="cities__right-section">
                   <MapWrap
-                    currentCords={hoverCard && hoverCard.coordinations}
+                    cityLocation={city.location}
+                    currentCords={hoverCard && hoverCard.location}
                     offersCords={offersCords}
                     type={MapType.MAIN}
                   />
@@ -60,7 +63,7 @@ class Main extends PureComponent {
               </div>
             </div>
           )}
-          {!offers.length && <Empty city={city}/>}
+          {!offers.length && city && <Empty city={city.name}/>}
         </main>
       </div>
     );
@@ -69,16 +72,27 @@ class Main extends PureComponent {
 
 Main.propTypes = {
   offers: pt.array.isRequired,
-  city: pt.string.isRequired,
+  city: pt.shape({
+    name: pt.string.isRequired,
+    location: pt.shape({
+      latitude: pt.number.isRequired,
+      longitude: pt.number.isRequired,
+      zoom: pt.number.isRequired
+    }).isRequired
+  }),
   hoverCard: pt.shape({
-    coordinations: pt.arrayOf(pt.number).isRequired,
+    location: pt.shape({
+      latitude: pt.number.isRequired,
+      longitude: pt.number.isRequired,
+      zoom: pt.number.isRequired
+    }).isRequired,
   })
 };
 
 const mapStateToProps = (state) => ({
-  offers: state.offersCityList,
-  hoverCard: state.hoverCard,
-  city: state.city
+  offers: getOffers(state),
+  hoverCard: getHoverCard(state),
+  city: getCity(state)
 });
 
 export {Main};

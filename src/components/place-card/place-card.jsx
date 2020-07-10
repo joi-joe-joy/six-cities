@@ -1,7 +1,7 @@
 import React, {PureComponent} from "react";
 import IconBookmark from "../../Icons/icon-bookmark.svg";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../reducer.js";
+import {ActionCreator} from "../../reducer/place/place.js";
 import {HouseType, HouseTypeTemplate, PlaceCardType} from "../../const.js";
 import classnames from "classnames";
 import pt from "prop-types";
@@ -46,14 +46,14 @@ class PlaceCard extends PureComponent {
         onMouseOver={this.handleCardHover}
         onMouseOut={this.handleCardHoverOut}
       >
-        {offer.premium &&
+        {offer.isPremium &&
           <div className="place-card__mark">
             <span>Premium</span>
           </div>
         }
         <div className={classNamesImgWrap}>
           <a href="#">
-            <img className="place-card__image" src={offer.pictures[0]} width="260" height="200" alt={offer.title}></img>
+            <img className="place-card__image" src={offer.previewImage} width="260" height="200" alt={offer.title}></img>
           </a>
         </div>
         <div className="place-card__info">
@@ -90,8 +90,8 @@ PlaceCard.propTypes = {
   offer: pt.shape({
     id: pt.number.isRequired,
     title: pt.string.isRequired,
-    premium: pt.bool.isRequired,
-    pictures: pt.arrayOf(pt.string).isRequired,
+    isPremium: pt.bool.isRequired,
+    previewImage: pt.string.isRequired,
     price: pt.number.isRequired,
     rating: pt.number.isRequired,
     type: pt.oneOf([HouseType.APARTMENT, HouseType.ROOM, HouseType.HOUSE, HouseType.HOTEL])

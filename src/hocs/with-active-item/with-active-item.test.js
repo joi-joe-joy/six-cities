@@ -3,6 +3,7 @@ import renderer from "react-test-renderer";
 import withActiveItem from "./with-active-item";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
+import {NameSpace} from "../../reducer/name-space.js";
 
 const MockComponent = () => <div/>;
 
@@ -37,7 +38,9 @@ const mockStore = configureStore([]);
 
 it(`should render withActiveItem correctly`, () => {
   const store = mockStore({
-    hoverCard: null
+    [NameSpace.PLACE]: {
+      hoverCard: null
+    }
   });
   const tree = renderer.create(
       <Provider store={store}>

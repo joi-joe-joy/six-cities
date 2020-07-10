@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react';
 import {connect} from "react-redux";
-import {ActionCreator} from "../../reducer.js";
+import {ActionCreator} from "../../reducer/place/place.js";
 import pt from 'prop-types';
 
 const withActiveItem = (Component) => {

@@ -7,16 +7,23 @@ exports[`Render PlaceCard PlaceCard render correctly NEAR 1`] = `
   onMouseOver={[Function]}
 >
   <div
+    className="place-card__mark"
+  >
+    <span>
+      Premium
+    </span>
+  </div>
+  <div
     className="place-card__image-wrapper near-places__image-wrapper"
   >
     <a
       href="#"
     >
       <img
-        alt="Nice, cozy, warm big bed apartment"
+        alt="Penthouse, 4-5 rooms + 5 balconies"
         className="place-card__image"
         height="200"
-        src="img/apartment-01.jpg"
+        src="https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/5.jpg"
         width="260"
       />
     </a>
@@ -34,7 +41,7 @@ exports[`Render PlaceCard PlaceCard render correctly NEAR 1`] = `
           className="place-card__price-value"
         >
           €
-          80
+          397
         </b>
         <span
           className="place-card__price-text"
@@ -84,13 +91,13 @@ exports[`Render PlaceCard PlaceCard render correctly NEAR 1`] = `
       <a
         onClick={[Function]}
       >
-        Nice, cozy, warm big bed apartment
+        Penthouse, 4-5 rooms + 5 balconies
       </a>
     </h2>
     <p
       className="place-card__type"
     >
-      Private Room
+      Hotel
     </p>
   </div>
 </article>
@@ -116,10 +123,10 @@ exports[`Render PlaceCard PlaceCard render correctly with Premium 1`] = `
       href="#"
     >
       <img
-        alt="Canal View Prinsengracht"
+        alt="Penthouse, 4-5 rooms + 5 balconies"
         className="place-card__image"
         height="200"
-        src="img/apartment-01.jpg"
+        src="https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/5.jpg"
         width="260"
       />
     </a>
@@ -137,7 +144,7 @@ exports[`Render PlaceCard PlaceCard render correctly with Premium 1`] = `
           className="place-card__price-value"
         >
           €
-          280
+          397
         </b>
         <span
           className="place-card__price-text"
@@ -187,13 +194,13 @@ exports[`Render PlaceCard PlaceCard render correctly with Premium 1`] = `
       <a
         onClick={[Function]}
       >
-        Canal View Prinsengracht
+        Penthouse, 4-5 rooms + 5 balconies
       </a>
     </h2>
     <p
       className="place-card__type"
     >
-      House
+      Hotel
     </p>
   </div>
 </article>
@@ -206,16 +213,23 @@ exports[`Render PlaceCard PlaceCard render correctly without Premium 1`] = `
   onMouseOver={[Function]}
 >
   <div
+    className="place-card__mark"
+  >
+    <span>
+      Premium
+    </span>
+  </div>
+  <div
     className="place-card__image-wrapper cities__image-wrapper"
   >
     <a
       href="#"
     >
       <img
-        alt="Nice, cozy, warm big bed apartment"
+        alt="Penthouse, 4-5 rooms + 5 balconies"
         className="place-card__image"
         height="200"
-        src="img/apartment-01.jpg"
+        src="https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/5.jpg"
         width="260"
       />
     </a>
@@ -233,7 +247,7 @@ exports[`Render PlaceCard PlaceCard render correctly without Premium 1`] = `
           className="place-card__price-value"
         >
           €
-          80
+          397
         </b>
         <span
           className="place-card__price-text"
@@ -283,13 +297,13 @@ exports[`Render PlaceCard PlaceCard render correctly without Premium 1`] = `
       <a
         onClick={[Function]}
       >
-        Nice, cozy, warm big bed apartment
+        Penthouse, 4-5 rooms + 5 balconies
       </a>
     </h2>
     <p
       className="place-card__type"
     >
-      Private Room
+      Hotel
     </p>
   </div>
 </article>
