@@ -86,32 +86,6 @@ exports[`Render Main Main with offers 1`] = `
               </span>
             </a>
           </li>
-          <li
-            className="locations__item"
-          >
-            <a
-              className="locations__item-link tabs__item"
-              href="#"
-              onClick={[Function]}
-            >
-              <span>
-                Amsterdam
-              </span>
-            </a>
-          </li>
-          <li
-            className="locations__item"
-          >
-            <a
-              className="locations__item-link tabs__item"
-              href="#"
-              onClick={[Function]}
-            >
-              <span>
-                Brussels
-              </span>
-            </a>
-          </li>
         </ul>
       </section>
     </div>
@@ -218,10 +192,10 @@ exports[`Render Main Main with offers 1`] = `
                   href="#"
                 >
                   <img
-                    alt="Canal View Prinsengracht"
+                    alt="Penthouse, 4-5 rooms + 5 balconies"
                     className="place-card__image"
                     height="200"
-                    src="img/apartment-01.jpg"
+                    src="https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/5.jpg"
                     width="260"
                   />
                 </a>
@@ -239,7 +213,7 @@ exports[`Render Main Main with offers 1`] = `
                       className="place-card__price-value"
                     >
                       €
-                      280
+                      397
                     </b>
                     <span
                       className="place-card__price-text"
@@ -289,13 +263,13 @@ exports[`Render Main Main with offers 1`] = `
                   <a
                     onClick={[Function]}
                   >
-                    Canal View Prinsengracht
+                    Penthouse, 4-5 rooms + 5 balconies
                   </a>
                 </h2>
                 <p
                   className="place-card__type"
                 >
-                  House
+                  Hotel
                 </p>
               </div>
             </article>
@@ -409,32 +383,6 @@ exports[`Render Main Main without offers 1`] = `
               </span>
             </a>
           </li>
-          <li
-            className="locations__item"
-          >
-            <a
-              className="locations__item-link tabs__item"
-              href="#"
-              onClick={[Function]}
-            >
-              <span>
-                Amsterdam
-              </span>
-            </a>
-          </li>
-          <li
-            className="locations__item"
-          >
-            <a
-              className="locations__item-link tabs__item"
-              href="#"
-              onClick={[Function]}
-            >
-              <span>
-                Brussels
-              </span>
-            </a>
-          </li>
         </ul>
       </section>
     </div>
@@ -541,10 +489,10 @@ exports[`Render Main Main without offers 1`] = `
                   href="#"
                 >
                   <img
-                    alt="Canal View Prinsengracht"
+                    alt="Penthouse, 4-5 rooms + 5 balconies"
                     className="place-card__image"
                     height="200"
-                    src="img/apartment-01.jpg"
+                    src="https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/5.jpg"
                     width="260"
                   />
                 </a>
@@ -562,7 +510,7 @@ exports[`Render Main Main without offers 1`] = `
                       className="place-card__price-value"
                     >
                       €
-                      280
+                      397
                     </b>
                     <span
                       className="place-card__price-text"
@@ -612,13 +560,13 @@ exports[`Render Main Main without offers 1`] = `
                   <a
                     onClick={[Function]}
                   >
-                    Canal View Prinsengracht
+                    Penthouse, 4-5 rooms + 5 balconies
                   </a>
                 </h2>
                 <p
                   className="place-card__type"
                 >
-                  House
+                  Hotel
                 </p>
               </div>
             </article>

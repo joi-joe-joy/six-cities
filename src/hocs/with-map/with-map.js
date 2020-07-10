@@ -28,13 +28,14 @@ const withMap = (Component) => {
     }
 
     _initMap() {
-      const city = [52.38333, 4.9];
-      const {offersCords, currentCords} = this.props;
+      const {offersCords, currentCords, cityLocation} = this.props;
+
+      const city = [cityLocation.latitude, cityLocation.longitude];
       const icon = leaflet.icon({
         iconUrl: `img/pin.svg`,
         iconSize: [27, 39]
       });
-      const zoom = 12;
+      const zoom = cityLocation.zoom;
       this.map = leaflet.map(this._mapRef.current, {
         center: city,
         zoom,
@@ -51,11 +52,13 @@ const withMap = (Component) => {
           })
           .addTo(this.map);
 
-        offersCords.forEach((cord) => {
-          leaflet
-            .marker(cord, {icon})
-            .addTo(this.map);
-        });
+        if (offersCords) {
+          offersCords.forEach((cord) => {
+            leaflet
+              .marker([cord.latitude, cord.longitude], {icon})
+              .addTo(this.map);
+          });
+        }
 
         if (currentCords) {
           const currentIcon = leaflet.icon({
@@ -63,7 +66,7 @@ const withMap = (Component) => {
             iconSize: [27, 39]
           });
           leaflet
-            .marker(currentCords, {icon: currentIcon})
+            .marker([currentCords.latitude, currentCords.longitude], {icon: currentIcon})
             .addTo(this.map);
         }
       }
@@ -81,8 +84,23 @@ const withMap = (Component) => {
   }
 
   WithMap.propTypes = {
-    offersCords: pt.arrayOf(pt.arrayOf(pt.number)).isRequired,
-    currentCords: pt.arrayOf(pt.number),
+    offersCords: pt.arrayOf(
+        pt.shape({
+          latitude: pt.number.isRequired,
+          longitude: pt.number.isRequired,
+          zoom: pt.number.isRequired
+        })
+    ),
+    currentCords: pt.shape({
+      latitude: pt.number.isRequired,
+      longitude: pt.number.isRequired,
+      zoom: pt.number.isRequired
+    }),
+    cityLocation: pt.shape({
+      latitude: pt.number.isRequired,
+      longitude: pt.number.isRequired,
+      zoom: pt.number.isRequired
+    }).isRequired
   };
 
   return WithMap;

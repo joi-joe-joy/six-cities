@@ -23,32 +23,6 @@ exports[`Render CitiesList correctly Render CitiesList correctly with currentCit
           </span>
         </a>
       </li>
-      <li
-        className="locations__item"
-      >
-        <a
-          className="locations__item-link tabs__item"
-          href="#"
-          onClick={[Function]}
-        >
-          <span>
-            Amsterdam
-          </span>
-        </a>
-      </li>
-      <li
-        className="locations__item"
-      >
-        <a
-          className="locations__item-link tabs__item"
-          href="#"
-          onClick={[Function]}
-        >
-          <span>
-            Brussels
-          </span>
-        </a>
-      </li>
     </ul>
   </section>
 </div>
@@ -68,38 +42,12 @@ exports[`Render CitiesList correctly Render CitiesList correctly without current
         className="locations__item"
       >
         <a
-          className="locations__item-link tabs__item"
+          className="locations__item-link tabs__item tabs__item--active"
           href="#"
           onClick={[Function]}
         >
           <span>
             Paris
-          </span>
-        </a>
-      </li>
-      <li
-        className="locations__item"
-      >
-        <a
-          className="locations__item-link tabs__item"
-          href="#"
-          onClick={[Function]}
-        >
-          <span>
-            Amsterdam
-          </span>
-        </a>
-      </li>
-      <li
-        className="locations__item"
-      >
-        <a
-          className="locations__item-link tabs__item"
-          href="#"
-          onClick={[Function]}
-        >
-          <span>
-            Brussels
           </span>
         </a>
       </li>
