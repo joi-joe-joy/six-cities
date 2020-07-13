@@ -1,15 +1,11 @@
-import {reducer, ActionType, ActionCreator, Operation} from "./user.js";
-import MockAdapter from "axios-mock-adapter";
+import {reducer, ActionType, ActionCreator} from "./user.js";
 import {AuthStatus} from "../../const.js";
-import {createAPI} from "../../api.js";
-
-const api = createAPI(() => {});
 
 const userInfo = {
-  avatar_url: `/static/avatar/7.jpg`,
+  avatarUrl: `/static/avatar/7.jpg`,
   email: `joi.joe.joy@mail.ru`,
   id: 1,
-  is_pro: false,
+  isPro: false,
   name: `joi.joe.joy`
 };
 
