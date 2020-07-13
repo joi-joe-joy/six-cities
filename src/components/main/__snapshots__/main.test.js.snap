@@ -179,13 +179,6 @@ exports[`Render Main Main with offers 1`] = `
               onMouseOver={[Function]}
             >
               <div
-                className="place-card__mark"
-              >
-                <span>
-                  Premium
-                </span>
-              </div>
-              <div
                 className="place-card__image-wrapper cities__image-wrapper"
               >
                 <a
@@ -195,7 +188,6 @@ exports[`Render Main Main with offers 1`] = `
                     alt="Penthouse, 4-5 rooms + 5 balconies"
                     className="place-card__image"
                     height="200"
-                    src="https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/5.jpg"
                     width="260"
                   />
                 </a>
@@ -476,13 +468,6 @@ exports[`Render Main Main without offers 1`] = `
               onMouseOver={[Function]}
             >
               <div
-                className="place-card__mark"
-              >
-                <span>
-                  Premium
-                </span>
-              </div>
-              <div
                 className="place-card__image-wrapper cities__image-wrapper"
               >
                 <a
@@ -492,7 +477,6 @@ exports[`Render Main Main without offers 1`] = `
                     alt="Penthouse, 4-5 rooms + 5 balconies"
                     className="place-card__image"
                     height="200"
-                    src="https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/5.jpg"
                     width="260"
                   />
                 </a>
