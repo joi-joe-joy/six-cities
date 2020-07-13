@@ -62,13 +62,18 @@ describe(`Render App`, () => {
       [NameSpace.PLACE]: {
         sorting: `popular`,
         hoverCard: null
-      }
+      },
+      [NameSpace.USER]: {
+        authorizationStatus: `AUTH`
+      },
     });
 
     const tree = renderer
       .create(
           <Provider store={store}>
             <App
+              login={()=>{}}
+              authorizationStatus={`AUTH`}
               offers={offers}
             />
           </Provider>, {

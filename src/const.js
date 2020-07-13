@@ -19,9 +19,10 @@ export const PlaceCardType = {
   NEAR: `near`
 };
 
-export const MapType = {
+export const PageType = {
   PROPERTY: `property`,
-  MAIN: `main`
+  MAIN: `main`,
+  LOGIN: `login`
 };
 
 export const SortType = {
@@ -29,5 +30,10 @@ export const SortType = {
   TO_HIGH: `to-high`,
   TO_LOW: `to-low`,
   TOP_RATED: `top-rated`
+};
+
+export const AuthStatus = {
+  NO_AUTH: `NO_AUTH`,
+  AUTH: `AUTH`,
 };
 
