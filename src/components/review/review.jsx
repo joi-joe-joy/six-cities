@@ -10,11 +10,11 @@ const Review = (props) => {
       <div className="reviews__user user">
         <div className="reviews__avatar-wrapper user__avatar-wrapper">
           <img className="reviews__avatar user__avatar"
-            src={review.author.photo ? review.author.photo : `img/avatar-max.jpg`}
-            width="54" height="54" alt={review.author.name}></img>
+            src={review.user.avatar_url ? review.user.avatar_url : `img/avatar-max.jpg`}
+            width="54" height="54" alt={review.user.name}></img>
         </div>
         <span className="reviews__user-name">
-          {review.author.name}
+          {review.user.name}
         </span>
       </div>
       <div className="reviews__info">
@@ -25,7 +25,7 @@ const Review = (props) => {
           </div>
         </div>
         <p className="reviews__text">
-          {review.description}
+          {review.comment}
         </p>
         <time className="reviews__time"
           dateTime={moment(review.date).format(`YYYY-MM-DD`)}>
@@ -38,12 +38,12 @@ const Review = (props) => {
 
 Review.propTypes = {
   review: pt.shape({
-    author: pt.shape({
-      photo: pt.string,
+    user: pt.shape({
+      avatar_url: pt.string,
       name: pt.string.isRequired
     }).isRequired,
     rating: pt.number.isRequired,
-    description: pt.string.isRequired,
+    comment: pt.string.isRequired,
     date: pt.date
   }).isRequired
 };

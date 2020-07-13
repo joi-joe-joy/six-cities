@@ -3,14 +3,16 @@ import renderer from "react-test-renderer";
 import Review from "./review.jsx";
 
 const review = {
-  id: 5,
-  author: {
-    photo: `img/avatar-angelina.jpg`,
-    name: `Monica`
-  },
-  description: `bedrooms – couples and groups of friends will find this accommodation`,
-  date: 1593095836000,
-  rating: 3
+  comment: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.`,
+  date: `2019-05-08T14:13:56.569Z`,
+  id: 1,
+  rating: 4,
+  user: {
+    avatar_url: `img/1.png`,
+    id: 4,
+    is_pro: false,
+    name: `Max`
+  }
 };
 
 

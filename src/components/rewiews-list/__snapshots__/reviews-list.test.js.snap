@@ -14,17 +14,17 @@ exports[`Render ReviewsList Render ReviewsList correctly 1`] = `
         className="reviews__avatar-wrapper user__avatar-wrapper"
       >
         <img
-          alt="Bell Gover"
+          alt="Max"
           className="reviews__avatar user__avatar"
           height="54"
-          src="img/avatar-angelina.jpg"
+          src="img/1.png"
           width="54"
         />
       </div>
       <span
         className="reviews__user-name"
       >
-        Bell Gover
+        Max
       </span>
     </div>
     <div
@@ -39,7 +39,7 @@ exports[`Render ReviewsList Render ReviewsList correctly 1`] = `
           <span
             style={
               Object {
-                "width": "100%",
+                "width": "80%",
               }
             }
           />
@@ -53,13 +53,13 @@ exports[`Render ReviewsList Render ReviewsList correctly 1`] = `
       <p
         className="reviews__text"
       >
-        friends will find this accommodation
+        A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.
       </p>
       <time
         className="reviews__time"
-        dateTime="2020-10-19"
+        dateTime="2019-05-08"
       >
-        October 2020
+        May 2019
       </time>
     </div>
   </li>
@@ -73,17 +73,17 @@ exports[`Render ReviewsList Render ReviewsList correctly 1`] = `
         className="reviews__avatar-wrapper user__avatar-wrapper"
       >
         <img
-          alt="Monica"
+          alt="Max"
           className="reviews__avatar user__avatar"
           height="54"
-          src="img/avatar-angelina.jpg"
+          src="img/1.png"
           width="54"
         />
       </div>
       <span
         className="reviews__user-name"
       >
-        Monica
+        Max
       </span>
     </div>
     <div
@@ -98,7 +98,7 @@ exports[`Render ReviewsList Render ReviewsList correctly 1`] = `
           <span
             style={
               Object {
-                "width": "60%",
+                "width": "80%",
               }
             }
           />
@@ -112,13 +112,13 @@ exports[`Render ReviewsList Render ReviewsList correctly 1`] = `
       <p
         className="reviews__text"
       >
-        bedrooms – couples and groups of friends will find this accommodation
+        A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.
       </p>
       <time
         className="reviews__time"
-        dateTime="2020-06-25"
+        dateTime="2019-05-08"
       >
-        June 2020
+        May 2019
       </time>
     </div>
   </li>

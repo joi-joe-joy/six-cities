@@ -1,10 +1,11 @@
 import React from "react";
 import {HouseType, HouseTypeTemplate, PageType, PlaceCardType, AuthStatus} from "../../const.js";
 import IconBookmark from "../../Icons/icon-bookmark.svg";
-import IconStar from "../../Icons/icon-star.svg";
 import ReviewsList from "../rewiews-list/reviews-list";
 import PlacesList from "../places-list/places-list";
+import SendReview from "../send-review/send-review";
 import withMap from "../../hocs/with-map/with-map";
+import withCommentForm from "../../hocs/with-comment-form/with-comment-form.js";
 import withActiveItem from "../../hocs/with-active-item/with-active-item";
 import Page from "../page/page";
 import Map from "../map/map";
@@ -12,6 +13,7 @@ import pt from "prop-types";
 
 const MapWrap = withMap(Map);
 const PlacesListWrap = withActiveItem(PlacesList);
+const SendReviewWrap = withCommentForm(SendReview);
 
 const Property = (props) => {
   const {offer, city, authStatus} = props;
@@ -27,7 +29,7 @@ const Property = (props) => {
         <section className="property">
           <div className="property__gallery-container container">
             <div className="property__gallery">
-              {offer.images.map((picture, i) => (
+              {offer.images.slice(0, 6).map((picture, i) => (
                 <div key={`${picture}-${i}`} className="property__image-wrapper">
                   <img className="property__image" src={picture} alt={offer.title}></img>
                 </div>
@@ -102,52 +104,15 @@ const Property = (props) => {
                   ))}
                 </div>
               </div>
-              {offer.reviews &&
-                <section className="property__reviews reviews">
-                  <h2 className="reviews__title">Reviews &middot;
-                    <span className="reviews__amount">{offer.reviews.length}</span>
-                  </h2>
+              <section className="property__reviews reviews">
+                <h2 className="reviews__title">Reviews &middot;
+                  <span className="reviews__amount">{offer.reviews && offer.reviews.length || `0`}</span>
+                </h2>
+                {offer.reviews &&
                   <ReviewsList reviews={offer.reviews}/>
-                  {authStatus === AuthStatus.AUTH &&
-                    <form className="reviews__form form" action="#" method="post">
-                      <label className="reviews__label form__label" htmlFor="review">Your review</label>
-                      <div className="reviews__rating-form form__rating">
-                        <input className="form__rating-input visually-hidden" name="rating" value="5" id="5-stars" type="radio"></input>
-                        <label htmlFor="5-stars" className="reviews__rating-label form__rating-label" title="perfect">
-                          <IconStar width="37" height="33"/>
-                        </label>
-
-                        <input className="form__rating-input visually-hidden" name="rating" value="4" id="4-stars" type="radio"></input>
-                        <label htmlFor="4-stars" className="reviews__rating-label form__rating-label" title="good">
-                          <IconStar width="37" height="33"/>
-                        </label>
-
-                        <input className="form__rating-input visually-hidden" name="rating" value="3" id="3-stars" type="radio"></input>
-                        <label htmlFor="3-stars" className="reviews__rating-label form__rating-label" title="not bad">
-                          <IconStar width="37" height="33"/>
-                        </label>
-
-                        <input className="form__rating-input visually-hidden" name="rating" value="2" id="2-stars" type="radio"></input>
-                        <label htmlFor="2-stars" className="reviews__rating-label form__rating-label" title="badly">
-                          <IconStar width="37" height="33"/>
-                        </label>
-
-                        <input className="form__rating-input visually-hidden" name="rating" value="1" id="1-star" type="radio"></input>
-                        <label htmlFor="1-star" className="reviews__rating-label form__rating-label" title="terribly">
-                          <IconStar width="37" height="33"/>
-                        </label>
-                      </div>
-                      <textarea className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved"></textarea>
-                      <div className="reviews__button-wrapper">
-                        <p className="reviews__help">
-                          To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
-                        </p>
-                        <button className="reviews__submit form__submit button" type="submit" disabled="">Submit</button>
-                      </div>
-                    </form>
-                  }
-                </section>
-              }
+                }
+                {authStatus === AuthStatus.AUTH && <SendReviewWrap/>}
+              </section>
             </div>
           </div>
           <MapWrap
