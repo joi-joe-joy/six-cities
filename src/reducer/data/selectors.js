@@ -9,7 +9,7 @@ export const getCity = (state) => {
   return state[NAME_SPACE].city;
 };
 
-// const camelize = (str) => {
+// TODO! const camelize = (str) => {
 //   return str
 //     .split(`_`)
 //     .map((word, index) => index === 0 ? word : word[0].toUpperCase() + word.slice(1))
@@ -18,13 +18,16 @@ export const getCity = (state) => {
 
 export const getOffers = (state) => {
   const hotels = state[NAME_SPACE].offers;
-  if (hotels.host) {
-    hotels.host.isPro = hotels.host.is_pro;
-    hotels.host.avatarUrl = hotels.host.avatar_url;
-  }
-  hotels.isPremium = hotels.is_premium;
-  hotels.maxAdults = hotels.max_adults;
-  hotels.previewImage = hotels.preview_image;
+  hotels.forEach((hotel) => {
+    if (hotel.host) {
+      hotel.host.isPro = hotel.host.is_pro;
+      hotel.host.avatarUrl = hotel.host.avatar_url;
+    }
+    hotel.isPremium = hotel.is_premium;
+    hotel.maxAdults = hotel.max_adults;
+    hotel.previewImage = hotel.preview_image;
+  });
+
   return hotels;
 };
 

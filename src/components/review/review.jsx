@@ -10,7 +10,7 @@ const Review = (props) => {
       <div className="reviews__user user">
         <div className="reviews__avatar-wrapper user__avatar-wrapper">
           <img className="reviews__avatar user__avatar"
-            src={review.user.avatar_url ? review.user.avatar_url : `img/avatar-max.jpg`}
+            src={review.user.avatarUrl ? review.user.avatarUrl : `img/avatar-max.jpg`}
             width="54" height="54" alt={review.user.name}></img>
         </div>
         <span className="reviews__user-name">
@@ -39,7 +39,7 @@ const Review = (props) => {
 Review.propTypes = {
   review: pt.shape({
     user: pt.shape({
-      avatar_url: pt.string,
+      avatarUrl: pt.string.isRequired,
       name: pt.string.isRequired
     }).isRequired,
     rating: pt.number.isRequired,

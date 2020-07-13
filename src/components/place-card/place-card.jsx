@@ -90,8 +90,8 @@ PlaceCard.propTypes = {
   offer: pt.shape({
     id: pt.number.isRequired,
     title: pt.string.isRequired,
-    isPremium: pt.bool,
-    previewImage: pt.string,
+    isPremium: pt.bool.isRequired,
+    previewImage: pt.string.isRequired,
     price: pt.number.isRequired,
     rating: pt.number.isRequired,
     type: pt.oneOf([HouseType.APARTMENT, HouseType.ROOM, HouseType.HOUSE, HouseType.HOTEL])

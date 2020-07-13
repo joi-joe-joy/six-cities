@@ -8,9 +8,9 @@ const review = {
   id: 1,
   rating: 4,
   user: {
-    avatar_url: `img/1.png`,
+    avatarUrl: `img/1.png`,
     id: 4,
-    is_pro: false,
+    isPro: false,
     name: `Max`
   }
 };

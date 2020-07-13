@@ -141,9 +141,9 @@ const Property = (props) => {
 Property.propTypes = {
   offer: pt.shape({
     title: pt.string.isRequired,
-    maxAdults: pt.number,
+    maxAdults: pt.number.isRequired,
     description: pt.string.isRequired,
-    isPremium: pt.bool,
+    isPremium: pt.bool.isRequired,
     images: pt.arrayOf(pt.string).isRequired,
     goods: pt.arrayOf(pt.string).isRequired,
     price: pt.number.isRequired,
@@ -151,9 +151,9 @@ Property.propTypes = {
     bedrooms: pt.number.isRequired,
     type: pt.oneOf([HouseType.APARTMENT, HouseType.ROOM, HouseType.HOUSE, HouseType.HOTEL]),
     host: pt.shape({
-      avatarUrl: pt.string,
+      avatarUrl: pt.string.isRequired,
       name: pt.string.isRequired,
-      isPro: pt.bool
+      isPro: pt.bool.isRequired
     }).isRequired,
     location: pt.shape({
       latitude: pt.number.isRequired,
