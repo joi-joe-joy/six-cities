@@ -37,3 +37,5 @@ export const AuthStatus = {
   AUTH: `AUTH`,
 };
 
+export const MAX_COMMENT_LENGTH = 300;
+

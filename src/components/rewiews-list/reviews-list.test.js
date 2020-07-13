@@ -4,24 +4,28 @@ import ReviewsList from "./reviews-list.jsx";
 
 const reviews = [
   {
-    id: 5,
-    author: {
-      photo: `img/avatar-angelina.jpg`,
-      name: `Monica`
-    },
-    description: `bedrooms – couples and groups of friends will find this accommodation`,
-    date: 1593095836000,
-    rating: 3
+    comment: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.`,
+    date: `2019-05-08T14:13:56.569Z`,
+    id: 1,
+    rating: 4,
+    user: {
+      avatarUrl: `img/1.png`,
+      id: 4,
+      isPro: false,
+      name: `Max`
+    }
   },
   {
-    id: 6,
-    author: {
-      photo: `img/avatar-angelina.jpg`,
-      name: `Bell Gover`
-    },
-    description: `friends will find this accommodation`,
-    date: 1603095836000,
-    rating: 5
+    comment: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.`,
+    date: `2019-05-08T14:13:56.569Z`,
+    id: 2,
+    rating: 4,
+    user: {
+      avatarUrl: `img/1.png`,
+      id: 4,
+      isPro: false,
+      name: `Max`
+    }
   }
 ];
 

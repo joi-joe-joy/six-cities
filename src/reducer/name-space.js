@@ -1,5 +1,6 @@
 export const NameSpace = {
   DATA: `DATA`,
   USER: `USER`,
-  PLACE: `PLACE`
+  PLACE: `PLACE`,
+  COMMENTS: `COMMENTS`,
 };
