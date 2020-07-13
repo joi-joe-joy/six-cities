@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const Error = {
-  UNAUTHORIZED: 401
+  UNAUTHORIZED: 401,
+  BAD_REQUEST: 400,
 };
 
 export const createAPI = (onUnauthorized) => {
@@ -16,11 +17,15 @@ export const createAPI = (onUnauthorized) => {
   };
 
   const onFail = (err) => {
-    const {responce} = err;
+    const {response} = err;
 
-    if (responce === Error.UNAUTHORIZED) {
-      onUnauthorized();
-      throw err;
+    switch (response.status) {
+      case Error.UNAUTHORIZED:
+        onUnauthorized();
+        throw err;
+      case Error.BAD_REQUEST:
+        onUnauthorized();
+        throw err;
     }
 
     throw err;

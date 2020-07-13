@@ -71,7 +71,10 @@ describe(`Render Main`, () => {
       [NameSpace.PLACE]: {
         sorting: `popular`,
         hoverCard: offers[0]
-      }
+      },
+      [NameSpace.USER]: {
+        authorizationStatus: `AUTH`
+      },
     });
 
     const tree = renderer
@@ -122,7 +125,10 @@ describe(`Render Main`, () => {
       [NameSpace.PLACE]: {
         sorting: `popular`,
         hoverCard: offers[0]
-      }
+      },
+      [NameSpace.USER]: {
+        authorizationStatus: `AUTH`
+      },
     });
 
     const tree = renderer

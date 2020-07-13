@@ -1,9 +1,10 @@
 import React, {PureComponent} from "react";
 import {connect} from "react-redux";
-import {MapType} from "../../const";
+import {PageType} from "../../const";
 import CitiesList from "../cities-list/cities-list";
 import CitiesPlaces from "../cities-places/cities-places";
 import Empty from "../empty/empty";
+import Page from "../page/page";
 import Map from "../map/map";
 import withMap from "../../hocs/with-map/with-map";
 import {getCity, getOffers} from "../../reducer/data/selectors.js";
@@ -22,29 +23,7 @@ class Main extends PureComponent {
     let offersCords = offers.map((offer) => offer.location);
 
     return (
-      <div className="page page--gray page--main">
-        <header className="header">
-          <div className="container">
-            <div className="header__wrapper">
-              <div className="header__left">
-                <a className="header__logo-link header__logo-link--active">
-                  <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41"/>
-                </a>
-              </div>
-              <nav className="header__nav">
-                <ul className="header__nav-list">
-                  <li className="header__nav-item user">
-                    <a className="header__nav-link header__nav-link--profile" href="#">
-                      <div className="header__avatar-wrapper user__avatar-wrapper">
-                      </div>
-                      <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
-                    </a>
-                  </li>
-                </ul>
-              </nav>
-            </div>
-          </div>
-        </header>
+      <Page type={PageType.MAIN}>
         <main className="page__main page__main--index">
           <h1 className="visually-hidden">Cities</h1>
           <CitiesList/>
@@ -57,7 +36,7 @@ class Main extends PureComponent {
                     cityLocation={city.location}
                     currentCords={hoverCard && hoverCard.location}
                     offersCords={offersCords}
-                    type={MapType.MAIN}
+                    type={PageType.MAIN}
                   />
                 </div>
               </div>
@@ -65,7 +44,7 @@ class Main extends PureComponent {
           )}
           {!offers.length && city && <Empty city={city.name}/>}
         </main>
-      </div>
+      </Page>
     );
   }
 }

@@ -72,6 +72,9 @@ it(`Render Property correctly`, () => {
     [NameSpace.PLACE]: {
       currentCard: {}
     },
+    [NameSpace.USER]: {
+      authorizationStatus: `AUTH`
+    },
     [NameSpace.DATA]: {
       city: {
         name: `Paris`,
@@ -87,6 +90,7 @@ it(`Render Property correctly`, () => {
   const tree = renderer.create(
       <Provider store={store}>
         <Property
+          authStatus={`AUTH`}
           city={{
             name: `Paris`,
             location: {
@@ -107,6 +111,9 @@ it(`Property render correctly without Premium`, () => {
     [NameSpace.PLACE]: {
       currentCard: {}
     },
+    [NameSpace.USER]: {
+      authorizationStatus: `AUTH`
+    },
     [NameSpace.DATA]: {
       city: {
         name: `Paris`,
@@ -123,6 +130,7 @@ it(`Property render correctly without Premium`, () => {
     .create(
         <Provider store={store}>
           <Property
+            authStatus={`AUTH`}
             city={{
               name: `Paris`,
               location: {

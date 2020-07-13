@@ -1,13 +1,13 @@
 import React from "react";
-import {MapType} from "../../const";
+import {PageType} from "../../const";
 import classnames from "classnames";
 import pt from 'prop-types';
 
 const Map = (props) => {
   const {type, children} = props;
   const classNameMap = classnames(`map`, {
-    'property__map': type === MapType.PROPERTY,
-    'cities__map': type === MapType.MAIN
+    'property__map': type === PageType.PROPERTY,
+    'cities__map': type === PageType.MAIN
   });
 
   return (
