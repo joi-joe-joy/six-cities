@@ -56,6 +56,11 @@ exports[`Render PlaceCard PlaceCard render correctly NEAR 1`] = `
       >
         <svg
           height="18"
+          style={
+            Object {
+              "fill": "#000000",
+            }
+          }
           width="17"
         />
         <span
@@ -89,6 +94,7 @@ exports[`Render PlaceCard PlaceCard render correctly NEAR 1`] = `
       className="place-card__name"
     >
       <a
+        href="/offer/1"
         onClick={[Function]}
       >
         Penthouse, 4-5 rooms + 5 balconies
@@ -159,6 +165,11 @@ exports[`Render PlaceCard PlaceCard render correctly with Premium 1`] = `
       >
         <svg
           height="18"
+          style={
+            Object {
+              "fill": "#000000",
+            }
+          }
           width="17"
         />
         <span
@@ -192,6 +203,7 @@ exports[`Render PlaceCard PlaceCard render correctly with Premium 1`] = `
       className="place-card__name"
     >
       <a
+        href="/offer/1"
         onClick={[Function]}
       >
         Penthouse, 4-5 rooms + 5 balconies
@@ -262,6 +274,11 @@ exports[`Render PlaceCard PlaceCard render correctly without Premium 1`] = `
       >
         <svg
           height="18"
+          style={
+            Object {
+              "fill": "#000000",
+            }
+          }
           width="17"
         />
         <span
@@ -295,6 +312,7 @@ exports[`Render PlaceCard PlaceCard render correctly without Premium 1`] = `
       className="place-card__name"
     >
       <a
+        href="/offer/1"
         onClick={[Function]}
       >
         Penthouse, 4-5 rooms + 5 balconies

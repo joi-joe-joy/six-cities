@@ -36,17 +36,18 @@ const reducer = (state = initialState, action) => {
       return extend(state, {
         authInfo: action.payload
       });
+    default:
+      return state;
   }
-
-  return state;
 };
 
 const Operation = {
   checkAuth: () => (dispatch, getState, api) => {
     return api.get(`/login`)
-      .then(() => (
-        dispatch(ActionCreator.requireAuthStatus(AuthStatus.AUTH))
-      ))
+      .then((res) => {
+        dispatch(ActionCreator.getAuthInfo(res.data));
+        dispatch(ActionCreator.requireAuthStatus(AuthStatus.AUTH));
+      })
       .catch((err) => {
         throw err;
       });

@@ -22,7 +22,8 @@ export const PlaceCardType = {
 export const PageType = {
   PROPERTY: `property`,
   MAIN: `main`,
-  LOGIN: `login`
+  LOGIN: `login`,
+  FAVORITES: `favorites`
 };
 
 export const SortType = {
@@ -39,3 +40,10 @@ export const AuthStatus = {
 
 export const MAX_COMMENT_LENGTH = 300;
 
+export const AppRoute = {
+  MAIN: `/`,
+  LOGIN: `/login`,
+  FAVORITES: `/favorites`,
+  OFFER_ID: `/offer/:id`,
+  OFFER: `/offer`
+};

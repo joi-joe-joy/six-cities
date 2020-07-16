@@ -5,6 +5,7 @@ import {PlaceCardType} from "../../const.js";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import {NameSpace} from "../../reducer/name-space.js";
+import {BrowserRouter} from "react-router-dom";
 
 const mockStore = configureStore([]);
 
@@ -38,54 +39,6 @@ const offer = {
   type: `hotel`
 };
 
-it(`Should bookmark-button be pressed`, () => {
-  const store = mockStore({
-    [NameSpace.DATA]: {
-      city: {
-        name: `Paris`,
-        location: {
-          latitude: 48.85661,
-          longitude: 2.351499,
-          zoom: 13
-        }
-      },
-      citiesList: [{
-        name: `Paris`,
-        location: {
-          latitude: 48.85661,
-          longitude: 2.351499,
-          zoom: 13
-        }
-      }, {
-        name: `Amsterdam`,
-        location: {
-          latitude: 48.85661,
-          longitude: 2.351499,
-          zoom: 13
-        }
-      }]
-    }
-  });
-  const onBookmarkButtonClick = jest.fn();
-
-  const placeCard = mount(
-      <Provider store={store}>
-        <PlaceCard
-          offer={offer}
-          onCardHover={()=>{}}
-          onCardHoverOut={()=>{}}
-          onCardClick={()=>{}}
-          onBookmarkClick={onBookmarkButtonClick}
-          type={PlaceCardType.CITIES}
-        />
-      </Provider>
-  );
-
-  const bookmarkButton = placeCard.find(`button.place-card__bookmark-button.button`);
-  bookmarkButton.props().onClick();
-  expect(onBookmarkButtonClick.mock.calls.length).toBe(1);
-});
-
 it(`Should take card info on hover`, () => {
   const store = mockStore({
     [NameSpace.DATA]: {
@@ -118,14 +71,16 @@ it(`Should take card info on hover`, () => {
 
   const placeCard = mount(
       <Provider store={store}>
-        <PlaceCard
-          offer={offer}
-          onCardHover={onCardHover}
-          onCardHoverOut={()=>{}}
-          onBookmarkClick={()=>{}}
-          onCardClick={()=>{}}
-          type={PlaceCardType.CITIES}
-        />
+        <BrowserRouter>
+          <PlaceCard
+            offer={offer}
+            onCardHover={onCardHover}
+            onCardHoverOut={()=>{}}
+            type={PlaceCardType.CITIES}
+            isFavorite={false}
+            onToggleFavorite={()=>{}}
+          />
+        </BrowserRouter>
       </Provider>
   );
 
@@ -167,14 +122,16 @@ it(`Should work when hover out`, () => {
 
   const placeCard = mount(
       <Provider store={store}>
-        <PlaceCard
-          offer={offer}
-          onCardHover={()=>{}}
-          onCardHoverOut={onCardHoverOut}
-          onBookmarkClick={()=>{}}
-          onCardClick={()=>{}}
-          type={PlaceCardType.CITIES}
-        />
+        <BrowserRouter>
+          <PlaceCard
+            offer={offer}
+            onCardHover={()=>{}}
+            onCardHoverOut={onCardHoverOut}
+            isFavorite={false}
+            onToggleFavorite={()=>{}}
+            type={PlaceCardType.CITIES}
+          />
+        </BrowserRouter>
       </Provider>
   );
 

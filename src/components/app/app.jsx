@@ -1,13 +1,13 @@
 import React, {PureComponent} from "react";
-import {BrowserRouter, Route, Switch} from "react-router-dom";
+import {BrowserRouter, Route, Switch, Redirect} from "react-router-dom";
 import {connect} from "react-redux";
-import {AuthStatus} from "../../const.js";
-import {getOffersCityList, getCity} from "../../reducer/data/selectors.js";
-import {getCurrentCard} from "../../reducer/place/selectors.js";
+import {AuthStatus, AppRoute} from "../../const.js";
 import {getAuthStatus} from "../../reducer/user/selectors.js";
 import {Operation as UserOperation} from "../../reducer/user/user.js";
-import Main from "../main/main";
+import PrivateRoute from "../private-route/private-route";
+import {Favorites} from "../favorites/favorites";
 import Property from "../property/property";
+import Main from "../main/main";
 import Login from "../login/login";
 import pt from 'prop-types';
 
@@ -16,53 +16,27 @@ class App extends PureComponent {
     super(props);
   }
 
-  _renderApp() {
-    const {currentCard, city, authorizationStatus, login} = this.props;
-    if (authorizationStatus === AuthStatus.AUTH) {
-      if (currentCard) {
-        return (
-          <Property
-            city={city}
-            offer={currentCard}
-            authStatus={authorizationStatus}
-          />
-        );
-      } else {
-        return (
-          <Main/>
-        );
-      }
-    } else if (authorizationStatus === AuthStatus.NO_AUTH) {
-      return (
-        <Login
-          onSubmit={login}
-        />
-      );
-    }
-
-    return null;
-  }
-
   render() {
-    const {offers, city, login, authorizationStatus} = this.props;
+    const {login, authorizationStatus} = this.props;
     return (
       <BrowserRouter>
         <Switch>
-          <Route exact path="/">
-            {this._renderApp()}
-          </Route>
-          <Route exact path="/dev-property">
-            <Property
-              city={city}
-              offer={offers[0]}
-              authStatus={authorizationStatus}
-            />
-          </Route>
-          <Route exact path="/dev-auth">
-            <Login
-              onSubmit={login}
-            />
-          </Route>
+          <Route exact path={AppRoute.MAIN} component={Main}/>
+          <Route exact path={AppRoute.OFFER_ID} component={Property}/>
+          <Route exact path={AppRoute.LOGIN}
+            render={() => {
+              return (
+                authorizationStatus === AuthStatus.NO_AUTH
+                  ? <Login onSubmit={login}/>
+                  : <Redirect to={AppRoute.MAIN}/>
+              );
+            }}
+          />
+          <PrivateRoute exact path={AppRoute.FAVORITES}
+            render={() => {
+              return <Favorites/>;
+            }}
+          />
         </Switch>
       </BrowserRouter>
     );
@@ -70,24 +44,11 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  offers: pt.array.isRequired,
-  currentCard: pt.any,
-  city: pt.shape({
-    name: pt.string.isRequired,
-    location: pt.shape({
-      latitude: pt.number.isRequired,
-      longitude: pt.number.isRequired,
-      zoom: pt.number.isRequired
-    }).isRequired
-  }),
   login: pt.func.isRequired,
   authorizationStatus: pt.oneOf([AuthStatus.AUTH, AuthStatus.NO_AUTH]).isRequired
 };
 
 const mapStateToProps = (state) => ({
-  offers: getOffersCityList(state),
-  currentCard: getCurrentCard(state),
-  city: getCity(state),
   authorizationStatus: getAuthStatus(state),
 });
 

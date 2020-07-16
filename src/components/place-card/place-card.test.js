@@ -5,6 +5,7 @@ import {PlaceCardType} from "../../const.js";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import {NameSpace} from "../../reducer/name-space.js";
+import {BrowserRouter} from "react-router-dom";
 
 const mockStore = configureStore([]);
 
@@ -79,14 +80,16 @@ describe(`Render PlaceCard`, () => {
     const tree = renderer
       .create(
           <Provider store={store}>
-            <PlaceCard
-              offer={offerPremium}
-              onBookmarkClick={()=>{}}
-              onCardHover={()=>{}}
-              onCardHoverOut={()=>{}}
-              onCardClick={()=>{}}
-              type={PlaceCardType.CITIES}
-            />
+            <BrowserRouter>
+              <PlaceCard
+                isFavorite={false}
+                onToggleFavorite={()=>{}}
+                offer={offerPremium}
+                onCardHover={()=>{}}
+                onCardHoverOut={()=>{}}
+                type={PlaceCardType.CITIES}
+              />
+            </BrowserRouter>
           </Provider>
       ).toJSON();
 
@@ -103,14 +106,16 @@ describe(`Render PlaceCard`, () => {
     const tree = renderer
       .create(
           <Provider store={store}>
-            <PlaceCard
-              offer={offerWithoutPremium}
-              onBookmarkClick={()=>{}}
-              onCardHover={()=>{}}
-              onCardHoverOut={()=>{}}
-              onCardClick={()=>{}}
-              type={PlaceCardType.CITIES}
-            />
+            <BrowserRouter>
+              <PlaceCard
+                offer={offerWithoutPremium}
+                onCardHover={()=>{}}
+                onCardHoverOut={()=>{}}
+                type={PlaceCardType.CITIES}
+                isFavorite={false}
+                onToggleFavorite={()=>{}}
+              />
+            </BrowserRouter>
           </Provider>
       ).toJSON();
 
@@ -127,14 +132,16 @@ describe(`Render PlaceCard`, () => {
     const tree = renderer
       .create(
           <Provider store={store}>
-            <PlaceCard
-              offer={offerWithoutPremium}
-              onBookmarkClick={()=>{}}
-              onCardHover={()=>{}}
-              onCardHoverOut={()=>{}}
-              onCardClick={()=>{}}
-              type={PlaceCardType.NEAR}
-            />
+            <BrowserRouter>
+              <PlaceCard
+                offer={offerWithoutPremium}
+                onCardHover={()=>{}}
+                onCardHoverOut={()=>{}}
+                isFavorite={false}
+                onToggleFavorite={()=>{}}
+                type={PlaceCardType.NEAR}
+              />
+            </BrowserRouter>
           </Provider>
       ).toJSON();
 

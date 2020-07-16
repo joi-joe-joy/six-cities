@@ -4,6 +4,7 @@ import PlacesList from "./places-list.jsx";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import {NameSpace} from "../../reducer/name-space.js";
+import {BrowserRouter} from "react-router-dom";
 
 const mockStore = configureStore([]);
 
@@ -49,12 +50,14 @@ describe(`Render PlacesList`, () => {
 
     const tree = renderer.create(
         <Provider store={store}>
-          <PlacesList
-            onCardHover={()=>{}}
-            onCardHoverOut={()=>{}}
-            type={`cities`}
-            offers={offers}
-          />
+          <BrowserRouter>
+            <PlacesList
+              onCardHover={()=>{}}
+              onCardHoverOut={()=>{}}
+              type={`cities`}
+              offers={offers}
+            />
+          </BrowserRouter>
         </Provider>
     ).toJSON();
 
@@ -70,12 +73,14 @@ describe(`Render PlacesList`, () => {
 
     const tree = renderer.create(
         <Provider store={store}>
-          <PlacesList
-            onCardHover={()=>{}}
-            onCardHoverOut={()=>{}}
-            type={`cities`}
-            offers={offers}
-          />
+          <BrowserRouter>
+            <PlacesList
+              onCardHover={()=>{}}
+              onCardHoverOut={()=>{}}
+              type={`cities`}
+              offers={offers}
+            />
+          </BrowserRouter>
         </Provider>
     ).toJSON();
 
@@ -91,12 +96,14 @@ describe(`Render PlacesList`, () => {
 
     const tree = renderer.create(
         <Provider store={store}>
-          <PlacesList
-            onCardHover={()=>{}}
-            onCardHoverOut={()=>{}}
-            type={`near`}
-            offers={offers}
-          />
+          <BrowserRouter>
+            <PlacesList
+              onCardHover={()=>{}}
+              onCardHoverOut={()=>{}}
+              type={`near`}
+              offers={offers}
+            />
+          </BrowserRouter>
         </Provider>
     ).toJSON();
 

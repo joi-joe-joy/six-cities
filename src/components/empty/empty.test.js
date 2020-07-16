@@ -4,9 +4,7 @@ import Empty from "./empty.jsx";
 
 it(`Render Empty correctly`, () => {
   const tree = renderer.create(
-      <Empty
-        city={`Paris`}
-      />
+      <Empty/>
   ).toJSON();
 
   expect(tree).toMatchSnapshot();

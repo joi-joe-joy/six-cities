@@ -4,6 +4,7 @@ import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import {CitiesPlaces} from "./cities-places.jsx";
 import {NameSpace} from "../../reducer/name-space.js";
+import {BrowserRouter} from "react-router-dom";
 
 const mockStore = configureStore([]);
 
@@ -55,9 +56,11 @@ it(`Render CitiesPlaces correctly`, () => {
   const tree = renderer
     .create(
         <Provider store={store}>
-          <CitiesPlaces
-            currentCity={currentCity}
-            offers={offers}/>
+          <BrowserRouter>
+            <CitiesPlaces
+              currentCity={currentCity}
+              offers={offers}/>
+          </BrowserRouter>
         </Provider>
     ).toJSON();
 

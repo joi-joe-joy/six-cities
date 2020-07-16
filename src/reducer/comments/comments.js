@@ -23,9 +23,9 @@ const reducer = (state = initialState, action) => {
       return extend(state, {
         comments: action.payload
       });
+    default:
+      return state;
   }
-
-  return state;
 };
 
 const Operation = {

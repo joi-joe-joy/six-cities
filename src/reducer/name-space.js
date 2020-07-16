@@ -3,4 +3,5 @@ export const NameSpace = {
   USER: `USER`,
   PLACE: `PLACE`,
   COMMENTS: `COMMENTS`,
+  FAVORITE: `FAVORITE`
 };

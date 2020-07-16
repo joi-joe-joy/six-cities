@@ -37,6 +37,14 @@ const offers = [{
   type: `hotel`
 }];
 
+const authInfo = {
+  avatarUrl: `/static/avatar/7.jpg`,
+  email: `joi.joe.joy@mail.ru`,
+  id: 1,
+  isPro: false,
+  name: `joi.joe.joy`
+};
+
 describe(`Render App`, () => {
   it(`Render with offers`, () => {
     const store = mockStore({
@@ -64,7 +72,8 @@ describe(`Render App`, () => {
         hoverCard: null
       },
       [NameSpace.USER]: {
-        authorizationStatus: `AUTH`
+        authorizationStatus: `AUTH`,
+        authInfo
       },
     });
 
@@ -74,7 +83,6 @@ describe(`Render App`, () => {
             <App
               login={()=>{}}
               authorizationStatus={`AUTH`}
-              offers={offers}
             />
           </Provider>, {
             createNodeMock: () => {

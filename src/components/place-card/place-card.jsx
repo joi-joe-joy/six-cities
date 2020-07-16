@@ -1,8 +1,7 @@
 import React, {PureComponent} from "react";
 import IconBookmark from "../../Icons/icon-bookmark.svg";
-import {connect} from "react-redux";
-import {ActionCreator} from "../../reducer/place/place.js";
-import {HouseType, HouseTypeTemplate, PlaceCardType} from "../../const.js";
+import {Link} from "react-router-dom";
+import {HouseType, HouseTypeTemplate, PlaceCardType, AppRoute} from "../../const.js";
 import classnames from "classnames";
 import pt from "prop-types";
 
@@ -11,7 +10,6 @@ class PlaceCard extends PureComponent {
     super(props);
     this.handleCardHover = this.handleCardHover.bind(this);
     this.handleCardHoverOut = this.handleCardHoverOut.bind(this);
-    this.handleCardClick = this.handleCardClick.bind(this);
   }
 
   handleCardHover() {
@@ -24,14 +22,8 @@ class PlaceCard extends PureComponent {
     onCardHoverOut();
   }
 
-  handleCardClick(e) {
-    const {offer, onCardClick} = this.props;
-    e.preventDefault();
-    onCardClick(offer);
-  }
-
   render() {
-    const {offer, onBookmarkClick, type} = this.props;
+    const {offer, type, isFavorite, onToggleFavorite} = this.props;
     const classNamesCard = classnames(`place-card`, {
       'cities__place-card': type === PlaceCardType.CITIES,
       'near-places__card': type === PlaceCardType.NEAR
@@ -63,10 +55,10 @@ class PlaceCard extends PureComponent {
               <span className="place-card__price-text">&#47;&nbsp;night</span>
             </div>
             <button
-              onClick={onBookmarkClick}
+              onClick={onToggleFavorite}
               className="place-card__bookmark-button button"
               type="button">
-              <IconBookmark width="17" height="18" />
+              <IconBookmark width="17" height="18" style={{fill: isFavorite ? `#ff9000` : `#000000`}}/>
               <span className="visually-hidden">To bookmarks</span>
             </button>
           </div>
@@ -77,7 +69,7 @@ class PlaceCard extends PureComponent {
             </div>
           </div>
           <h2 className="place-card__name">
-            <a onClick={this.handleCardClick}>{offer.title}</a>
+            <Link to={`${AppRoute.OFFER}/${offer.id}`}>{offer.title}</Link>
           </h2>
           <p className="place-card__type">{HouseTypeTemplate[offer.type]}</p>
         </div>
@@ -91,25 +83,17 @@ PlaceCard.propTypes = {
     id: pt.number.isRequired,
     title: pt.string.isRequired,
     isPremium: pt.bool,
+    isFavorite: pt.bool,
     previewImage: pt.string,
     price: pt.number.isRequired,
     rating: pt.number.isRequired,
     type: pt.oneOf([HouseType.APARTMENT, HouseType.ROOM, HouseType.HOUSE, HouseType.HOTEL])
   }).isRequired,
-  onBookmarkClick: pt.func.isRequired,
+  isFavorite: pt.bool.isRequired,
+  onToggleFavorite: pt.func.isRequired,
   onCardHover: pt.func.isRequired,
   onCardHoverOut: pt.func.isRequired,
-  onCardClick: pt.func.isRequired,
   type: pt.string.isRequired
 };
 
-const mapStateToProps = null;
-
-const mapDispatchToProps = (dispatch) => ({
-  onCardClick(card) {
-    dispatch(ActionCreator.changeCard(card));
-  }
-});
-
-export {PlaceCard};
-export default connect(mapStateToProps, mapDispatchToProps)(PlaceCard);
+export default PlaceCard;

@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Login from "./login.jsx";
+import Favorite from "./favorites";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import {NameSpace} from "../../reducer/name-space.js";
@@ -8,7 +8,7 @@ import {BrowserRouter} from "react-router-dom";
 
 const mockStore = configureStore([]);
 
-it(`Render Login correctly`, () => {
+it(`Render Favorite correctly`, () => {
   const store = mockStore({
     [NameSpace.USER]: {
       authorizationStatus: `NO_AUTH`
@@ -17,9 +17,7 @@ it(`Render Login correctly`, () => {
   const tree = renderer.create(
       <Provider store={store}>
         <BrowserRouter>
-          <Login
-            onSubmit={()=>{}}
-          />
+          <Favorite/>
         </BrowserRouter>
       </Provider>
   ).toJSON();
