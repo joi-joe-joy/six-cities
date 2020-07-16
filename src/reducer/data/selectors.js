@@ -18,7 +18,7 @@ export const getCity = (state) => {
 
 export const getOffers = (state) => {
   const hotels = state[NAME_SPACE].offers;
-  hotels.forEach((hotel) => {
+  hotels.slice(0).forEach((hotel) => {
     if (hotel.host) {
       hotel.host.isPro = hotel.host.is_pro;
       hotel.host.avatarUrl = hotel.host.avatar_url;
@@ -34,7 +34,7 @@ export const getOffers = (state) => {
 
 export const getNearbyOffers = (state) => {
   const hotels = state[NAME_SPACE].offersNearby;
-  hotels.forEach((hotel) => {
+  hotels.slice(0).forEach((hotel) => {
     if (hotel.host) {
       hotel.host.isPro = hotel.host.is_pro;
       hotel.host.avatarUrl = hotel.host.avatar_url;
