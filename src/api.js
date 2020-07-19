@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const Error = {
+const ErrorType = {
   UNAUTHORIZED: 401,
   BAD_REQUEST: 400,
 };
@@ -20,15 +20,14 @@ export const createAPI = (onUnauthorized) => {
     const {response} = err;
 
     switch (response.status) {
-      case Error.UNAUTHORIZED:
+      case ErrorType.UNAUTHORIZED:
         onUnauthorized();
         throw err;
-      case Error.BAD_REQUEST:
-        onUnauthorized();
+      case ErrorType.BAD_REQUEST:
+        throw err;
+      default:
         throw err;
     }
-
-    throw err;
   };
 
   api.interceptors.response.use(onSuccess, onFail);

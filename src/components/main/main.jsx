@@ -20,7 +20,10 @@ class Main extends PureComponent {
 
   render() {
     const {offers, hoverCard, city} = this.props;
-    let offersCords = offers.map((offer) => offer.location);
+    let offersCords = [];
+    if (offers) {
+      offersCords = offers.map((offer) => offer.location);
+    }
 
     return (
       <Page type={PageType.MAIN}>
@@ -42,7 +45,7 @@ class Main extends PureComponent {
               </div>
             </div>
           )}
-          {!offers.length && city && <Empty city={city.name}/>}
+          {!offers.length && <Empty/>}
         </main>
       </Page>
     );

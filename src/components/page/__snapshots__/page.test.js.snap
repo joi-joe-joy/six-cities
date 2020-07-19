@@ -18,12 +18,14 @@ exports[`Render Page correctly Render Page correctly type LOGIN 1`] = `
         >
           <a
             className="header__logo-link header__logo-link--active"
+            href="/"
+            onClick={[Function]}
           >
             <img
               alt="6 cities logo"
               className="header__logo"
               height="41"
-              src="img/logo.svg"
+              src="/img/logo.svg"
               width="81"
             />
           </a>
@@ -39,7 +41,8 @@ exports[`Render Page correctly Render Page correctly type LOGIN 1`] = `
             >
               <a
                 className="header__nav-link header__nav-link--profile"
-                href="#"
+                href="/favorites"
+                onClick={[Function]}
               >
                 <div
                   className="header__avatar-wrapper user__avatar-wrapper"
@@ -47,7 +50,7 @@ exports[`Render Page correctly Render Page correctly type LOGIN 1`] = `
                 <span
                   className="header__user-name user__name"
                 >
-                  Oliver.conner@gmail.com
+                  joi.joe.joy@mail.ru
                 </span>
               </a>
             </li>
@@ -78,12 +81,14 @@ exports[`Render Page correctly Render Page correctly type MAIN 1`] = `
         >
           <a
             className="header__logo-link header__logo-link--active"
+            href="/"
+            onClick={[Function]}
           >
             <img
               alt="6 cities logo"
               className="header__logo"
               height="41"
-              src="img/logo.svg"
+              src="/img/logo.svg"
               width="81"
             />
           </a>
@@ -99,7 +104,8 @@ exports[`Render Page correctly Render Page correctly type MAIN 1`] = `
             >
               <a
                 className="header__nav-link header__nav-link--profile"
-                href="#"
+                href="/favorites"
+                onClick={[Function]}
               >
                 <div
                   className="header__avatar-wrapper user__avatar-wrapper"
@@ -107,7 +113,7 @@ exports[`Render Page correctly Render Page correctly type MAIN 1`] = `
                 <span
                   className="header__user-name user__name"
                 >
-                  Oliver.conner@gmail.com
+                  joi.joe.joy@mail.ru
                 </span>
               </a>
             </li>
@@ -138,12 +144,14 @@ exports[`Render Page correctly Render Page correctly type PROPERTY 1`] = `
         >
           <a
             className="header__logo-link header__logo-link--active"
+            href="/"
+            onClick={[Function]}
           >
             <img
               alt="6 cities logo"
               className="header__logo"
               height="41"
-              src="img/logo.svg"
+              src="/img/logo.svg"
               width="81"
             />
           </a>
@@ -159,7 +167,8 @@ exports[`Render Page correctly Render Page correctly type PROPERTY 1`] = `
             >
               <a
                 className="header__nav-link header__nav-link--profile"
-                href="#"
+                href="/favorites"
+                onClick={[Function]}
               >
                 <div
                   className="header__avatar-wrapper user__avatar-wrapper"
@@ -167,7 +176,7 @@ exports[`Render Page correctly Render Page correctly type PROPERTY 1`] = `
                 <span
                   className="header__user-name user__name"
                 >
-                  Oliver.conner@gmail.com
+                  joi.joe.joy@mail.ru
                 </span>
               </a>
             </li>

@@ -4,10 +4,19 @@ import Page from "./page.jsx";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import {NameSpace} from "../../reducer/name-space.js";
+import {BrowserRouter} from "react-router-dom";
 
 const children = <div/>;
 
 const mockStore = configureStore([]);
+
+const authInfo = {
+  avatarUrl: `/static/avatar/7.jpg`,
+  email: `joi.joe.joy@mail.ru`,
+  id: 1,
+  isPro: false,
+  name: `joi.joe.joy`
+};
 
 describe(`Render Page correctly`, () => {
   it(`Render Page correctly type MAIN`, () => {
@@ -16,7 +25,8 @@ describe(`Render Page correctly`, () => {
         currentCard: {}
       },
       [NameSpace.USER]: {
-        authorizationStatus: `AUTH`
+        authorizationStatus: `AUTH`,
+        authInfo
       },
       [NameSpace.DATA]: {
         city: {
@@ -31,9 +41,11 @@ describe(`Render Page correctly`, () => {
     });
     const tree = renderer.create(
         <Provider store={store}>
-          <Page type={`main`}>
-            {children}
-          </Page>
+          <BrowserRouter>
+            <Page type={`main`}>
+              {children}
+            </Page>
+          </BrowserRouter>
         </Provider>
     ).toJSON();
 
@@ -46,7 +58,8 @@ describe(`Render Page correctly`, () => {
         currentCard: {}
       },
       [NameSpace.USER]: {
-        authorizationStatus: `AUTH`
+        authorizationStatus: `AUTH`,
+        authInfo
       },
       [NameSpace.DATA]: {
         city: {
@@ -62,9 +75,11 @@ describe(`Render Page correctly`, () => {
 
     const tree = renderer.create(
         <Provider store={store}>
-          <Page type={`login`}>
-            {children}
-          </Page>
+          <BrowserRouter>
+            <Page type={`login`}>
+              {children}
+            </Page>
+          </BrowserRouter>
         </Provider>
     ).toJSON();
 
@@ -77,7 +92,8 @@ describe(`Render Page correctly`, () => {
         currentCard: {}
       },
       [NameSpace.USER]: {
-        authorizationStatus: `AUTH`
+        authorizationStatus: `AUTH`,
+        authInfo
       },
       [NameSpace.DATA]: {
         city: {
@@ -93,9 +109,11 @@ describe(`Render Page correctly`, () => {
 
     const tree = renderer.create(
         <Provider store={store}>
-          <Page type={`property`}>
-            {children}
-          </Page>
+          <BrowserRouter>
+            <Page type={`property`}>
+              {children}
+            </Page>
+          </BrowserRouter>
         </Provider>
     ).toJSON();
 

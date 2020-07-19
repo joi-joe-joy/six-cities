@@ -83,7 +83,9 @@ it(`Render Property correctly`, () => {
           longitude: 2.351499,
           zoom: 13
         }
-      }
+      },
+      offers: [offerWithPremium],
+      offersNearby: [offerWithPremium],
     }
   });
 
@@ -99,7 +101,9 @@ it(`Render Property correctly`, () => {
               zoom: 13
             }
           }}
-          offer={offerWithPremium}/>
+          offer={offerWithPremium}
+          nearbyOffers={[offerWithPremium]}
+        />
       </Provider>
   ).toJSON();
 
@@ -122,7 +126,9 @@ it(`Property render correctly without Premium`, () => {
           longitude: 2.351499,
           zoom: 13
         }
-      }
+      },
+      offers: [offerWithPremium],
+      offersNearby: [offerWithPremium],
     }
   });
 
@@ -139,7 +145,9 @@ it(`Property render correctly without Premium`, () => {
                 zoom: 13
               }
             }}
-            offer={offerWithoutPremium}/>
+            offer={offerWithoutPremium}
+            nearbyOffers={[offerWithPremium]}
+          />
         </Provider>
     )
     .toJSON();

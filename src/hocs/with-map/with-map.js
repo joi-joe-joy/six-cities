@@ -32,7 +32,7 @@ const withMap = (Component) => {
 
       const city = [cityLocation.latitude, cityLocation.longitude];
       const icon = leaflet.icon({
-        iconUrl: `img/pin.svg`,
+        iconUrl: `/img/pin.svg`,
         iconSize: [27, 39]
       });
       const zoom = cityLocation.zoom;
@@ -62,7 +62,7 @@ const withMap = (Component) => {
 
         if (currentCords) {
           const currentIcon = leaflet.icon({
-            iconUrl: `img/pin-active.svg`,
+            iconUrl: `/img/pin-active.svg`,
             iconSize: [27, 39]
           });
           leaflet

@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from "../header/header";
+import Footer from "../footer/footer";
 import classnames from "classnames";
 import {PageType} from "../../const.js";
 import pt from 'prop-types';
@@ -16,6 +17,7 @@ const Page = (props) => {
     <div className={className}>
       <Header/>
       {children}
+      {type === PageType.FAVORITES && <Footer/>}
     </div>
   );
 };

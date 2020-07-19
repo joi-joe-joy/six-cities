@@ -3,6 +3,7 @@ import renderer from "react-test-renderer";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import {NameSpace} from "../../reducer/name-space.js";
+import {BrowserRouter} from "react-router-dom";
 import Main from "./main";
 
 const mockStore = configureStore([]);
@@ -39,6 +40,14 @@ const offers = [
   }
 ];
 
+const authInfo = {
+  avatarUrl: `/static/avatar/7.jpg`,
+  email: `joi.joe.joy@mail.ru`,
+  id: 1,
+  isPro: false,
+  name: `joi.joe.joy`
+};
+
 describe(`Render Main`, () => {
   it(`Main with offers`, () => {
     const store = mockStore({
@@ -73,17 +82,20 @@ describe(`Render Main`, () => {
         hoverCard: offers[0]
       },
       [NameSpace.USER]: {
-        authorizationStatus: `AUTH`
+        authorizationStatus: `AUTH`,
+        authInfo
       },
     });
 
     const tree = renderer
       .create(
           <Provider store={store}>
-            <Main
-              offers={offers}
-              onLocationClick={()=>{}}
-            />
+            <BrowserRouter>
+              <Main
+                offers={offers}
+                onLocationClick={()=>{}}
+              />
+            </BrowserRouter>
           </Provider>, {
             createNodeMock: () => {
               return {};
@@ -127,17 +139,20 @@ describe(`Render Main`, () => {
         hoverCard: offers[0]
       },
       [NameSpace.USER]: {
-        authorizationStatus: `AUTH`
+        authorizationStatus: `AUTH`,
+        authInfo
       },
     });
 
     const tree = renderer
       .create(
           <Provider store={store}>
-            <Main
-              offers={offers}
-              onLocationClick={()=>{}}
-            />
+            <BrowserRouter>
+              <Main
+                offers={offers}
+                onLocationClick={()=>{}}
+              />
+            </BrowserRouter>
           </Provider>, {
             createNodeMock: () => {
               return {};

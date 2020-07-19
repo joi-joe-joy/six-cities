@@ -18,12 +18,29 @@ export const getCity = (state) => {
 
 export const getOffers = (state) => {
   const hotels = state[NAME_SPACE].offers;
-  hotels.forEach((hotel) => {
+  hotels.slice(0).forEach((hotel) => {
     if (hotel.host) {
       hotel.host.isPro = hotel.host.is_pro;
       hotel.host.avatarUrl = hotel.host.avatar_url;
     }
     hotel.isPremium = hotel.is_premium;
+    hotel.isFavorite = hotel.is_favorite;
+    hotel.maxAdults = hotel.max_adults;
+    hotel.previewImage = hotel.preview_image;
+  });
+
+  return hotels;
+};
+
+export const getNearbyOffers = (state) => {
+  const hotels = state[NAME_SPACE].offersNearby;
+  hotels.slice(0).forEach((hotel) => {
+    if (hotel.host) {
+      hotel.host.isPro = hotel.host.is_pro;
+      hotel.host.avatarUrl = hotel.host.avatar_url;
+    }
+    hotel.isPremium = hotel.is_premium;
+    hotel.isFavorite = hotel.is_favorite;
     hotel.maxAdults = hotel.max_adults;
     hotel.previewImage = hotel.preview_image;
   });
@@ -36,6 +53,40 @@ export const getOffersCityList = createSelector(
     getCity,
     (offers, city) => {
       return offers.filter((offer) => offer.city.name === city.name);
+    }
+);
+
+const getLocations = (offers) => {
+  if (offers) {
+    return offers.slice(0, 3).map((item) => item.location);
+  }
+
+  return null;
+};
+
+export const getNearbyLocations = createSelector(
+    getNearbyOffers,
+    (offers) => {
+      return getLocations(offers);
+    }
+);
+
+const getMatchId = (_, props) => {
+  if (props && props.match && props.match.params && props.match.params.id) {
+    return +props.match.params.id;
+  }
+
+  return null;
+};
+
+export const getOfferByRouteId = createSelector(
+    getOffersCityList,
+    getMatchId,
+    (offers, id) => {
+      if (offers) {
+        return offers.find((item) => item.id === id);
+      }
+      return null;
     }
 );
 
@@ -62,7 +113,7 @@ export const getSortedOffers = createSelector(
       const preparedOffers = offers.slice(0);
       switch (sortType) {
         case SortType.POPULAR:
-          return preparedOffers.sort((a, b) => +a.is_favorite - +b.is_favorite);
+          return preparedOffers;
         case SortType.TO_HIGH:
           return preparedOffers.sort((a, b) => a.price - b.price);
         case SortType.TO_LOW:

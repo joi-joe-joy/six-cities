@@ -4,19 +4,34 @@ import Header from "./header.jsx";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import {NameSpace} from "../../reducer/name-space.js";
+import {BrowserRouter} from "react-router-dom";
 
 const mockStore = configureStore([]);
+
+const authInfo = {
+  avatarUrl: `/static/avatar/7.jpg`,
+  email: `joi.joe.joy@mail.ru`,
+  id: 1,
+  isPro: false,
+  name: `joi.joe.joy`
+};
 
 describe(`Render Header correctly`, () => {
   it(`Render Header correctly with autorization`, () => {
     const store = mockStore({
       [NameSpace.USER]: {
-        authorizationStatus: `NO_AUTH`
+        authorizationStatus: `NO_AUTH`,
+        authInfo
       }
     });
     const tree = renderer.create(
         <Provider store={store}>
-          <Header authStatus={`NO_AUTH`}/>
+          <BrowserRouter>
+            <Header
+              authStatus={`NO_AUTH`}
+              authInfo={authInfo}
+            />
+          </BrowserRouter>
         </Provider>
     ).toJSON();
 
@@ -26,12 +41,18 @@ describe(`Render Header correctly`, () => {
   it(`Render Header correctly without autorization`, () => {
     const store = mockStore({
       [NameSpace.USER]: {
-        authorizationStatus: `AUTH`
+        authorizationStatus: `AUTH`,
+        authInfo
       }
     });
     const tree = renderer.create(
         <Provider store={store}>
-          <Header authStatus={`AUTH`}/>
+          <BrowserRouter>
+            <Header
+              authStatus={`AUTH`}
+              authInfo={authInfo}
+            />
+          </BrowserRouter>
         </Provider>
     ).toJSON();
 

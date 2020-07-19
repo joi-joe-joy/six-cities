@@ -33,7 +33,6 @@ const offersList = [{
 describe(`Reducer work correctly`, () => {
   it(`Reducer without additional parameters should return initial state`, () => {
     expect(reducer(undefined, {})).toEqual({
-      currentCard: null,
       sorting: `popular`,
       hoverCard: null
     });
@@ -41,14 +40,12 @@ describe(`Reducer work correctly`, () => {
 
   it(`Reducer should change sorting by a given value`, () => {
     expect(reducer({
-      currentCard: null,
       sorting: `popular`,
       hoverCard: null
     }, {
       type: ActionType.CHANGE_SORTING,
       payload: `top-rated`
     })).toEqual({
-      currentCard: null,
       sorting: `top-rated`,
       hoverCard: null
     });
@@ -56,14 +53,12 @@ describe(`Reducer work correctly`, () => {
 
   it(`Reducer should not change sorting by the same given value`, () => {
     expect(reducer({
-      currentCard: null,
       sorting: `popular`,
       hoverCard: null
     }, {
       type: ActionType.CHANGE_SORTING,
       payload: `popular`
     })).toEqual({
-      currentCard: null,
       sorting: `popular`,
       hoverCard: null
     });
@@ -73,14 +68,12 @@ describe(`Reducer work correctly`, () => {
     const [offer] = offersList;
 
     expect(reducer({
-      currentCard: null,
       sorting: `popular`,
       hoverCard: null
     }, {
       type: ActionType.CHANGE_HOVER_CARD,
       payload: offer
     })).toEqual({
-      currentCard: null,
       sorting: `popular`,
       hoverCard: offer
     });
@@ -88,14 +81,12 @@ describe(`Reducer work correctly`, () => {
 
   it(`Reducer should not change hover card by the same given value`, () => {
     expect(reducer({
-      currentCard: null,
       sorting: `popular`,
       hoverCard: null
     }, {
       type: ActionType.CHANGE_HOVER_CARD,
       payload: null
     })).toEqual({
-      currentCard: null,
       sorting: `popular`,
       hoverCard: null
     });
@@ -103,12 +94,6 @@ describe(`Reducer work correctly`, () => {
 });
 
 describe(`Action creators work correctly`, () => {
-  it(`Action creator for change card return card`, () => {
-    expect(ActionCreator.changeCard(offersList[0])).toEqual({
-      type: ActionType.CHANGE_CARD,
-      payload: offersList[0],
-    });
-  });
 
   it(`Action creator for change sorting returns correct action`, () => {
     expect(ActionCreator.changeSorting(`top-rated`)).toEqual({

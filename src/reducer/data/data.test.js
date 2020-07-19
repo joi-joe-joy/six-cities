@@ -39,6 +39,7 @@ describe(`Reducer work correctly`, () => {
     expect(reducer(undefined, {})).toEqual({
       city: null,
       offers: [],
+      offersNearby: []
     });
   });
 
@@ -53,6 +54,7 @@ describe(`Reducer work correctly`, () => {
         }
       },
       offers: offersList,
+      offersNearby: []
     }, {
       type: ActionType.CHANGE_CITY,
       payload: {
@@ -73,6 +75,7 @@ describe(`Reducer work correctly`, () => {
         }
       },
       offers: offersList,
+      offersNearby: []
     });
   });
 
@@ -87,6 +90,7 @@ describe(`Reducer work correctly`, () => {
         }
       },
       offers: offersList,
+      offersNearby: []
     }, {
       type: ActionType.CHANGE_CITY,
       payload: {
@@ -107,6 +111,7 @@ describe(`Reducer work correctly`, () => {
         }
       },
       offers: offersList,
+      offersNearby: []
     });
   });
 
@@ -121,6 +126,7 @@ describe(`Reducer work correctly`, () => {
         }
       },
       offers: [],
+      offersNearby: []
     }, {
       type: ActionType.LOAD_OFFERS,
       payload: offersList
@@ -134,6 +140,36 @@ describe(`Reducer work correctly`, () => {
         }
       },
       offers: offersList,
+      offersNearby: []
+    });
+  });
+
+  it(`Reducer should change nearby offers by a given value`, () => {
+    expect(reducer({
+      city: {
+        name: `Paris`,
+        location: {
+          latitude: 48.85661,
+          longitude: 2.351499,
+          zoom: 13
+        }
+      },
+      offers: [],
+      offersNearby: []
+    }, {
+      type: ActionType.LOAD_NEARBY_OFFERS,
+      payload: offersList
+    })).toEqual({
+      city: {
+        name: `Paris`,
+        location: {
+          latitude: 48.85661,
+          longitude: 2.351499,
+          zoom: 13
+        }
+      },
+      offers: [],
+      offersNearby: offersList
     });
   });
 });
@@ -150,6 +186,20 @@ describe(`Action creators work correctly`, () => {
     expect(ActionCreator.changeCity()).toEqual({
       type: ActionType.CHANGE_CITY,
       payload: undefined,
+    });
+  });
+
+  it(`Action creator for load offers returns correct action`, () => {
+    expect(ActionCreator.loadOffers(offersList)).toEqual({
+      type: ActionType.LOAD_OFFERS,
+      payload: offersList,
+    });
+  });
+
+  it(`Action creator for load nearby offers returns correct action`, () => {
+    expect(ActionCreator.loadNearbyOffers(offersList)).toEqual({
+      type: ActionType.LOAD_NEARBY_OFFERS,
+      payload: offersList,
     });
   });
 });
