@@ -1,9 +1,12 @@
 import React, {PureComponent} from "react";
-import IconBookmark from "../../Icons/icon-bookmark.svg";
 import {Link} from "react-router-dom";
 import {HouseType, HouseTypeTemplate, PlaceCardType, AppRoute} from "../../const.js";
+import withFavorite from "../../hocs/with-favorite/with-favorite.js";
+import ButtonFavorite from "../button-favorite/button-favorite";
 import classnames from "classnames";
 import pt from "prop-types";
+
+const ButtonFavoriteWrap = withFavorite(ButtonFavorite);
 
 class PlaceCard extends PureComponent {
   constructor(props) {
@@ -14,23 +17,32 @@ class PlaceCard extends PureComponent {
 
   handleCardHover() {
     const {offer, onCardHover} = this.props;
-    onCardHover(offer);
+    if (onCardHover) {
+      onCardHover(offer);
+    }
   }
 
   handleCardHoverOut() {
     const {onCardHoverOut} = this.props;
-    onCardHoverOut();
+    if (onCardHoverOut) {
+      onCardHoverOut();
+    }
   }
 
   render() {
-    const {offer, type, isFavorite, onToggleFavorite} = this.props;
+    const {offer, type} = this.props;
     const classNamesCard = classnames(`place-card`, {
       'cities__place-card': type === PlaceCardType.CITIES,
-      'near-places__card': type === PlaceCardType.NEAR
+      'near-places__card': type === PlaceCardType.NEAR,
+      'favorites__card': type === PlaceCardType.FAVORITES,
     });
     const classNamesImgWrap = classnames(`place-card__image-wrapper`, {
       'cities__image-wrapper': type === PlaceCardType.CITIES,
-      'near-places__image-wrapper': type === PlaceCardType.NEAR
+      'near-places__image-wrapper': type === PlaceCardType.NEAR,
+      'favorites__image-wrapper': type === PlaceCardType.FAVORITES,
+    });
+    const classNamesInfo = classnames(`place-card__info`, {
+      'favorites__card-info': type === PlaceCardType.FAVORITES,
     });
 
     return (
@@ -48,19 +60,15 @@ class PlaceCard extends PureComponent {
             <img className="place-card__image" src={offer.previewImage} width="260" height="200" alt={offer.title}></img>
           </a>
         </div>
-        <div className="place-card__info">
+        <div className={classNamesInfo}>
           <div className="place-card__price-wrapper">
             <div className="place-card__price">
               <b className="place-card__price-value">&euro;{offer.price}</b>
               <span className="place-card__price-text">&#47;&nbsp;night</span>
             </div>
-            <button
-              onClick={onToggleFavorite}
-              className="place-card__bookmark-button button"
-              type="button">
-              <IconBookmark width="17" height="18" style={{fill: isFavorite ? `#ff9000` : `#000000`}}/>
-              <span className="visually-hidden">To bookmarks</span>
-            </button>
+            <ButtonFavoriteWrap
+              offer={offer}
+            />
           </div>
           <div className="place-card__rating rating">
             <div className="place-card__stars rating__stars">
@@ -89,10 +97,8 @@ PlaceCard.propTypes = {
     rating: pt.number.isRequired,
     type: pt.oneOf([HouseType.APARTMENT, HouseType.ROOM, HouseType.HOUSE, HouseType.HOTEL])
   }).isRequired,
-  isFavorite: pt.bool.isRequired,
-  onToggleFavorite: pt.func.isRequired,
-  onCardHover: pt.func.isRequired,
-  onCardHoverOut: pt.func.isRequired,
+  onCardHover: pt.func,
+  onCardHoverOut: pt.func,
   type: pt.string.isRequired
 };
 

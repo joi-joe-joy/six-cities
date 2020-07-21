@@ -74,6 +74,9 @@ describe(`Render PlaceCard`, () => {
     const store = mockStore({
       [NameSpace.PLACE]: {
         currentCard: {}
+      },
+      [NameSpace.USER]: {
+        authorizationStatus: `AUTH`
       }
     });
 
@@ -100,6 +103,9 @@ describe(`Render PlaceCard`, () => {
     const store = mockStore({
       [NameSpace.PLACE]: {
         currentCard: {}
+      },
+      [NameSpace.USER]: {
+        authorizationStatus: `AUTH`
       }
     });
 
@@ -126,6 +132,9 @@ describe(`Render PlaceCard`, () => {
     const store = mockStore({
       [NameSpace.PLACE]: {
         currentCard: {}
+      },
+      [NameSpace.USER]: {
+        authorizationStatus: `AUTH`
       }
     });
 

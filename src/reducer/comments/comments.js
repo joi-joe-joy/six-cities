@@ -37,6 +37,15 @@ const Operation = {
       .then((res) => {
         dispatch(ActionCreator.loadComments(res.data));
       });
+  },
+  loadComments: (hotelId) => (dispatch, getState, api) => {
+    return api.get(`/comments/${hotelId}`)
+      .then((res) => {
+        dispatch(ActionCreator.loadComments(res.data));
+      })
+      .catch((err) => {
+        throw err;
+      });
   }
 };
 

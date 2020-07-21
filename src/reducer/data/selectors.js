@@ -80,7 +80,7 @@ const getMatchId = (_, props) => {
 };
 
 export const getOfferByRouteId = createSelector(
-    getOffersCityList,
+    getOffers,
     getMatchId,
     (offers, id) => {
       if (offers) {
@@ -126,4 +126,6 @@ export const getSortedOffers = createSelector(
     }
 );
 
-
+export const getIsLoading = (state) => {
+  return state[NAME_SPACE].isLoading;
+};

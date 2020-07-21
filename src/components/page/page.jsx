@@ -10,14 +10,17 @@ const Page = (props) => {
   const className = classnames(`page`, {
     'page--gray': type === PageType.MAIN || type === PageType.LOGIN,
     'page--login': type === PageType.LOGIN,
-    'page--main': type === PageType.MAIN
+    'page--main': type === PageType.MAIN,
+    'page--favorites-empty': type === PageType.FAVORITES_EMPTY,
   });
 
   return (
     <div className={className}>
       <Header/>
       {children}
-      {type === PageType.FAVORITES && <Footer/>}
+      {(type === PageType.FAVORITES || type === PageType.FAVORITES_EMPTY) &&
+        <Footer/>
+      }
     </div>
   );
 };

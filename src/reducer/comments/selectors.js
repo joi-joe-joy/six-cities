@@ -13,8 +13,8 @@ export const getComments = (state) => {
   const comments = state[NAME_SPACE].comments;
   comments.forEach((comment) => {
     if (comment.user) {
-      comment.user.isPro = comment.host.is_pro;
-      comment.user.avatarUrl = comment.host.avatar_url;
+      comment.user.isPro = comment.user.is_pro;
+      comment.user.avatarUrl = comment.user.avatar_url;
     }
   });
   return comments;

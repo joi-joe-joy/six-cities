@@ -3,12 +3,14 @@ import {AuthStatus} from "../../const.js";
 
 const initialState = {
   authorizationStatus: AuthStatus.NO_AUTH,
-  authInfo: null
+  authInfo: null,
+  isLoading: false
 };
 
 const ActionType = {
   REQUIRE_AUTH_STATUS: `REQUIRE_AUTH_STATUS`,
   GET_AUTH_INFO: `GET_AUTH_INFO`,
+  SET_LOADING: `SET_LOADING`
 };
 
 const ActionCreator = {
@@ -23,6 +25,12 @@ const ActionCreator = {
       type: ActionType.GET_AUTH_INFO,
       payload: info
     };
+  },
+  setLoading: (status) => {
+    return {
+      type: ActionType.SET_LOADING,
+      payload: status
+    };
   }
 };
 
@@ -36,6 +44,10 @@ const reducer = (state = initialState, action) => {
       return extend(state, {
         authInfo: action.payload
       });
+    case ActionType.SET_LOADING:
+      return extend(state, {
+        isLoading: action.payload
+      });
     default:
       return state;
   }
@@ -43,12 +55,15 @@ const reducer = (state = initialState, action) => {
 
 const Operation = {
   checkAuth: () => (dispatch, getState, api) => {
+    dispatch(ActionCreator.setLoading(true));
     return api.get(`/login`)
       .then((res) => {
         dispatch(ActionCreator.getAuthInfo(res.data));
         dispatch(ActionCreator.requireAuthStatus(AuthStatus.AUTH));
+        dispatch(ActionCreator.setLoading(false));
       })
       .catch((err) => {
+        dispatch(ActionCreator.setLoading(false));
         throw err;
       });
   },

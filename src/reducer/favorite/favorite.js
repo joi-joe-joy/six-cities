@@ -5,7 +5,7 @@ const initialState = {
 };
 
 const ActionType = {
-  GET_FAVORITES: `GET_FAVORITES`
+  GET_FAVORITES: `GET_FAVORITES`,
 };
 
 const ActionCreator = {
@@ -14,7 +14,7 @@ const ActionCreator = {
       type: ActionType.GET_FAVORITES,
       payload: favorites
     };
-  }
+  },
 };
 
 const reducer = (state = initialState, action) => {
@@ -31,9 +31,8 @@ const reducer = (state = initialState, action) => {
 const Operation = {
   toggleFavorite: ({hotelId, status}) => (dispatch, getState, api) => {
     return api.post(`/favorite/${hotelId}/${+status}`)
-      .then((res) => {
+      .then(() => {
         dispatch(Operation.loadFavorites());
-        return res.data;
       })
       .catch((err) => {
         throw err;

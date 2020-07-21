@@ -16,14 +16,17 @@ export const MAX_REVIEW_COUNT = 10;
 
 export const PlaceCardType = {
   CITIES: `cities`,
-  NEAR: `near`
+  NEAR: `near`,
+  FAVORITES: `favorites`,
+  PROPERTY: `property`
 };
 
 export const PageType = {
   PROPERTY: `property`,
   MAIN: `main`,
   LOGIN: `login`,
-  FAVORITES: `favorites`
+  FAVORITES: `favorites`,
+  FAVORITES_EMPTY: `favorites_empty`
 };
 
 export const SortType = {

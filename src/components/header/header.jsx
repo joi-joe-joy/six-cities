@@ -27,7 +27,7 @@ const Header = (props) => {
                   className="header__nav-link header__nav-link--profile"
                 >
                   <div className="header__avatar-wrapper user__avatar-wrapper"></div>
-                  {authStatus === AuthStatus.AUTH &&
+                  {authStatus === AuthStatus.AUTH && authInfo &&
                     <span className="header__user-name user__name">{authInfo.email}</span>
                   }
                   {authStatus === AuthStatus.NO_AUTH &&

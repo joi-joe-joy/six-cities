@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render ButtonFavorite correctly 1`] = `
+<button
+  className="button property__bookmark-button"
+  onClick={[Function]}
+  type="button"
+>
+  <svg
+    height="18"
+    style={
+      Object {
+        "fill": "#ff9000",
+      }
+    }
+    width="17"
+  />
+  <span
+    className="visually-hidden"
+  >
+    To bookmarks
+  </span>
+</button>
+`;

@@ -67,6 +67,19 @@ const offerWithoutPremium = {
   type: `hotel`
 };
 
+const comments = [{
+  comment: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.`,
+  date: `2019-05-08T14:13:56.569Z`,
+  id: 1,
+  rating: 4,
+  user: {
+    avatarUrl: `img/1.png`,
+    id: 4,
+    isPro: false,
+    name: `Max`
+  }
+}];
+
 it(`Render Property correctly`, () => {
   const store = mockStore({
     [NameSpace.PLACE]: {
@@ -86,7 +99,10 @@ it(`Render Property correctly`, () => {
       },
       offers: [offerWithPremium],
       offersNearby: [offerWithPremium],
-    }
+    },
+    [NameSpace.COMMENTS]: {
+      comments
+    },
   });
 
   const tree = renderer.create(
@@ -129,7 +145,10 @@ it(`Property render correctly without Premium`, () => {
       },
       offers: [offerWithPremium],
       offersNearby: [offerWithPremium],
-    }
+    },
+    [NameSpace.COMMENTS]: {
+      comments
+    },
   });
 
   const tree = renderer

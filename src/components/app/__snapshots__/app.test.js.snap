@@ -217,7 +217,7 @@ exports[`Render App Render with offers 1`] = `
                     </span>
                   </div>
                   <button
-                    className="place-card__bookmark-button button"
+                    className="button place-card__bookmark-button"
                     onClick={[Function]}
                     type="button"
                   >

@@ -9,6 +9,7 @@ import {createAPI} from "./api.js";
 import App from "./components/app/app";
 import {AuthStatus, AppRoute} from "./const.js";
 import {Operation as DataOperation} from "./reducer/data/data.js";
+import {Operation as FavoriteOperation} from "./reducer/favorite/favorite.js";
 import {Operation as UserOperation, ActionCreator} from "./reducer/user/user.js";
 import reducer from "./reducer/reducer.js";
 
@@ -28,6 +29,7 @@ const store = createStore(
 
 store.dispatch(DataOperation.loadOffers());
 store.dispatch(UserOperation.checkAuth());
+store.dispatch(FavoriteOperation.loadFavorites());
 
 ReactDOM.render(
     <Provider store={store}>
