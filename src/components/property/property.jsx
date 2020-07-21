@@ -1,16 +1,19 @@
 import React, {useEffect} from "react";
 import {connect} from 'react-redux';
 import {HouseType, HouseTypeTemplate, PageType, PlaceCardType, AuthStatus} from "../../const.js";
-import IconBookmark from "../../Icons/icon-bookmark.svg";
 import withMap from "../../hocs/with-map/with-map";
 import withCommentForm from "../../hocs/with-comment-form/with-comment-form.js";
 import withActiveItem from "../../hocs/with-active-item/with-active-item";
+import withFavorite from "../../hocs/with-favorite/with-favorite.js";
 import {getCity, getNearbyOffers, getOfferByRouteId, getNearbyLocations} from "../../reducer/data/selectors.js";
 import {getAuthStatus} from "../../reducer/user/selectors.js";
+import {getComments} from "../../reducer/comments/selectors.js";
 import {Operation as DataOperation} from "../../reducer/data/data.js";
+import {Operation as CommentOperation} from "../../reducer/comments/comments.js";
 import ReviewsList from "../rewiews-list/reviews-list";
 import PlacesList from "../places-list/places-list";
 import SendReview from "../send-review/send-review";
+import ButtonFavorite from "../button-favorite/button-favorite";
 import Page from "../page/page";
 import Map from "../map/map";
 import pt from "prop-types";
@@ -18,15 +21,26 @@ import pt from "prop-types";
 const MapWrap = withMap(Map);
 const PlacesListWrap = withActiveItem(PlacesList);
 const SendReviewWrap = withCommentForm(SendReview);
+const ButtonFavoriteWrap = withFavorite(ButtonFavorite);
 
 const Property = (props) => {
-  const {city, authStatus, nearbyOffers, offer, loadNearOffers, nearLocations} = props;
+  const {
+    city,
+    authStatus,
+    nearbyOffers,
+    offer,
+    loadNearOffers,
+    nearLocations,
+    comments,
+    loadComments
+  } = props;
 
   useEffect(() => {
     if (offer && offer.id) {
       loadNearOffers(offer.id);
+      loadComments(offer.id);
     }
-  }, [offer, loadNearOffers]);
+  }, [offer, loadNearOffers, loadComments]);
 
   if (!offer) {
     return null;
@@ -56,10 +70,10 @@ const Property = (props) => {
                 <h1 className="property__name">
                   {offer.title}
                 </h1>
-                <button className="property__bookmark-button button" type="button">
-                  <IconBookmark width="31" height="33" />
-                  <span className="visually-hidden">To bookmarks</span>
-                </button>
+                <ButtonFavoriteWrap
+                  offer={offer}
+                  type={PlaceCardType.PROPERTY}
+                />
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">
@@ -115,10 +129,10 @@ const Property = (props) => {
               </div>
               <section className="property__reviews reviews">
                 <h2 className="reviews__title">Reviews &middot;
-                  <span className="reviews__amount">{offer.reviews && offer.reviews.length || `0`}</span>
+                  <span className="reviews__amount">{comments && comments.length || `0`}</span>
                 </h2>
-                {offer.reviews &&
-                  <ReviewsList reviews={offer.reviews}/>
+                {comments &&
+                  <ReviewsList reviews={comments}/>
                 }
                 {authStatus === AuthStatus.AUTH && <SendReviewWrap/>}
               </section>
@@ -186,7 +200,7 @@ Property.propTypes = {
   authStatus: pt.oneOf([AuthStatus.AUTH, AuthStatus.NO_AUTH]).isRequired,
   match: pt.shape({
     params: pt.shape({
-      id: pt.oneOfType(pt.number.isRequired, pt.string.isRequired)
+      id: pt.string.isRequired
     })
   }),
   nearbyOffers: pt.arrayOf(
@@ -206,11 +220,26 @@ Property.propTypes = {
       })
   ),
   loadNearOffers: pt.func.isRequired,
+  loadComments: pt.func.isRequired,
   nearLocations: pt.arrayOf(
       pt.shape({
         latitude: pt.number.isRequired,
         longitude: pt.number.isRequired,
         zoom: pt.number.isRequired
+      })
+  ),
+  comments: pt.arrayOf(
+      pt.shape({
+        comment: pt.string.isRequired,
+        date: pt.string.isRequired,
+        id: pt.number.isRequired,
+        rating: pt.number.isRequired,
+        user: pt.shape({
+          avatarUrl: pt.string,
+          id: pt.number.isRequired,
+          isPro: pt.bool,
+          name: pt.string.isRequired
+        })
       })
   )
 };
@@ -220,12 +249,16 @@ const mapStateToProps = (state, props) => ({
   nearbyOffers: getNearbyOffers(state),
   city: getCity(state),
   authStatus: getAuthStatus(state),
-  nearLocations: getNearbyLocations(state)
+  nearLocations: getNearbyLocations(state),
+  comments: getComments(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   loadNearOffers(offerId) {
     dispatch(DataOperation.loadNearbyOffers(offerId));
+  },
+  loadComments(offerId) {
+    dispatch(CommentOperation.loadComments(offerId));
   }
 });
 

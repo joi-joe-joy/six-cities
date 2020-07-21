@@ -1,11 +1,8 @@
 import React from "react";
-import PlaceCard from "../place-card/place-card";
 import {PlaceCardType} from "../../const";
-import withFavorite from "../../hocs/with-favorite/with-favorite.js";
+import PlaceCard from "../place-card/place-card";
 import classnames from "classnames";
 import pt from 'prop-types';
-
-const PlaceCardWrap = withFavorite(PlaceCard);
 
 const PlacesList = (props) => {
   const {offers, type, onCardHover, onCardHoverOut, activeCard} = props;
@@ -17,7 +14,7 @@ const PlacesList = (props) => {
   return (
     <div className={classNamesString}>
       {offers.map((offer) => (
-        <PlaceCardWrap
+        <PlaceCard
           currentCard={activeCard && (activeCard.id === offer.id)}
           key={offer.id}
           offer={offer}

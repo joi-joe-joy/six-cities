@@ -65,6 +65,9 @@ it(`Should take card info on hover`, () => {
           zoom: 13
         }
       }]
+    },
+    [NameSpace.USER]: {
+      authorizationStatus: `AUTH`
     }
   });
   const onCardHover = jest.fn((...args) => [...args]);
@@ -116,6 +119,9 @@ it(`Should work when hover out`, () => {
           zoom: 13
         }
       }]
+    },
+    [NameSpace.USER]: {
+      authorizationStatus: `AUTH`
     }
   });
   const onCardHoverOut = jest.fn();

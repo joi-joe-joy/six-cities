@@ -1,6 +1,9 @@
 import React, {PureComponent} from 'react';
 import {connect} from "react-redux";
+import history from "../../history.js";
+import {AuthStatus, AppRoute} from "../../const.js";
 import {Operation as FavoriteOperation} from "../../reducer/favorite/favorite.js";
+import {getAuthStatus} from "../../reducer/user/selectors.js";
 import pt from 'prop-types';
 
 const withFavorite = (Component) => {
@@ -14,14 +17,21 @@ const withFavorite = (Component) => {
     }
 
     handleButtonBookClick() {
-      const {toggleFavorite, offer} = this.props;
-      toggleFavorite({
-        hotelId: offer.id,
-        status: !offer.isFavorite
-      });
-      this.setState((state) => ({
-        isFavorite: !state.isFavorite
-      }));
+      const {toggleFavorite, offer, authStatus} = this.props;
+
+      if (authStatus === AuthStatus.AUTH) {
+        toggleFavorite({
+          hotelId: offer.id,
+          status: !this.state.isFavorite
+        });
+        this.setState((state) => {
+          return {
+            isFavorite: !state.isFavorite
+          };
+        });
+      } else {
+        history.push(AppRoute.LOGIN);
+      }
     }
 
     render() {
@@ -42,7 +52,12 @@ const withFavorite = (Component) => {
       id: pt.number.isRequired,
       isFavorite: pt.bool,
     }).isRequired,
+    authStatus: pt.string.isRequired
   };
+
+  const mapStateToProps = (state) => ({
+    authStatus: getAuthStatus(state)
+  });
 
   const mapDispatchToProps = (dispatch) => ({
     toggleFavorite(data) {
@@ -50,7 +65,7 @@ const withFavorite = (Component) => {
     }
   });
 
-  return connect(undefined, mapDispatchToProps)(WithFavorite);
+  return connect(mapStateToProps, mapDispatchToProps)(WithFavorite);
 };
 
 export default withFavorite;

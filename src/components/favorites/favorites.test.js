@@ -1,14 +1,14 @@
 import React from "react";
 import renderer from "react-test-renderer";
+import Favorite from "./favorites";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
-import {CitiesPlaces} from "./cities-places.jsx";
 import {NameSpace} from "../../reducer/name-space.js";
 import {BrowserRouter} from "react-router-dom";
 
 const mockStore = configureStore([]);
 
-const offers = [{
+const favorites = [{
   bedrooms: 2,
   city: {
     name: `Paris`,
@@ -24,7 +24,7 @@ const offers = [{
   id: 1,
   images: [`https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/3.jpg`],
   isFavorite: false,
-  isPremium: true,
+  isPremium: false,
   location: {
     latitude: 48.865610000000004,
     longitude: 2.350499,
@@ -38,34 +38,24 @@ const offers = [{
   type: `hotel`
 }];
 
-it(`Render CitiesPlaces correctly`, () => {
+it(`Render Favorite correctly`, () => {
   const store = mockStore({
-    [NameSpace.DATA]: {
-      city: {
-        name: `Paris`,
-        location: {
-          latitude: 48.85661,
-          longitude: 2.351499,
-          zoom: 13
-        }
-      },
-    },
     [NameSpace.USER]: {
-      authorizationStatus: `AUTH`
+      authorizationStatus: `NO_AUTH`
+    },
+    [NameSpace.FAVORITE]: {
+      favorites
     }
   });
-  const currentCity = offers[0].city;
-
-  const tree = renderer
-    .create(
-        <Provider store={store}>
-          <BrowserRouter>
-            <CitiesPlaces
-              currentCity={currentCity}
-              offers={offers}/>
-          </BrowserRouter>
-        </Provider>
-    ).toJSON();
+  const tree = renderer.create(
+      <Provider store={store}>
+        <BrowserRouter>
+          <Favorite
+            favorites={favorites}
+          />
+        </BrowserRouter>
+      </Provider>
+  ).toJSON();
 
   expect(tree).toMatchSnapshot();
 });

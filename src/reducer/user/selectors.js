@@ -13,3 +13,7 @@ export const getAuthInfo = (state) => {
   }
   return info;
 };
+
+export const getIsLoading = (state) => {
+  return state[NAME_SPACE].isLoading;
+};
