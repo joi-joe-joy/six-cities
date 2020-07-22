@@ -1,5 +1,5 @@
-import React from 'react';
-import {PageType} from "../../const.js";
+import * as React from 'react';
+import {PageType} from "../../types";
 import Page from "../page/page";
 
 const FavoritesEmpty = () => {

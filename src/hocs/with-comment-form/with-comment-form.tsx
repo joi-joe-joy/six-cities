@@ -1,10 +1,18 @@
-import React, {PureComponent, Fragment} from 'react';
+import * as React from 'react';
 import IconStar from "../../Icons/icon-star.svg";
 import StarActive from "../../Icons/star-active.svg";
-import {MAX_COMMENT_LENGTH} from "../../const.js";
+import {MAX_COMMENT_LENGTH} from "../../const";
+
+interface State {
+  rating: number,
+  comment: string
+}
 
 const withCommentForm = (Component) => {
-  class WithCommentForm extends PureComponent {
+  class WithCommentForm extends React.PureComponent<{}, State> {
+    private ratingCount: number = 5;
+    private radioArray: number[] = [];
+
     constructor(props) {
       super(props);
 
@@ -18,8 +26,7 @@ const withCommentForm = (Component) => {
     }
 
     _createArray() {
-      this.radioArray = [];
-      for (let i = 5; i > 0; i--) {
+      for (let i = this.ratingCount; i > 0; i--) {
         this.radioArray.push(i);
       }
       return this.radioArray;
@@ -46,7 +53,7 @@ const withCommentForm = (Component) => {
         >
           <div className="reviews__rating-form form__rating">
             {this._createArray().map((value) => (
-              <Fragment key={`radio-${value}`}>
+              <React.Fragment key={`radio-${value}`}>
                 <input className="form__rating-input visually-hidden"
                   name="rating" value={value}
                   onClick={this.handleClickRadio}
@@ -58,7 +65,7 @@ const withCommentForm = (Component) => {
                     <StarActive width="37" height="33"/> :
                     <IconStar width="37" height="33"/>}
                 </label>
-              </Fragment>
+              </React.Fragment>
             ))}
           </div>
           <textarea

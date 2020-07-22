@@ -1,9 +1,9 @@
-import React from "react";
+import * as React from "react";
 import renderer from "react-test-renderer";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
-import {CitiesPlaces} from "./cities-places.jsx";
-import {NameSpace} from "../../reducer/name-space.js";
+import {CitiesPlaces} from "./cities-placesx";
+import {NameSpace} from "../../reducer/name-space";
 import {BrowserRouter} from "react-router-dom";
 
 const mockStore = configureStore([]);

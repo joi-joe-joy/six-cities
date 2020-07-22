@@ -1,18 +1,22 @@
-import React from 'react';
+import * as React from 'react';
 import {connect} from "react-redux";
-import {PlaceCardType} from "../../const";
+import {PlaceCardType, Offer, City} from "../../types";
 import SortVariants from "../sort-variants/sort-variants";
 import PlacesList from "../places-list/places-list";
 import withActiveItem from "../../hocs/with-active-item/with-active-item";
 import withSort from "../../hocs/with-sort/with-sort";
-import {getCity} from "../../reducer/data/selectors.js";
-import {getSortedOffers} from "../../reducer/data/selectors.js";
-import pt from "prop-types";
+import {getCity} from "../../reducer/data/selectors";
+import {getSortedOffers} from "../../reducer/data/selectors";
+
+interface Props {
+  offers: Offer[],
+  currentCity: City,
+}
 
 const SortVariantsWrap = withSort(SortVariants);
 const PlacesListWrap = withActiveItem(PlacesList);
 
-const CitiesPlaces = (props) => {
+const CitiesPlaces: React.FC<Props> = (props: Props) => {
   const {offers, currentCity} = props;
 
   return (
@@ -26,13 +30,6 @@ const CitiesPlaces = (props) => {
       />
     </section>
   );
-};
-
-CitiesPlaces.propTypes = {
-  offers: pt.array.isRequired,
-  currentCity: pt.shape({
-    name: pt.string.isRequired,
-  }),
 };
 
 const mapStateToProps = (state) => ({

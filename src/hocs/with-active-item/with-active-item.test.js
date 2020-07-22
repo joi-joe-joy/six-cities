@@ -1,9 +1,9 @@
-import React from 'react';
+import * as React from 'react';
 import renderer from "react-test-renderer";
 import withActiveItem from "./with-active-item";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
-import {NameSpace} from "../../reducer/name-space.js";
+import {NameSpace} from "../../reducer/name-space";
 
 const MockComponent = () => <div/>;
 

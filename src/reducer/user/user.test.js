@@ -1,5 +1,5 @@
-import {reducer, ActionType, ActionCreator} from "./user.js";
-import {AuthStatus} from "../../const.js";
+import {reducer, ActionType, ActionCreator} from "./user";
+import {AuthStatus} from "../../types";
 
 const userInfo = {
   avatarUrl: `/static/avatar/7.jpg`,

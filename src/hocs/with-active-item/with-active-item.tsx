@@ -1,10 +1,22 @@
-import React, {PureComponent} from 'react';
+import * as React from 'react';
 import {connect} from "react-redux";
-import {ActionCreator} from "../../reducer/place/place.js";
-import pt from 'prop-types';
+import {Subtract} from "utility-types";
+import {ActionCreator} from "../../reducer/place/place";
+import {Offer} from '../../types';
+
+interface InjectingProps {
+  changeHoverCard: (card?: Offer) => void
+}
+
+interface State {
+  activeCard: Offer
+}
 
 const withActiveItem = (Component) => {
-  class WithActiveItem extends PureComponent {
+  type P = React.ComponentProps<typeof Component>;
+  type T = Subtract<P, InjectingProps>;
+
+  class WithActiveItem extends React.PureComponent<T, State> {
     constructor(props) {
       super(props);
       this.state = {
@@ -44,10 +56,6 @@ const withActiveItem = (Component) => {
       );
     }
   }
-
-  WithActiveItem.propTypes = {
-    changeHoverCard: pt.func.isRequired
-  };
 
   const mapDispatchToProps = (dispatch) => ({
     changeHoverCard(card) {

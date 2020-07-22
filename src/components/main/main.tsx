@@ -1,19 +1,24 @@
-import React, {PureComponent} from "react";
+import * as React from "react";
 import {connect} from "react-redux";
-import {PageType} from "../../const";
+import {PageType, Offer, City} from "../../types";
 import CitiesList from "../cities-list/cities-list";
 import CitiesPlaces from "../cities-places/cities-places";
 import Empty from "../empty/empty";
 import Page from "../page/page";
 import Map from "../map/map";
 import withMap from "../../hocs/with-map/with-map";
-import {getCity, getOffers} from "../../reducer/data/selectors.js";
-import {getHoverCard} from "../../reducer/place/selectors.js";
-import pt from "prop-types";
+import {getCity, getOffers} from "../../reducer/data/selectors";
+import {getHoverCard} from "../../reducer/place/selectors";
+
+interface Props {
+  offers: Offer[],
+  city: City,
+  hoverCard: Offer
+}
 
 const MapWrap = withMap(Map);
 
-class Main extends PureComponent {
+class Main extends React.PureComponent<Props, {}> {
   constructor(props) {
     super(props);
   }
@@ -39,7 +44,6 @@ class Main extends PureComponent {
                     cityLocation={city.location}
                     currentCords={hoverCard && hoverCard.location}
                     offersCords={offersCords}
-                    type={PageType.MAIN}
                   />
                 </div>
               </div>
@@ -51,25 +55,6 @@ class Main extends PureComponent {
     );
   }
 }
-
-Main.propTypes = {
-  offers: pt.array.isRequired,
-  city: pt.shape({
-    name: pt.string.isRequired,
-    location: pt.shape({
-      latitude: pt.number.isRequired,
-      longitude: pt.number.isRequired,
-      zoom: pt.number.isRequired
-    }).isRequired
-  }),
-  hoverCard: pt.shape({
-    location: pt.shape({
-      latitude: pt.number.isRequired,
-      longitude: pt.number.isRequired,
-      zoom: pt.number.isRequired
-    }).isRequired,
-  })
-};
 
 const mapStateToProps = (state) => ({
   offers: getOffers(state),

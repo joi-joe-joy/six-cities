@@ -1,7 +1,7 @@
-import React from "react";
+import * as React from "react";
 import renderer from "react-test-renderer";
 import {PageType} from "../../const";
-import Map from "./map.jsx";
+import Map from "./map";
 
 jest.mock(`leaflet`);
 

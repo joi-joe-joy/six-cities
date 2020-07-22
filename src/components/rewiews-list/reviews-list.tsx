@@ -1,15 +1,19 @@
-import React from "react";
+import * as React from "react";
 import Review from "../review/review";
 import {MAX_REVIEW_COUNT} from "../../const";
-import pt from "prop-types";
+import {Comment} from "../../types";
 
-const ReviewsList = (props) => {
+interface Props {
+  reviews: Comment[]
+}
+
+const ReviewsList: React.FC<Props> = (props: Props) => {
   const {reviews} = props;
 
-  const _generateReviewList = () => {
+  const _generateReviewList = (reviews) => {
     if (reviews.length) {
       return (reviews
-        .sort((a, b) => a.date - b.date)
+        .sort((a, b) => +a.date - +b.date)
         .reverse()
         .slice(0, MAX_REVIEW_COUNT)
         .map((review) => (
@@ -28,10 +32,6 @@ const ReviewsList = (props) => {
       {_generateReviewList(reviews)}
     </ul>
   );
-};
-
-ReviewsList.propTypes = {
-  reviews: pt.array.isRequired
 };
 
 export default ReviewsList;

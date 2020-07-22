@@ -1,10 +1,16 @@
-import React from 'react';
+import * as React from 'react';
 import IconBookmark from "../../Icons/icon-bookmark.svg";
-import classnames from "classnames";
-import {PlaceCardType} from "../../const.js";
-import pt from 'prop-types';
+import * as classnames from "classnames";
+import {PlaceCardType} from "../../types";
 
-const ButtonFavorite = (props) => {
+interface Props {
+  isFavorite: boolean,
+  onToggleFavorite: () => void,
+  type: PlaceCardType.CITIES | PlaceCardType.NEAR | PlaceCardType.FAVORITES | PlaceCardType.PROPERTY
+}
+
+const ButtonFavorite: React.FC<Props> = (props: Props) => {
+
   const {isFavorite, onToggleFavorite, type} = props;
   const buttonClassName = classnames(`button`, {
     'place-card__bookmark-button': type !== PlaceCardType.PROPERTY,
@@ -20,12 +26,6 @@ const ButtonFavorite = (props) => {
       <span className="visually-hidden">To bookmarks</span>
     </button>
   );
-};
-
-ButtonFavorite.propTypes = {
-  isFavorite: pt.bool.isRequired,
-  onToggleFavorite: pt.func.isRequired,
-  type: pt.string
 };
 
 export default ButtonFavorite;

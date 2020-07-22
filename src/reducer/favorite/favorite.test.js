@@ -1,6 +1,6 @@
-import {reducer, ActionType, ActionCreator, Operation} from "./favorite.js";
+import {reducer, ActionType, ActionCreator, Operation} from "./favorite";
 import MockAdapter from "axios-mock-adapter";
-import {createAPI} from "../../api.js";
+import {createAPI} from "../../api";
 
 const api = createAPI(() => {});
 

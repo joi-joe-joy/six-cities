@@ -1,10 +1,17 @@
-import React from "react";
-import {PlaceCardType} from "../../const";
+import * as React from "react";
+import * as classnames from "classnames";
+import {PlaceCardType, Offer} from "../../types";
 import PlaceCard from "../place-card/place-card";
-import classnames from "classnames";
-import pt from 'prop-types';
 
-const PlacesList = (props) => {
+interface Props {
+  offers: Offer[],
+  type: PlaceCardType.CITIES | PlaceCardType.FAVORITES | PlaceCardType.NEAR | PlaceCardType.PROPERTY,
+  onCardHover: (offer: Offer) => void,
+  onCardHoverOut: () => void,
+  activeCard: Offer
+}
+
+const PlacesList: React.FC<Props> = (props: Props) => {
   const {offers, type, onCardHover, onCardHoverOut, activeCard} = props;
   const classNamesString = classnames(`places__list`, {
     'cities__places-list tabs__content': type === PlaceCardType.CITIES,
@@ -15,7 +22,6 @@ const PlacesList = (props) => {
     <div className={classNamesString}>
       {offers.map((offer) => (
         <PlaceCard
-          currentCard={activeCard && (activeCard.id === offer.id)}
           key={offer.id}
           offer={offer}
           type={type}
@@ -25,16 +31,6 @@ const PlacesList = (props) => {
       ))}
     </div>
   );
-};
-
-PlacesList.propTypes = {
-  offers: pt.array.isRequired,
-  type: pt.string.isRequired,
-  onCardHover: pt.func.isRequired,
-  onCardHoverOut: pt.func.isRequired,
-  activeCard: pt.shape({
-    id: pt.number.isRequired
-  })
 };
 
 export default PlacesList;

@@ -1,11 +1,17 @@
-import React from "react";
-import classnames from "classnames";
+import * as React from "react";
+import * as classnames from "classnames";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../reducer/data/data.js";
-import {getCity, getCitiesList} from "../../reducer/data/selectors.js";
-import pt from 'prop-types';
+import {ActionCreator} from "../../reducer/data/data";
+import {getCity, getCitiesList} from "../../reducer/data/selectors";
+import {City} from "../../types";
 
-const CitiesList = (props) => {
+interface Props {
+  onLocationClick: (city: City) => void,
+  citiesList: City[],
+  currentCity: City,
+}
+
+const CitiesList: React.FC<Props> = (props: Props) => {
   const {onLocationClick, currentCity, citiesList} = props;
 
   return (
@@ -28,23 +34,6 @@ const CitiesList = (props) => {
       </section>
     </div>
   );
-};
-
-CitiesList.propTypes = {
-  onLocationClick: pt.func.isRequired,
-  citiesList: pt.arrayOf(
-      pt.shape({
-        name: pt.string.isRequired,
-        location: pt.shape({
-          latitude: pt.number.isRequired,
-          longitude: pt.number.isRequired,
-          zoom: pt.number.isRequired
-        }).isRequired
-      })
-  ).isRequired,
-  currentCity: pt.shape({
-    name: pt.string.isRequired,
-  }),
 };
 
 const mapStateToProps = (state) => ({

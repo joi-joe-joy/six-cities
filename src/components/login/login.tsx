@@ -1,14 +1,20 @@
-import React, {PureComponent, createRef} from 'react';
-import {PageType} from "../../const";
+import * as React from 'react';
+import {PageType} from "../../types";
 import Page from "../page/page";
-import pt from 'prop-types';
 
-class Login extends PureComponent {
+interface Props {
+  onSubmit: ({email, password}: {email: string, password: string}) => void
+};
+
+class Login extends React.PureComponent<Props, {}> {
+  private emailRef: React.RefObject<HTMLInputElement>;
+  private passwordRef: React.RefObject<HTMLInputElement>;
+
   constructor(props) {
     super(props);
 
-    this.emailRef = createRef();
-    this.passwordRef = createRef();
+    this.emailRef = React.createRef();
+    this.passwordRef = React.createRef();
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -37,7 +43,7 @@ class Login extends PureComponent {
                   <input
                     className="login__input form__input"
                     type="email" name="email"
-                    placeholder="Email" required=""
+                    placeholder="Email" required
                     ref={this.emailRef}
                   />
                 </div>
@@ -46,7 +52,7 @@ class Login extends PureComponent {
                   <input
                     className="login__input form__input"
                     type="password" name="password"
-                    placeholder="Password" required=""
+                    placeholder="Password" required
                     ref={this.passwordRef}
                   />
                 </div>
@@ -69,9 +75,5 @@ class Login extends PureComponent {
     );
   }
 }
-
-Login.propTypes = {
-  onSubmit: pt.func.isRequired
-};
 
 export default Login;

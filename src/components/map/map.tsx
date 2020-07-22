@@ -1,9 +1,13 @@
-import React from "react";
-import {PageType} from "../../const";
-import classnames from "classnames";
-import pt from 'prop-types';
+import * as React from "react";
+import {PageType} from "../../types";
+import * as classnames from "classnames";
 
-const Map = (props) => {
+interface Props {
+  type: PageType.PROPERTY | PageType.MAIN,
+  children: React.ReactNode,
+}
+
+const Map: React.FC<Props> = (props: Props) => {
   const {type, children} = props;
   const classNameMap = classnames(`map`, {
     'property__map': type === PageType.PROPERTY,
@@ -15,14 +19,6 @@ const Map = (props) => {
       {children}
     </section>
   );
-};
-
-Map.propTypes = {
-  type: pt.string.isRequired,
-  children: pt.oneOfType([
-    pt.arrayOf(pt.node),
-    pt.node
-  ]).isRequired,
 };
 
 export default Map;

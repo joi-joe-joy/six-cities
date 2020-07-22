@@ -1,14 +1,21 @@
-import React, {PureComponent} from "react";
+import * as React from "react";
+import * as classnames from "classnames";
 import {Link} from "react-router-dom";
-import {HouseType, HouseTypeTemplate, PlaceCardType, AppRoute} from "../../const.js";
-import withFavorite from "../../hocs/with-favorite/with-favorite.js";
+import {HouseTypeTemplate, AppRoute} from "../../const";
+import {PlaceCardType, Offer} from "../../types";
+import withFavorite from "../../hocs/with-favorite/with-favorite";
 import ButtonFavorite from "../button-favorite/button-favorite";
-import classnames from "classnames";
-import pt from "prop-types";
+
+interface Props {
+  offer: Offer,
+  onCardHover: (offer: Offer) => void,
+  onCardHoverOut: () => void,
+  type: PlaceCardType.CITIES | PlaceCardType.FAVORITES | PlaceCardType.NEAR | PlaceCardType.PROPERTY
+};
 
 const ButtonFavoriteWrap = withFavorite(ButtonFavorite);
 
-class PlaceCard extends PureComponent {
+class PlaceCard extends React.PureComponent<Props, {}> {
   constructor(props) {
     super(props);
     this.handleCardHover = this.handleCardHover.bind(this);
@@ -85,21 +92,5 @@ class PlaceCard extends PureComponent {
     );
   }
 }
-
-PlaceCard.propTypes = {
-  offer: pt.shape({
-    id: pt.number.isRequired,
-    title: pt.string.isRequired,
-    isPremium: pt.bool,
-    isFavorite: pt.bool,
-    previewImage: pt.string,
-    price: pt.number.isRequired,
-    rating: pt.number.isRequired,
-    type: pt.oneOf([HouseType.APARTMENT, HouseType.ROOM, HouseType.HOUSE, HouseType.HOTEL])
-  }).isRequired,
-  onCardHover: pt.func,
-  onCardHoverOut: pt.func,
-  type: pt.string.isRequired
-};
 
 export default PlaceCard;

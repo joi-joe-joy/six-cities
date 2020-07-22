@@ -1,9 +1,15 @@
-import React, {PureComponent} from 'react';
+import * as React from 'react';
 import {connect} from "react-redux";
-import {Operation as CommentOperation} from "../../reducer/comments/comments.js";
-import pt from 'prop-types';
+import {Operation as CommentOperation} from "../../reducer/comments/comments";
 
-class SendReview extends PureComponent {
+interface Props {
+  onSubmit: ({comment, rating}: {comment: string, rating: number}) => void,
+  children: React.ReactNode,
+  rating: number,
+  comment: string
+}
+
+class SendReview extends React.PureComponent<Props, {}> {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -25,7 +31,6 @@ class SendReview extends PureComponent {
 
     return (
       <form className="reviews__form form" action="#" method="post"
-        ref={this.handleSetRef}
         onSubmit={this.handleSubmit}>
         <label className="reviews__label form__label" htmlFor="review">Your review</label>
         {children}
@@ -39,16 +44,6 @@ class SendReview extends PureComponent {
     );
   }
 }
-
-SendReview.propTypes = {
-  onSubmit: pt.func.isRequired,
-  children: pt.oneOfType([
-    pt.arrayOf(pt.node),
-    pt.node
-  ]).isRequired,
-  rating: pt.number.isRequired,
-  comment: pt.string.isRequired
-};
 
 const mapDispatchToProps = (dispatch) => ({
   onSubmit(data) {

@@ -1,16 +1,18 @@
-import React from 'react';
+import * as React from 'react';
 import {connect} from 'react-redux';
-import {PageType} from "../../const.js";
-import {getSortedFavorites} from "../../reducer/favorite/selectors.js";
+import {PageType, PlaceCardType, Offer} from "../../types";
+import {getSortedFavorites} from "../../reducer/favorite/selectors";
 import Page from "../page/page";
 import PlaceCard from "../place-card/place-card";
-import {PlaceCardType} from "../../const.js";
-import withFavorite from "../../hocs/with-favorite/with-favorite.js";
-import pt from 'prop-types';
+import withFavorite from "../../hocs/with-favorite/with-favorite";
+
+interface Props {
+  favorites: Offer[]
+};
 
 const PlaceCardWrap = withFavorite(PlaceCard);
 
-const Favorites = (props) => {
+const Favorites: React.FC<Props> = (props: Props) => {
   const {favorites} = props;
 
   if (!favorites) {
@@ -36,7 +38,6 @@ const Favorites = (props) => {
                   <div className="favorites__places">
                     <PlaceCardWrap
                       offer={offer}
-                      type={PlaceCardType.FAVORITES}
                     />
                   </div>
                 </li>
@@ -47,14 +48,6 @@ const Favorites = (props) => {
       </main>
     </Page>
   );
-};
-
-Favorites.propTypes = {
-  favorites: pt.arrayOf(
-      pt.shape({
-        id: pt.number.isRequired
-      })
-  )
 };
 
 const mapStateToProps = (state) => ({

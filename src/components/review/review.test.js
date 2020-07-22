@@ -1,6 +1,6 @@
-import React from "react";
+import * as React from "react";
 import renderer from "react-test-renderer";
-import Review from "./review.jsx";
+import Review from "./review";
 
 const review = {
   comment: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.`,

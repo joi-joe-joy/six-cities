@@ -1,9 +1,21 @@
-import React, {PureComponent} from 'react';
-import classnames from "classnames";
+import * as React from 'react';
+import * as classnames from "classnames";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../reducer/place/place.js";
+import {Subtract} from "utility-types";
+import {ActionCreator} from "../../reducer/place/place";
 import IconArrowSelect from "../../Icons/icon-arrow-select.svg";
-import pt from 'prop-types';
+
+interface InjectingProps {
+  changeSorting: (string) => void
+}
+
+interface State {
+  selected: {
+    value: string,
+    label: string,
+  },
+  isOpen: boolean
+}
 
 const options = [
   {value: `popular`, label: `Popular`},
@@ -13,7 +25,10 @@ const options = [
 ];
 
 const withSort = (Component) => {
-  class WithSort extends PureComponent {
+  type P = React.ComponentProps<typeof Component>;
+  type T = Subtract<P, InjectingProps>;
+
+  class WithSort extends React.PureComponent<T, State> {
     constructor(props) {
       super(props);
       this.state = {
@@ -51,7 +66,7 @@ const withSort = (Component) => {
         <Component
           {...this.props}
         >
-          <span className="places__sorting-type" tabIndex="0"
+          <span className="places__sorting-type" tabIndex={0}
             onClick={this.handleSelectToggle}>
             {selected.label}
             <IconArrowSelect width="7" height="4"
@@ -59,7 +74,7 @@ const withSort = (Component) => {
           </span>
           <ul className={optionsClassName}>
             {options.map((option) => (
-              <li key={option.value} tabIndex="0"
+              <li key={option.value} tabIndex={0}
                 onClick={() => this.handleOptionClick(option)}
                 className={classnames(`places__option`, {
                   'places__option--active': option.value === selected.value
@@ -71,10 +86,6 @@ const withSort = (Component) => {
       );
     }
   }
-
-  WithSort.propTypes = {
-    changeSorting: pt.func.isRequired
-  };
 
   const mapDispatchToProps = (dispatch) => ({
     changeSorting(sorting) {

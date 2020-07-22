@@ -1,13 +1,25 @@
-import React, {PureComponent, createRef} from 'react';
+import * as React from 'react';
 import leaflet from "leaflet";
-import pt from 'prop-types';
+import {Location} from "../../types";
+
+interface Props {
+  offersCords: Location[],
+  currentCords: Location,
+  cityLocation: Location
+}
 
 const withMap = (Component) => {
-  class WithMap extends PureComponent {
+  class WithMap extends React.PureComponent<Props, {}> {
+    private mapRef: React.RefObject<HTMLDivElement>;
+    private map: {
+      remove: () => void,
+      setView: (city: number[], zoom: number) => void
+    };
+
     constructor(props) {
       super(props);
 
-      this._mapRef = createRef();
+      this.mapRef = React.createRef();
       this._initMap = this._initMap.bind(this);
       this.map = null;
     }
@@ -36,7 +48,7 @@ const withMap = (Component) => {
         iconSize: [27, 39]
       });
       const zoom = cityLocation.zoom;
-      this.map = leaflet.map(this._mapRef.current, {
+      this.map = leaflet.map(this.mapRef.current, {
         center: city,
         zoom,
         zoomControl: false,
@@ -77,31 +89,11 @@ const withMap = (Component) => {
         <Component
           {...this.props}
         >
-          <div id="map" ref={this._mapRef} style={{height: `100%`}}></div>
+          <div id="map" ref={this.mapRef} style={{height: `100%`}}></div>
         </Component>
       );
     }
   }
-
-  WithMap.propTypes = {
-    offersCords: pt.arrayOf(
-        pt.shape({
-          latitude: pt.number.isRequired,
-          longitude: pt.number.isRequired,
-          zoom: pt.number.isRequired
-        })
-    ),
-    currentCords: pt.shape({
-      latitude: pt.number.isRequired,
-      longitude: pt.number.isRequired,
-      zoom: pt.number.isRequired
-    }),
-    cityLocation: pt.shape({
-      latitude: pt.number.isRequired,
-      longitude: pt.number.isRequired,
-      zoom: pt.number.isRequired
-    }).isRequired
-  };
 
   return WithMap;
 };

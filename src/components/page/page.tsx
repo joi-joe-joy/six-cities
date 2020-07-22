@@ -1,9 +1,13 @@
-import React from 'react';
+import * as React from 'react';
+import * as classnames from "classnames";
 import Header from "../header/header";
 import Footer from "../footer/footer";
-import classnames from "classnames";
-import {PageType} from "../../const.js";
-import pt from 'prop-types';
+import {PageType} from "../../types";
+
+interface Props {
+  type: PageType.MAIN | PageType.LOGIN | PageType.FAVORITES_EMPTY | PageType.PROPERTY | PageType.FAVORITES,
+  children: React.ReactNode
+}
 
 const Page = (props) => {
   const {type, children} = props;
@@ -23,14 +27,6 @@ const Page = (props) => {
       }
     </div>
   );
-};
-
-Page.propTypes = {
-  type: pt.string.isRequired,
-  children: pt.oneOfType([
-    pt.arrayOf(pt.node),
-    pt.node
-  ]).isRequired
 };
 
 export default Page;

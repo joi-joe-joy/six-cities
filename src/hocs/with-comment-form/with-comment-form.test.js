@@ -1,6 +1,6 @@
-import React from 'react';
+import * as React from 'react';
 import renderer from "react-test-renderer";
-import withCommentForm from "./with-comment-form.js";
+import withCommentForm from "./with-comment-form";
 
 const MockComponent = () => <div/>;
 

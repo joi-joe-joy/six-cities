@@ -1,6 +1,6 @@
-import React from "react";
+import * as React from "react";
 import renderer from "react-test-renderer";
-import SortVariants from "./sort-variants.jsx";
+import SortVariants from "./sort-variants";
 
 const children = <div/>;
 

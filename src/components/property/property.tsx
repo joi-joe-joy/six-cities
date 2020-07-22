@@ -1,29 +1,45 @@
-import React, {useEffect} from "react";
+import * as React from "react";
 import {connect} from 'react-redux';
-import {HouseType, HouseTypeTemplate, PageType, PlaceCardType, AuthStatus} from "../../const.js";
+import {HouseTypeTemplate} from "../../const";
+import {HouseType, PageType, PlaceCardType, AuthStatus, Offer, City, Location, Comment} from "../../types";
 import withMap from "../../hocs/with-map/with-map";
-import withCommentForm from "../../hocs/with-comment-form/with-comment-form.js";
+import withCommentForm from "../../hocs/with-comment-form/with-comment-form";
 import withActiveItem from "../../hocs/with-active-item/with-active-item";
-import withFavorite from "../../hocs/with-favorite/with-favorite.js";
-import {getCity, getNearbyOffers, getOfferByRouteId, getNearbyLocations} from "../../reducer/data/selectors.js";
-import {getAuthStatus} from "../../reducer/user/selectors.js";
-import {getComments} from "../../reducer/comments/selectors.js";
-import {Operation as DataOperation} from "../../reducer/data/data.js";
-import {Operation as CommentOperation} from "../../reducer/comments/comments.js";
+import withFavorite from "../../hocs/with-favorite/with-favorite";
+import {getCity, getNearbyOffers, getOfferByRouteId, getNearbyLocations} from "../../reducer/data/selectors";
+import {getAuthStatus} from "../../reducer/user/selectors";
+import {getComments} from "../../reducer/comments/selectors";
+import {Operation as DataOperation} from "../../reducer/data/data";
+import {Operation as CommentOperation} from "../../reducer/comments/comments";
 import ReviewsList from "../rewiews-list/reviews-list";
 import PlacesList from "../places-list/places-list";
 import SendReview from "../send-review/send-review";
 import ButtonFavorite from "../button-favorite/button-favorite";
 import Page from "../page/page";
 import Map from "../map/map";
-import pt from "prop-types";
+
+interface Props {
+  offer: Offer,
+  city: City,
+  authStatus: AuthStatus.AUTH | AuthStatus.NO_AUTH,
+  match: {
+    params: {
+      id: string
+    }
+  },
+  nearbyOffers: Offer[],
+  loadNearOffers: (id: number) => void,
+  loadComments: (id: number) => void,
+  nearLocations: Location[],
+  comments: Comment[]
+}
 
 const MapWrap = withMap(Map);
 const PlacesListWrap = withActiveItem(PlacesList);
 const SendReviewWrap = withCommentForm(SendReview);
 const ButtonFavoriteWrap = withFavorite(ButtonFavorite);
 
-const Property = (props) => {
+const Property: React.FC<Props> = (props: Props) => {
   const {
     city,
     authStatus,
@@ -35,7 +51,7 @@ const Property = (props) => {
     loadComments
   } = props;
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (offer && offer.id) {
       loadNearOffers(offer.id);
       loadComments(offer.id);
@@ -72,7 +88,6 @@ const Property = (props) => {
                 </h1>
                 <ButtonFavoriteWrap
                   offer={offer}
-                  type={PlaceCardType.PROPERTY}
                 />
               </div>
               <div className="property__rating rating">
@@ -87,7 +102,7 @@ const Property = (props) => {
                   {HouseTypeTemplate[offer.type]}
                 </li>
                 <li className="property__feature property__feature--bedrooms">
-                  {offer.bedrooms} {offer.bedrooms.length > 1 ? `Bedrooms` : `Bedroom`}
+                  {offer.bedrooms} Bedrooms
                 </li>
                 <li className="property__feature property__feature--adults">
                   {offer.maxAdults}
@@ -140,7 +155,6 @@ const Property = (props) => {
           </div>
           {nearLocations && nearLocations.length &&
             <MapWrap
-              type={PageType.PROPERTY}
               offersCords={nearLocations}
               currentCords={offer.location}
               cityLocation={city.location}
@@ -161,87 +175,6 @@ const Property = (props) => {
       </main>
     </Page>
   );
-};
-
-Property.propTypes = {
-  offer: pt.shape({
-    id: pt.number.isRequired,
-    title: pt.string.isRequired,
-    maxAdults: pt.number,
-    description: pt.string.isRequired,
-    isPremium: pt.bool,
-    images: pt.arrayOf(pt.string).isRequired,
-    goods: pt.arrayOf(pt.string).isRequired,
-    price: pt.number.isRequired,
-    rating: pt.number.isRequired,
-    bedrooms: pt.number.isRequired,
-    type: pt.oneOf([HouseType.APARTMENT, HouseType.ROOM, HouseType.HOUSE, HouseType.HOTEL]),
-    host: pt.shape({
-      avatarUrl: pt.string,
-      name: pt.string.isRequired,
-      isPro: pt.bool
-    }).isRequired,
-    location: pt.shape({
-      latitude: pt.number.isRequired,
-      longitude: pt.number.isRequired,
-      zoom: pt.number.isRequired
-    }).isRequired,
-    reviews: pt.array,
-    nearOffers: pt.array
-  }),
-  city: pt.shape({
-    name: pt.string.isRequired,
-    location: pt.shape({
-      latitude: pt.number.isRequired,
-      longitude: pt.number.isRequired,
-      zoom: pt.number.isRequired
-    }).isRequired
-  }),
-  authStatus: pt.oneOf([AuthStatus.AUTH, AuthStatus.NO_AUTH]).isRequired,
-  match: pt.shape({
-    params: pt.shape({
-      id: pt.string.isRequired
-    })
-  }),
-  nearbyOffers: pt.arrayOf(
-      pt.shape({
-        id: pt.number.isRequired,
-        title: pt.string.isRequired,
-        isPremium: pt.bool,
-        previewImage: pt.string,
-        price: pt.number.isRequired,
-        rating: pt.number.isRequired,
-        type: pt.oneOf([HouseType.APARTMENT, HouseType.ROOM, HouseType.HOUSE, HouseType.HOTEL]),
-        location: pt.shape({
-          latitude: pt.number.isRequired,
-          longitude: pt.number.isRequired,
-          zoom: pt.number.isRequired
-        }).isRequired
-      })
-  ),
-  loadNearOffers: pt.func.isRequired,
-  loadComments: pt.func.isRequired,
-  nearLocations: pt.arrayOf(
-      pt.shape({
-        latitude: pt.number.isRequired,
-        longitude: pt.number.isRequired,
-        zoom: pt.number.isRequired
-      })
-  ),
-  comments: pt.arrayOf(
-      pt.shape({
-        comment: pt.string.isRequired,
-        date: pt.string.isRequired,
-        id: pt.number.isRequired,
-        rating: pt.number.isRequired,
-        user: pt.shape({
-          avatarUrl: pt.string,
-          id: pt.number.isRequired,
-          isPro: pt.bool,
-          name: pt.string.isRequired
-        })
-      })
-  )
 };
 
 const mapStateToProps = (state, props) => ({

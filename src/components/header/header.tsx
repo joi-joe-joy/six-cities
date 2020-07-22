@@ -1,11 +1,16 @@
-import React from 'react';
+import * as React from 'react';
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
-import {AuthStatus, AppRoute} from "../../const.js";
-import {getAuthStatus, getAuthInfo} from "../../reducer/user/selectors.js";
-import pt from 'prop-types';
+import {AppRoute} from "../../const";
+import {AuthStatus, AuthInfo} from "../../types";
+import {getAuthStatus, getAuthInfo} from "../../reducer/user/selectors";
 
-const Header = (props) => {
+interface Props {
+  authStatus: AuthStatus.AUTH | AuthStatus.NO_AUTH,
+  authInfo: AuthInfo
+}
+
+const Header: React.FC<Props> = (props: Props) => {
   const {authStatus, authInfo} = props;
 
   return (
@@ -41,17 +46,6 @@ const Header = (props) => {
       </div>
     </header>
   );
-};
-
-Header.propTypes = {
-  authStatus: pt.oneOf([AuthStatus.AUTH, AuthStatus.NO_AUTH]).isRequired,
-  authInfo: pt.shape({
-    avatarUrl: pt.string,
-    email: pt.string.isRequired,
-    id: pt.number.isRequired,
-    isPro: pt.bool,
-    name: pt.string.isRequired
-  })
 };
 
 const mapStateToProps = (state) => ({

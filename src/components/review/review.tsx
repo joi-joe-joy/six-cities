@@ -1,12 +1,16 @@
-import React, {Fragment} from "react";
-import moment from "moment";
-import pt from "prop-types";
+import * as React from "react";
+import * as moment from "moment";
+import {Comment} from "../../types";
 
-const Review = (props) => {
+interface Props {
+  review: Comment
+}
+
+const Review: React.FC<Props> = (props: Props) => {
   const {review} = props;
 
   return (
-    <Fragment>
+    <React.Fragment>
       <div className="reviews__user user">
         <div className="reviews__avatar-wrapper user__avatar-wrapper">
           <img className="reviews__avatar user__avatar"
@@ -32,20 +36,8 @@ const Review = (props) => {
           {moment(review.date).format(`MMMM YYYY`)}
         </time>
       </div>
-    </Fragment>
+    </React.Fragment>
   );
-};
-
-Review.propTypes = {
-  review: pt.shape({
-    user: pt.shape({
-      avatarUrl: pt.string.isRequired,
-      name: pt.string.isRequired
-    }).isRequired,
-    rating: pt.number.isRequired,
-    comment: pt.string.isRequired,
-    date: pt.date
-  }).isRequired
 };
 
 export default Review;

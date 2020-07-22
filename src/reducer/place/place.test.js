@@ -1,4 +1,4 @@
-import {reducer, ActionType, ActionCreator} from "./place.js";
+import {reducer, ActionType, ActionCreator} from "./place";
 
 const offersList = [{
   bedrooms: 2,

@@ -1,20 +1,27 @@
-import React, {PureComponent} from "react";
+import * as React from "react";
 import {Router, Route, Switch, Redirect} from "react-router-dom";
 import {connect} from "react-redux";
-import history from "../../history.js";
-import {AuthStatus, AppRoute} from "../../const.js";
-import {getAuthStatus, getIsLoading} from "../../reducer/user/selectors.js";
-import {Operation as UserOperation} from "../../reducer/user/user.js";
-import {isFavoritesExist} from "../../reducer/favorite/selectors.js";
+import history from "../../history";
+import {AppRoute} from "../../const";
+import {AuthStatus} from "../../types";
+import {getAuthStatus, getIsLoading} from "../../reducer/user/selectors";
+import {Operation as UserOperation} from "../../reducer/user/user";
+import {isFavoritesExist} from "../../reducer/favorite/selectors";
 import PrivateRoute from "../private-route/private-route";
 import Favorites from "../favorites/favorites";
 import Property from "../property/property";
 import FavoritesEmpty from "../favorites-empty/favorites-empty";
 import Main from "../main/main";
 import Login from "../login/login";
-import pt from 'prop-types';
 
-class App extends PureComponent {
+interface Props {
+  login: () => void,
+  authorizationStatus: AuthStatus.AUTH | AuthStatus.NO_AUTH,
+  favoritesExist: boolean,
+  isLoading: boolean
+}
+
+class App extends React.PureComponent<Props, {}> {
   constructor(props) {
     super(props);
   }
@@ -53,13 +60,6 @@ class App extends PureComponent {
     );
   }
 }
-
-App.propTypes = {
-  login: pt.func.isRequired,
-  authorizationStatus: pt.oneOf([AuthStatus.AUTH, AuthStatus.NO_AUTH]).isRequired,
-  favoritesExist: pt.bool,
-  isLoading: pt.bool.isRequired
-};
 
 const mapStateToProps = (state) => ({
   authorizationStatus: getAuthStatus(state),

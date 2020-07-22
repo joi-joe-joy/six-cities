@@ -1,5 +1,5 @@
-import {extend} from "../../utils.js";
-import {AuthStatus} from "../../const.js";
+import {extend} from "../../utils";
+import {AuthStatus} from "../../types";
 
 const initialState = {
   authorizationStatus: AuthStatus.NO_AUTH,

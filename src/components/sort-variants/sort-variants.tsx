@@ -1,7 +1,10 @@
-import React from 'react';
-import pt from "prop-types";
+import * as React from 'react';
 
-const SortVariants = (props) => {
+interface Props {
+  children: React.ReactNode
+}
+
+const SortVariants: React.FC<Props> = (props: Props) => {
   const {children} = props;
   return (
     <form className="places__sorting" action="#" method="get">
@@ -9,13 +12,6 @@ const SortVariants = (props) => {
       {children}
     </form>
   );
-};
-
-SortVariants.propTypes = {
-  children: pt.oneOfType([
-    pt.arrayOf(pt.node),
-    pt.node
-  ]).isRequired
 };
 
 export default SortVariants;

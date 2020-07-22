@@ -1,9 +1,9 @@
-import React from "react";
+import * as React from "react";
 import renderer from "react-test-renderer";
-import Property from "./property.jsx";
+import Property from "./property";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
-import {NameSpace} from "../../reducer/name-space.js";
+import {NameSpace} from "../../reducer/name-space";
 
 const mockStore = configureStore([]);
 
