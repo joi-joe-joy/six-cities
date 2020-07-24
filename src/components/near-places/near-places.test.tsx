@@ -1,11 +1,12 @@
 import * as React from "react";
 import * as renderer from "react-test-renderer";
+import {BrowserRouter} from "react-router-dom";
+import {NearPlaces} from "./near-places";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
-import {CitiesPlaces} from "./cities-places";
 import {NameSpace} from "../../reducer/name-space";
-import {BrowserRouter} from "react-router-dom";
 import {Offer, HouseType} from "../../types";
+import {noop} from '../../utils';
 
 const mockStore = configureStore([]);
 
@@ -39,36 +40,52 @@ const offers: Offer[] = [{
   type: HouseType.HOTEL
 }];
 
-it(`Render CitiesPlaces correctly`, () => {
+it(`Render ReviewBox correctly with nearby Offers`, () => {
   const store = mockStore({
     [NameSpace.DATA]: {
-      city: {
-        name: `Paris`,
-        location: {
-          latitude: 48.85661,
-          longitude: 2.351499,
-          zoom: 13
-        }
-      },
-      offers
+      nearbyOffers: offers
     },
     [NameSpace.USER]: {
       authorizationStatus: `AUTH`
-    }
+    },
   });
-  const currentCity = offers[0].city;
 
-  const tree = renderer
-    .create(
-        <Provider store={store}>
-          <BrowserRouter>
-            <CitiesPlaces
-              currentCity={currentCity}
-              offers={offers}
-            />
-          </BrowserRouter>
-        </Provider>
-    ).toJSON();
+  const tree = renderer.create(
+      <Provider store={store}>
+        <BrowserRouter>
+          <NearPlaces
+            offerId={1}
+            nearbyOffers={offers}
+            onLoadNearOffers={noop}
+          />
+        </BrowserRouter>
+      </Provider>
+  ).toJSON();
+
+  expect(tree).toMatchSnapshot();
+});
+
+it(`Render ReviewBox correctly without nearby Offers`, () => {
+  const store = mockStore({
+    [NameSpace.DATA]: {
+      nearbyOffers: []
+    },
+    [NameSpace.USER]: {
+      authorizationStatus: `AUTH`
+    },
+  });
+
+  const tree = renderer.create(
+      <Provider store={store}>
+        <BrowserRouter>
+          <NearPlaces
+            offerId={1}
+            nearbyOffers={[]}
+            onLoadNearOffers={noop}
+          />
+        </BrowserRouter>
+      </Provider>
+  ).toJSON();
 
   expect(tree).toMatchSnapshot();
 });

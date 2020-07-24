@@ -1,9 +1,12 @@
 import * as React from 'react';
+import {connect} from "react-redux";
 import {PageType} from "../../types";
 import Page from "../page/page";
+import {getErrorText} from "../../reducer/user/selectors";
 
 interface Props {
   onSubmit: ({email, password}: {email: string; password: string}) => void;
+  errorText: string;
 }
 
 class Login extends React.PureComponent<Props, {}> {
@@ -30,6 +33,8 @@ class Login extends React.PureComponent<Props, {}> {
   }
 
   render() {
+    const {errorText} = this.props;
+
     return (
       <Page type={PageType.LOGIN}>
         <main className="page__main page__main--login">
@@ -38,6 +43,9 @@ class Login extends React.PureComponent<Props, {}> {
               <h1 className="login__title">Sign in</h1>
               <form className="login__form form" action="#" method="post"
                 onSubmit={this.handleSubmit}>
+                {errorText &&
+                  <div style={{color: `red`, fontSize: `13px`, paddingBottom: `5px`}}>{errorText}</div>
+                }
                 <div className="login__input-wrapper form__input-wrapper">
                   <label className="visually-hidden">E-mail</label>
                   <input
@@ -76,4 +84,9 @@ class Login extends React.PureComponent<Props, {}> {
   }
 }
 
-export default Login;
+const mapStateToProps = (state) => ({
+  errorText: getErrorText(state)
+});
+
+export {Login};
+export default connect(mapStateToProps)(Login);

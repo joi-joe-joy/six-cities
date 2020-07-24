@@ -2,6 +2,9 @@ import * as React from "react";
 import * as renderer from "react-test-renderer";
 import ReviewsList from "./reviews-list";
 
+// Return a fixed timestamp when moment().format() is called
+jest.mock(`moment`, () => () => ({format: () => `2020–01–30T12:34:56+00:00`}));
+
 const reviews = [
   {
     comment: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.`,

@@ -76,7 +76,7 @@ describe(`Reducer work correctly`, () => {
       type: ActionType.SET_LOADING,
       payload: false
     })).toEqual({
-      comments: [],
+      comments,
       isLoading: false,
       error: ``
     });
@@ -106,14 +106,14 @@ describe(`Action creators work correctly`, () => {
     });
   });
 
-  it(`Action creator for load comments returns correct action`, () => {
+  it(`Action creator for set loading returns correct action`, () => {
     expect(ActionCreator.setLoading(false)).toEqual({
       type: ActionType.SET_LOADING,
       payload: false,
     });
   });
 
-  it(`Action creator for load comments returns correct action`, () => {
+  it(`Action creator for set error returns correct action`, () => {
     expect(ActionCreator.setError(`text`)).toEqual({
       type: ActionType.SET_ERROR,
       payload: `text`,

@@ -1,11 +1,12 @@
 import * as React from 'react';
 import * as leaflet from "leaflet";
-import {Location} from "../../types";
+import {Location, PageType} from "../../types";
 
 interface Props {
   offersCords: Location[];
   currentCords: Location;
   cityLocation: Location;
+  type: PageType.PROPERTY | PageType.MAIN;
 }
 
 const withMap = (Component) => {
@@ -41,7 +42,6 @@ const withMap = (Component) => {
 
     _initMap() {
       const {offersCords, currentCords, cityLocation} = this.props;
-
       const city = [cityLocation.latitude, cityLocation.longitude];
       const icon = leaflet.icon({
         iconUrl: `/img/pin.svg`,

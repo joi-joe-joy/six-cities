@@ -4,13 +4,13 @@ import withFavorite from "./with-favorite";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import {NameSpace} from "../../reducer/name-space";
-import {noop} from "../../utils";
+import {Offer, HouseType, PlaceCardType} from "../../types";
 
 const MockComponent = () => {
   return <div/>;
 };
 
-const offer = {
+const offer: Offer = {
   bedrooms: 2,
   city: {
     name: `Paris`,
@@ -37,7 +37,7 @@ const offer = {
   price: 397,
   rating: 3.6,
   title: `Penthouse, 4-5 rooms + 5 balconies`,
-  type: `hotel`
+  type: HouseType.APARTMENT
 };
 
 const mockStore = configureStore([]);
@@ -53,9 +53,8 @@ it(`should render withFavorite correctly`, () => {
   const tree = renderer.create(
       <Provider store={store}>
         <MockComponentWrap
-          toggleFavorite={noop}
-          authStatus={`AUTH`}
           offer={offer}
+          type={PlaceCardType.CITIES}
         />
       </Provider>
   ).toJSON();

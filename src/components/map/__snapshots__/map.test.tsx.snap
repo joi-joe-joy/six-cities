@@ -3,11 +3,6 @@
 exports[`Render Map Renderer Map correctly 1`] = `
 <section
   className="map property__map"
-  style={
-    Object {
-      "width": "100%",
-    }
-  }
 >
   <div />
 </section>
@@ -16,11 +11,6 @@ exports[`Render Map Renderer Map correctly 1`] = `
 exports[`Render Map Renderer Map correctly with current 1`] = `
 <section
   className="map cities__map"
-  style={
-    Object {
-      "width": "100%",
-    }
-  }
 >
   <div />
 </section>

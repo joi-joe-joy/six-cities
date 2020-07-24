@@ -7,18 +7,18 @@ import PlacesList from "../places-list/places-list";
 
 interface Props {
   nearbyOffers: Offer[];
-  loadNearOffers: (id: number) => void;
+  onLoadNearOffers: (id: number) => void;
   offerId: number;
 }
 
 const NearPlaces: React.FC<Props> = (props: Props) => {
-  const {nearbyOffers, offerId, loadNearOffers} = props;
+  const {nearbyOffers, offerId, onLoadNearOffers} = props;
 
   React.useEffect(() => {
     if (offerId) {
-      loadNearOffers(offerId);
+      onLoadNearOffers(offerId);
     }
-  }, [offerId, loadNearOffers]);
+  }, [offerId, onLoadNearOffers]);
 
   if (!nearbyOffers) {
     return null;
@@ -42,7 +42,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  loadNearOffers(offerId) {
+  onLoadNearOffers(offerId) {
     dispatch(DataOperation.loadNearbyOffers(offerId));
   }
 });

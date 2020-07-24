@@ -125,6 +125,7 @@ const Property: React.FC<Props> = (props: Props) => {
               offersCords={nearLocations}
               currentCords={offer.location}
               cityLocation={city.location}
+              type={PageType.PROPERTY}
             />
           }
         </section>

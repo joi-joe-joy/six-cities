@@ -18,43 +18,38 @@ interface Props {
 
 const MapWrap = withMap(Map);
 
-class Main extends React.PureComponent<Props, {}> {
-  constructor(props) {
-    super(props);
+const Main: React.FC<Props> = (props: Props) => {
+  const {offers, hoverCard, city} = props;
+  let offersCords = [];
+  if (offers) {
+    offersCords = offers.map((offer) => offer.location);
   }
 
-  render() {
-    const {offers, hoverCard, city} = this.props;
-    let offersCords = [];
-    if (offers) {
-      offersCords = offers.map((offer) => offer.location);
-    }
-
-    return (
-      <Page type={PageType.MAIN}>
-        <main className="page__main page__main--index">
-          <h1 className="visually-hidden">Cities</h1>
-          <CitiesList/>
-          {!!offers.length && (
-            <div className="cities">
-              <div className="cities__places-container container">
-                <CitiesPlaces/>
-                <div className="cities__right-section">
-                  <MapWrap
-                    cityLocation={city.location}
-                    currentCords={hoverCard && hoverCard.location}
-                    offersCords={offersCords}
-                  />
-                </div>
+  return (
+    <Page type={PageType.MAIN}>
+      <main className="page__main page__main--index">
+        <h1 className="visually-hidden">Cities</h1>
+        <CitiesList/>
+        {!!offers.length && (
+          <div className="cities">
+            <div className="cities__places-container container">
+              <CitiesPlaces/>
+              <div className="cities__right-section">
+                <MapWrap
+                  cityLocation={city.location}
+                  currentCords={hoverCard && hoverCard.location}
+                  offersCords={offersCords}
+                  type={PageType.MAIN}
+                />
               </div>
             </div>
-          )}
-          {!offers.length && <Empty/>}
-        </main>
-      </Page>
-    );
-  }
-}
+          </div>
+        )}
+        {!offers.length && <Empty/>}
+      </main>
+    </Page>
+  );
+};
 
 const mapStateToProps = (state) => ({
   offers: getOffers(state),

@@ -119,7 +119,6 @@ exports[`Render PlacesList render PlacesList correctly Near 1`] = `
 >
   <article
     className="place-card near-places__card"
-    onMouseOut={[Function]}
     onMouseOver={[Function]}
   >
     <div

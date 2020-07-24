@@ -288,12 +288,7 @@ exports[`Render Main Main with offers 1`] = `
           className="cities__right-section"
         >
           <section
-            className="map"
-            style={
-              Object {
-                "width": "100%",
-              }
-            }
+            className="map cities__map"
           >
             <div
               id="map"
@@ -599,12 +594,7 @@ exports[`Render Main Main without offers 1`] = `
           className="cities__right-section"
         >
           <section
-            className="map"
-            style={
-              Object {
-                "width": "100%",
-              }
-            }
+            className="map cities__map"
           >
             <div
               id="map"

@@ -57,9 +57,9 @@ exports[`Render ReviewsList Render ReviewsList correctly 1`] = `
       </p>
       <time
         className="reviews__time"
-        dateTime="2019-05-08"
+        dateTime="2020–01–30T12:34:56+00:00"
       >
-        May 2019
+        2020–01–30T12:34:56+00:00
       </time>
     </div>
   </li>
@@ -116,9 +116,9 @@ exports[`Render ReviewsList Render ReviewsList correctly 1`] = `
       </p>
       <time
         className="reviews__time"
-        dateTime="2019-05-08"
+        dateTime="2020–01–30T12:34:56+00:00"
       >
-        May 2019
+        2020–01–30T12:34:56+00:00
       </time>
     </div>
   </li>

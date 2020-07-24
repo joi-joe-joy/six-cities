@@ -6,7 +6,7 @@ import {ActionCreator} from "../../reducer/place/place";
 import IconArrowSelect from "../../Icons/icon-arrow-select.svg";
 
 interface InjectingProps {
-  changeSorting: (string) => void;
+  onChangeSorting: (string) => void;
 }
 
 interface State {
@@ -46,12 +46,12 @@ const withSort = (Component) => {
     }
 
     handleOptionClick(option) {
-      const {changeSorting} = this.props;
+      const {onChangeSorting} = this.props;
       this.setState({
         selected: option,
         isOpen: false
       });
-      changeSorting(option.value);
+      onChangeSorting(option.value);
     }
 
     render() {
@@ -88,7 +88,7 @@ const withSort = (Component) => {
   }
 
   const mapDispatchToProps = (dispatch) => ({
-    changeSorting(sorting) {
+    onChangeSorting(sorting) {
       dispatch(ActionCreator.changeSorting(sorting));
     }
   });

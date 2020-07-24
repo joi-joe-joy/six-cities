@@ -15,7 +15,7 @@ const Map: React.FC<Props> = (props: Props) => {
   });
 
   return (
-    <section className={classNameMap} style={{width: `100%`}}>
+    <section className={classNameMap}>
       {children}
     </section>
   );

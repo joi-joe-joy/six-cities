@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as renderer from "react-test-renderer";
 import PlaceCard from "./place-card";
-import {PlaceCardType, Offer} from "../../types";
+import {PlaceCardType, Offer, HouseType} from "../../types";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import {NameSpace} from "../../reducer/name-space";
@@ -37,7 +37,7 @@ const offerPremium: Offer = {
   price: 397,
   rating: 3.6,
   title: `Penthouse, 4-5 rooms + 5 balconies`,
-  type: `hotel`
+  type: HouseType.HOTEL
 };
 
 const offerWithoutPremium: Offer = {
@@ -67,7 +67,7 @@ const offerWithoutPremium: Offer = {
   price: 397,
   rating: 3.6,
   title: `Penthouse, 4-5 rooms + 5 balconies`,
-  type: `hotel`
+  type: HouseType.HOTEL
 };
 
 describe(`Render PlaceCard`, () => {

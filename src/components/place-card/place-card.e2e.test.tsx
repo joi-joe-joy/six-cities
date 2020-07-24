@@ -1,7 +1,7 @@
 import * as React from "react";
 import {mount} from "enzyme";
 import PlaceCard from "./place-card";
-import {PlaceCardType} from "../../types";
+import {PlaceCardType, Offer, HouseType} from "../../types";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import {NameSpace} from "../../reducer/name-space";
@@ -10,7 +10,7 @@ import {noop} from "../../utils";
 
 const mockStore = configureStore([]);
 
-const offer = {
+const offer: Offer = {
   bedrooms: 2,
   city: {
     name: `Paris`,
@@ -37,7 +37,7 @@ const offer = {
   price: 397,
   rating: 3.6,
   title: `Penthouse, 4-5 rooms + 5 balconies`,
-  type: `hotel`
+  type: HouseType.APARTMENT
 };
 
 it(`Should take card info on hover`, () => {

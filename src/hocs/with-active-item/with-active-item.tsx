@@ -5,7 +5,7 @@ import {ActionCreator} from "../../reducer/place/place";
 import {Offer} from '../../types';
 
 interface InjectingProps {
-  changeHoverCard: (card?: Offer) => void;
+  onChangeHoverCard: (card?: Offer) => void;
 }
 
 interface State {
@@ -27,21 +27,21 @@ const withActiveItem = (Component) => {
     }
 
     handleCardActivate(card) {
-      const {changeHoverCard} = this.props;
+      const {onChangeHoverCard} = this.props;
       if (this.state.activeCard !== card) {
         this.setState({
           activeCard: card
         });
-        changeHoverCard(card);
+        onChangeHoverCard(card);
       }
     }
 
     handleCardDeactivate() {
-      const {changeHoverCard} = this.props;
+      const {onChangeHoverCard} = this.props;
       this.setState({
         activeCard: null
       });
-      changeHoverCard();
+      onChangeHoverCard();
     }
 
     render() {
@@ -58,7 +58,7 @@ const withActiveItem = (Component) => {
   }
 
   const mapDispatchToProps = (dispatch) => ({
-    changeHoverCard(card) {
+    onChangeHoverCard(card) {
       dispatch(ActionCreator.changeHoverCard(card));
     }
   });

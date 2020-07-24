@@ -49,7 +49,9 @@ const mapStateToProps = (state) => ({
 });
 
 const {loadComments} = CommentOperation;
-const mapDispatchToProps = {loadComments};
+const mapDispatchToProps = {
+  loadComments
+};
 
 export {ReviewBox};
 export default connect(mapStateToProps, mapDispatchToProps)(ReviewBox);

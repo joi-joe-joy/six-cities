@@ -6,7 +6,7 @@ import configureStore from "redux-mock-store";
 import {NameSpace} from "../../reducer/name-space";
 import {BrowserRouter} from "react-router-dom";
 import {noop} from "../../utils";
-import {PlaceCardType, Offer} from "../../types";
+import {PlaceCardType, Offer, HouseType} from "../../types";
 
 const mockStore = configureStore([]);
 
@@ -38,7 +38,7 @@ const offers: Offer[] = [
     price: 397,
     rating: 3.6,
     title: `Penthouse, 4-5 rooms + 5 balconies`,
-    type: `hotel`
+    type: HouseType.HOTEL
   }
 ];
 

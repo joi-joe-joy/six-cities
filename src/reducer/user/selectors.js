@@ -19,3 +19,7 @@ export const getAuthInfo = (state) => {
 export const getIsLoading = (state) => {
   return state[NAME_SPACE].isLoading;
 };
+
+export const getErrorText = (state) => {
+  return state[NAME_SPACE].errorText;
+};

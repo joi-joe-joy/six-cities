@@ -20,7 +20,7 @@ export const getOffers = (state) => {
 };
 
 export const getNearbyOffers = (state) => {
-  const hotels = state[NAME_SPACE].offersNearby.slice(0);
+  const hotels = state[NAME_SPACE].nearbyOffers.slice(0);
   const newHotels = [];
   hotels.forEach((hotel) => {
     newHotels.push(renameKeys(hotel));

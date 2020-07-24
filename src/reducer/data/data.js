@@ -3,7 +3,7 @@ import {extend} from "../../utils";
 const initialState = {
   city: null,
   offers: [],
-  offersNearby: []
+  nearbyOffers: []
 };
 
 const ActionType = {
@@ -50,7 +50,7 @@ const reducer = (state = initialState, action) => {
       });
     case ActionType.LOAD_NEARBY_OFFERS:
       return extend(state, {
-        offersNearby: action.payload
+        nearbyOffers: action.payload
       });
     default:
       return state;

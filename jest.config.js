@@ -1,6 +1,7 @@
+
 module.exports = {
   transform: {
-    "^.+\\.tsx?$": `ts-jest`,
+    '^.+\\.tsx?$': `ts-jest`,
     "^.+\\.js?$": `babel-jest`,
   },
   testRegex: `.test.(js?|jsx?|tsx?)$`,
@@ -12,4 +13,10 @@ module.exports = {
     `json`,
     `node`
   ],
+  setupFilesAfterEnv: [
+    `<rootDir>/src/setupTests.js`
+  ],
+  moduleNameMapper: {
+    "\\.svg": `<rootDir>/__mocks__/svgrMock.js`
+  },
 };

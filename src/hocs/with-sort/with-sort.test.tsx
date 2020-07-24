@@ -5,19 +5,15 @@ import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import {NameSpace} from "../../reducer/name-space";
 import {noop} from "../../utils";
-import pt from "prop-types";
 
-const MockComponent = (props) => {
+interface Props {
+  children: React.ReactNode;
+}
+
+const MockComponent: React.FC<Props> = (props: Props) => {
   const {children} = props;
 
   return <div>{children}</div>;
-};
-
-MockComponent.propTypes = {
-  children: pt.oneOfType([
-    pt.arrayOf(pt.node),
-    pt.node
-  ]).isRequired
 };
 
 const mockStore = configureStore([]);
@@ -33,7 +29,7 @@ it(`should render withSort correctly`, () => {
   const tree = renderer.create(
       <Provider store={store}>
         <MockComponentWrap
-          changeSorting={noop}
+          onChangeSorting={noop}
         />
       </Provider>
   ).toJSON();

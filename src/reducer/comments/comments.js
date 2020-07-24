@@ -66,8 +66,7 @@ const Operation = {
       })
       .catch((err) => {
         dispatch(ActionCreator.setLoading(false));
-        dispatch(ActionCreator.setError(err));
-        throw err;
+        dispatch(ActionCreator.setError(err.response.data.error));
       });
   },
   loadComments: (hotelId) => (dispatch, getState, api) => {

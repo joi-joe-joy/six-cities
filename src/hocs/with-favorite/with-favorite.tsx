@@ -7,7 +7,7 @@ import {Operation as FavoriteOperation} from "../../reducer/favorite/favorite";
 import {getAuthStatus} from "../../reducer/user/selectors";
 
 interface Props {
-  toggleFavorite: ({hotelId, status}: {hotelId: number; status: boolean}) => void;
+  onToggleFavorite: ({hotelId, status}: {hotelId: number; status: boolean}) => void;
   offer: Offer;
   authStatus: AuthStatus.AUTH | AuthStatus.NO_AUTH;
   type: PlaceCardType.CITIES | PlaceCardType.NEAR | PlaceCardType.FAVORITES | PlaceCardType.PROPERTY;
@@ -28,10 +28,10 @@ const withFavorite = (Component) => {
     }
 
     handleButtonBookClick() {
-      const {toggleFavorite, offer, authStatus} = this.props;
+      const {onToggleFavorite, offer, authStatus} = this.props;
 
       if (authStatus === AuthStatus.AUTH) {
-        toggleFavorite({
+        onToggleFavorite({
           hotelId: offer.id,
           status: !this.state.isFavorite
         });
@@ -62,7 +62,7 @@ const withFavorite = (Component) => {
   });
 
   const mapDispatchToProps = (dispatch) => ({
-    toggleFavorite(data) {
+    onToggleFavorite(data) {
       dispatch(FavoriteOperation.toggleFavorite(data));
     }
   });

@@ -98,7 +98,7 @@ it(`Render Property correctly`, () => {
         }
       },
       offers: [offerWithPremium],
-      offersNearby: [offerWithPremium],
+      nearbyOffers: [offerWithPremium],
     },
     [NameSpace.COMMENTS]: {
       comments
@@ -144,7 +144,7 @@ it(`Property render correctly without Premium`, () => {
         }
       },
       offers: [offerWithPremium],
-      offersNearby: [offerWithPremium],
+      nearbyOffers: [offerWithPremium],
     },
     [NameSpace.COMMENTS]: {
       comments

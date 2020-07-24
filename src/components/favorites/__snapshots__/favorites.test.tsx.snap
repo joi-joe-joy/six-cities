@@ -100,7 +100,6 @@ exports[`Render Favorite correctly 1`] = `
             >
               <article
                 className="place-card favorites__card"
-                onMouseOut={[Function]}
                 onMouseOver={[Function]}
               >
                 <div
