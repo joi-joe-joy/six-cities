@@ -1,15 +1,16 @@
 import * as React from "react";
-import renderer from "react-test-renderer";
+import * as renderer from "react-test-renderer";
 import PlaceCard from "./place-card";
-import {PlaceCardType} from "../../const";
+import {PlaceCardType, Offer} from "../../types";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import {NameSpace} from "../../reducer/name-space";
 import {BrowserRouter} from "react-router-dom";
+import {noop} from "../../utils";
 
 const mockStore = configureStore([]);
 
-const offerPremium = {
+const offerPremium: Offer = {
   bedrooms: 2,
   city: {
     name: `Paris`,
@@ -39,7 +40,7 @@ const offerPremium = {
   type: `hotel`
 };
 
-const offerWithoutPremium = {
+const offerWithoutPremium: Offer = {
   bedrooms: 2,
   city: {
     name: `Paris`,
@@ -85,11 +86,9 @@ describe(`Render PlaceCard`, () => {
           <Provider store={store}>
             <BrowserRouter>
               <PlaceCard
-                isFavorite={false}
-                onToggleFavorite={()=>{}}
                 offer={offerPremium}
-                onCardHover={()=>{}}
-                onCardHoverOut={()=>{}}
+                onCardHover={noop}
+                onCardHoverOut={noop}
                 type={PlaceCardType.CITIES}
               />
             </BrowserRouter>
@@ -115,11 +114,9 @@ describe(`Render PlaceCard`, () => {
             <BrowserRouter>
               <PlaceCard
                 offer={offerWithoutPremium}
-                onCardHover={()=>{}}
-                onCardHoverOut={()=>{}}
+                onCardHover={noop}
+                onCardHoverOut={noop}
                 type={PlaceCardType.CITIES}
-                isFavorite={false}
-                onToggleFavorite={()=>{}}
               />
             </BrowserRouter>
           </Provider>
@@ -144,10 +141,8 @@ describe(`Render PlaceCard`, () => {
             <BrowserRouter>
               <PlaceCard
                 offer={offerWithoutPremium}
-                onCardHover={()=>{}}
-                onCardHoverOut={()=>{}}
-                isFavorite={false}
-                onToggleFavorite={()=>{}}
+                onCardHover={noop}
+                onCardHoverOut={noop}
                 type={PlaceCardType.NEAR}
               />
             </BrowserRouter>

@@ -1,14 +1,15 @@
 import * as React from "react";
-import renderer from "react-test-renderer";
+import * as renderer from "react-test-renderer";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
-import {CitiesPlaces} from "./cities-placesx";
+import {CitiesPlaces} from "./cities-places";
 import {NameSpace} from "../../reducer/name-space";
 import {BrowserRouter} from "react-router-dom";
+import {Offer} from "../../types"
 
 const mockStore = configureStore([]);
 
-const offers = [{
+const offers: Offer[] = [{
   bedrooms: 2,
   city: {
     name: `Paris`,
@@ -49,6 +50,7 @@ it(`Render CitiesPlaces correctly`, () => {
           zoom: 13
         }
       },
+      offers
     },
     [NameSpace.USER]: {
       authorizationStatus: `AUTH`
@@ -62,7 +64,8 @@ it(`Render CitiesPlaces correctly`, () => {
           <BrowserRouter>
             <CitiesPlaces
               currentCity={currentCity}
-              offers={offers}/>
+              offers={offers}
+            />
           </BrowserRouter>
         </Provider>
     ).toJSON();

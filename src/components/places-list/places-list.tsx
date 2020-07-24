@@ -1,5 +1,5 @@
 import * as React from "react";
-import * as classnames from "classnames";
+import classnames from "classnames";
 import {PlaceCardType, Offer} from "../../types";
 import PlaceCard from "../place-card/place-card";
 

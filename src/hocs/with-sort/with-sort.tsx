@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as classnames from "classnames";
+import classnames from "classnames";
 import {connect} from "react-redux";
 import {Subtract} from "utility-types";
 import {ActionCreator} from "../../reducer/place/place";

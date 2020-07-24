@@ -1,24 +1,20 @@
 import * as React from "react";
-import renderer from "react-test-renderer";
-import {PageType} from "../../const";
+import * as renderer from "react-test-renderer";
+import {PageType} from "../../types";
 import Map from "./map";
+import {noop} from "../../utils";
 
 jest.mock(`leaflet`);
-
-const coordinations = [
-  [52.3909553943508, 4.929309666406198],
-  [52.3809553943508, 4.939309666406198]
-];
 
 describe(`Render Map`, () => {
   it(`Renderer Map correctly`, () => {
     const tree = renderer.create(
         <Map
           type={PageType.PROPERTY}
-          offersCords={coordinations}>
+        >
           <div/>
         </Map>, {
-          createNodeMock: () => {}
+          createNodeMock: noop
         }
     ).toJSON();
 
@@ -28,13 +24,11 @@ describe(`Render Map`, () => {
   it(`Renderer Map correctly with current`, () => {
     const tree = renderer.create(
         <Map
-          type={PageType.PROPERTY}
-          currentCords={coordinations[0]}
-          offersCords={coordinations}
+          type={PageType.MAIN}
         >
           <div/>
         </Map>, {
-          createNodeMock: () => {}
+          createNodeMock: noop
         }
     ).toJSON();
 

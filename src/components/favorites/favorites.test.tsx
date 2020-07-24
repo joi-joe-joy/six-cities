@@ -1,5 +1,5 @@
 import * as React from "react";
-import renderer from "react-test-renderer";
+import * as renderer from "react-test-renderer";
 import Favorite from "./favorites";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
@@ -50,9 +50,7 @@ it(`Render Favorite correctly`, () => {
   const tree = renderer.create(
       <Provider store={store}>
         <BrowserRouter>
-          <Favorite
-            favorites={favorites}
-          />
+          <Favorite/>
         </BrowserRouter>
       </Provider>
   ).toJSON();

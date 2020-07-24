@@ -1,10 +1,11 @@
 import * as React from "react";
-import renderer from "react-test-renderer";
+import * as renderer from "react-test-renderer";
 import Page from "./page";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import {NameSpace} from "../../reducer/name-space";
 import {BrowserRouter} from "react-router-dom";
+import {PageType} from "../../types";
 
 const children = <div/>;
 
@@ -42,7 +43,7 @@ describe(`Render Page correctly`, () => {
     const tree = renderer.create(
         <Provider store={store}>
           <BrowserRouter>
-            <Page type={`main`}>
+            <Page type={PageType.MAIN}>
               {children}
             </Page>
           </BrowserRouter>
@@ -76,7 +77,7 @@ describe(`Render Page correctly`, () => {
     const tree = renderer.create(
         <Provider store={store}>
           <BrowserRouter>
-            <Page type={`login`}>
+            <Page type={PageType.LOGIN}>
               {children}
             </Page>
           </BrowserRouter>
@@ -110,7 +111,7 @@ describe(`Render Page correctly`, () => {
     const tree = renderer.create(
         <Provider store={store}>
           <BrowserRouter>
-            <Page type={`property`}>
+            <Page type={PageType.PROPERTY}>
               {children}
             </Page>
           </BrowserRouter>

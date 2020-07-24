@@ -3,6 +3,10 @@ export const extend = (a, b) => {
   return Object.assign({}, a, b);
 };
 
+export const noop = () => {
+  // do nothing for test
+};
+
 // Checking nested objects
 const processValue = (value) => {
   if (typeof value !== `object` || value === null) {

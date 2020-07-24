@@ -126,7 +126,7 @@ exports[`Render Main Main with offers 1`] = `
             <span
               className="places__sorting-type"
               onClick={[Function]}
-              tabIndex="0"
+              tabIndex={0}
             >
               Popular
               <svg
@@ -146,28 +146,28 @@ exports[`Render Main Main with offers 1`] = `
               <li
                 className="places__option places__option--active"
                 onClick={[Function]}
-                tabIndex="0"
+                tabIndex={0}
               >
                 Popular
               </li>
               <li
                 className="places__option"
                 onClick={[Function]}
-                tabIndex="0"
+                tabIndex={0}
               >
                 Price: low to high
               </li>
               <li
                 className="places__option"
                 onClick={[Function]}
-                tabIndex="0"
+                tabIndex={0}
               >
                 Price: high to low
               </li>
               <li
                 className="places__option"
                 onClick={[Function]}
-                tabIndex="0"
+                tabIndex={0}
               >
                 Top rated first
               </li>
@@ -182,6 +182,13 @@ exports[`Render Main Main with offers 1`] = `
               onMouseOver={[Function]}
             >
               <div
+                className="place-card__mark"
+              >
+                <span>
+                  Premium
+                </span>
+              </div>
+              <div
                 className="place-card__image-wrapper cities__image-wrapper"
               >
                 <a
@@ -191,6 +198,7 @@ exports[`Render Main Main with offers 1`] = `
                     alt="Penthouse, 4-5 rooms + 5 balconies"
                     className="place-card__image"
                     height="200"
+                    src="https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/5.jpg"
                     width="260"
                   />
                 </a>
@@ -280,7 +288,12 @@ exports[`Render Main Main with offers 1`] = `
           className="cities__right-section"
         >
           <section
-            className="map cities__map"
+            className="map"
+            style={
+              Object {
+                "width": "100%",
+              }
+            }
           >
             <div
               id="map"
@@ -424,7 +437,7 @@ exports[`Render Main Main without offers 1`] = `
             <span
               className="places__sorting-type"
               onClick={[Function]}
-              tabIndex="0"
+              tabIndex={0}
             >
               Popular
               <svg
@@ -444,28 +457,28 @@ exports[`Render Main Main without offers 1`] = `
               <li
                 className="places__option places__option--active"
                 onClick={[Function]}
-                tabIndex="0"
+                tabIndex={0}
               >
                 Popular
               </li>
               <li
                 className="places__option"
                 onClick={[Function]}
-                tabIndex="0"
+                tabIndex={0}
               >
                 Price: low to high
               </li>
               <li
                 className="places__option"
                 onClick={[Function]}
-                tabIndex="0"
+                tabIndex={0}
               >
                 Price: high to low
               </li>
               <li
                 className="places__option"
                 onClick={[Function]}
-                tabIndex="0"
+                tabIndex={0}
               >
                 Top rated first
               </li>
@@ -480,6 +493,13 @@ exports[`Render Main Main without offers 1`] = `
               onMouseOver={[Function]}
             >
               <div
+                className="place-card__mark"
+              >
+                <span>
+                  Premium
+                </span>
+              </div>
+              <div
                 className="place-card__image-wrapper cities__image-wrapper"
               >
                 <a
@@ -489,6 +509,7 @@ exports[`Render Main Main without offers 1`] = `
                     alt="Penthouse, 4-5 rooms + 5 balconies"
                     className="place-card__image"
                     height="200"
+                    src="https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/5.jpg"
                     width="260"
                   />
                 </a>
@@ -578,7 +599,12 @@ exports[`Render Main Main without offers 1`] = `
           className="cities__right-section"
         >
           <section
-            className="map cities__map"
+            className="map"
+            style={
+              Object {
+                "width": "100%",
+              }
+            }
           >
             <div
               id="map"

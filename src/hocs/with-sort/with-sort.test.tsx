@@ -1,9 +1,10 @@
 import * as React from 'react';
-import renderer from "react-test-renderer";
+import * as renderer from "react-test-renderer";
 import withSort from "./with-sort";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import {NameSpace} from "../../reducer/name-space";
+import {noop} from "../../utils";
 import pt from "prop-types";
 
 const MockComponent = (props) => {
@@ -32,7 +33,7 @@ it(`should render withSort correctly`, () => {
   const tree = renderer.create(
       <Provider store={store}>
         <MockComponentWrap
-          changeSorting={()=>{}}
+          changeSorting={noop}
         />
       </Provider>
   ).toJSON();

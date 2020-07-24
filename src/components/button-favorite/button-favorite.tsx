@@ -1,6 +1,6 @@
 import * as React from 'react';
 import IconBookmark from "../../Icons/icon-bookmark.svg";
-import * as classnames from "classnames";
+import classnames from "classnames";
 import {PlaceCardType} from "../../types";
 
 interface Props {

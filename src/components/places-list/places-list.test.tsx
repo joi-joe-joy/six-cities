@@ -1,14 +1,16 @@
 import * as React from "react";
-import renderer from "react-test-renderer";
+import * as renderer from "react-test-renderer";
 import PlacesList from "./places-list";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import {NameSpace} from "../../reducer/name-space";
 import {BrowserRouter} from "react-router-dom";
+import {noop} from "../../utils";
+import {PlaceCardType, Offer} from "../../types";
 
 const mockStore = configureStore([]);
 
-const offers = [
+const offers: Offer[] = [
   {
     bedrooms: 2,
     city: {
@@ -55,9 +57,9 @@ describe(`Render PlacesList`, () => {
         <Provider store={store}>
           <BrowserRouter>
             <PlacesList
-              onCardHover={()=>{}}
-              onCardHoverOut={()=>{}}
-              type={`cities`}
+              onCardHover={noop}
+              onCardHoverOut={noop}
+              type={PlaceCardType.CITIES}
               offers={offers}
             />
           </BrowserRouter>
@@ -81,9 +83,9 @@ describe(`Render PlacesList`, () => {
         <Provider store={store}>
           <BrowserRouter>
             <PlacesList
-              onCardHover={()=>{}}
-              onCardHoverOut={()=>{}}
-              type={`cities`}
+              onCardHover={noop}
+              onCardHoverOut={noop}
+              type={PlaceCardType.CITIES}
               offers={offers}
             />
           </BrowserRouter>
@@ -107,9 +109,7 @@ describe(`Render PlacesList`, () => {
         <Provider store={store}>
           <BrowserRouter>
             <PlacesList
-              onCardHover={()=>{}}
-              onCardHoverOut={()=>{}}
-              type={`near`}
+              type={PlaceCardType.NEAR}
               offers={offers}
             />
           </BrowserRouter>

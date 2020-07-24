@@ -1,5 +1,5 @@
 import * as React from "react";
-import renderer from "react-test-renderer";
+import * as renderer from "react-test-renderer";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import {NameSpace} from "../../reducer/name-space";
@@ -91,10 +91,7 @@ describe(`Render Main`, () => {
       .create(
           <Provider store={store}>
             <BrowserRouter>
-              <Main
-                offers={offers}
-                onLocationClick={()=>{}}
-              />
+              <Main/>
             </BrowserRouter>
           </Provider>, {
             createNodeMock: () => {
@@ -148,10 +145,7 @@ describe(`Render Main`, () => {
       .create(
           <Provider store={store}>
             <BrowserRouter>
-              <Main
-                offers={offers}
-                onLocationClick={()=>{}}
-              />
+              <Main/>
             </BrowserRouter>
           </Provider>, {
             createNodeMock: () => {

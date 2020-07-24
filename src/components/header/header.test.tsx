@@ -1,5 +1,5 @@
 import * as React from "react";
-import renderer from "react-test-renderer";
+import * as renderer from "react-test-renderer";
 import Header from "./header";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
@@ -27,10 +27,7 @@ describe(`Render Header correctly`, () => {
     const tree = renderer.create(
         <Provider store={store}>
           <BrowserRouter>
-            <Header
-              authStatus={`NO_AUTH`}
-              authInfo={authInfo}
-            />
+            <Header/>
           </BrowserRouter>
         </Provider>
     ).toJSON();
@@ -48,10 +45,7 @@ describe(`Render Header correctly`, () => {
     const tree = renderer.create(
         <Provider store={store}>
           <BrowserRouter>
-            <Header
-              authStatus={`AUTH`}
-              authInfo={authInfo}
-            />
+            <Header/>
           </BrowserRouter>
         </Provider>
     ).toJSON();

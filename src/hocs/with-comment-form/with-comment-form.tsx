@@ -49,7 +49,7 @@ const withCommentForm = (Component) => {
     handleSubmit() {
       const {onSubmit, offerId} = this.props;
       const {rating, comment} = this.state;
-  
+
       onSubmit({comment, rating}, offerId);
 
       this.setState({

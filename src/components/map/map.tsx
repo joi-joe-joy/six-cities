@@ -1,6 +1,6 @@
 import * as React from "react";
 import {PageType} from "../../types";
-import * as classnames from "classnames";
+import classnames from "classnames";
 
 interface Props {
   type: PageType.PROPERTY | PageType.MAIN;

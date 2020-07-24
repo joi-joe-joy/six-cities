@@ -1,9 +1,11 @@
 import * as React from "react";
-import renderer from "react-test-renderer";
+import * as renderer from "react-test-renderer";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import {NameSpace} from "../../reducer/name-space";
 import {App} from "./app";
+import {AuthStatus} from "../../types";
+import {noop} from "../../utils";
 
 const mockStore = configureStore([]);
 
@@ -81,8 +83,10 @@ describe(`Render App`, () => {
       .create(
           <Provider store={store}>
             <App
-              login={()=>{}}
-              authorizationStatus={`AUTH`}
+              login={noop}
+              authorizationStatus={AuthStatus.AUTH}
+              favoritesExist={true}
+              isLoading={false}
             />
           </Provider>, {
             createNodeMock: () => {

@@ -4,8 +4,12 @@ import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import {CitiesList} from "./cities-list";
 import {NameSpace} from "../../reducer/name-space";
+import {noop} from "../../utils";
 
 const mockStore = configureStore([]);
+const mockEvent = {
+  preventDefault: noop
+};
 
 it(`Tab should be pressed`, () => {
   const store = mockStore({
@@ -70,7 +74,7 @@ it(`Tab should be pressed`, () => {
 
   const cityTab = citiesList.find(`a.locations__item-link.tabs__item`).at(1);
 
-  cityTab.simulate(`click`, {preventDefault() {}});
+  cityTab.simulate(`click`, mockEvent);
   expect(onLocationClick).toHaveBeenCalledTimes(1);
 });
 
@@ -210,7 +214,7 @@ it(`User click passed to callback is consistent with "city" prop`, () => {
 
   const cityTab = citiesList.find(`a.locations__item-link.tabs__item`).at(0);
 
-  cityTab.simulate(`click`, {preventDefault() {}});
+  cityTab.simulate(`click`, mockEvent);
 
   expect(onLocationClick).toHaveBeenCalledTimes(1);
   expect(onLocationClick.mock.calls[0][0]).toEqual(city);

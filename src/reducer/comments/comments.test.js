@@ -16,29 +16,84 @@ const comments = [{
 describe(`Reducer work correctly`, () => {
   it(`Reducer without additional parameters should return initial state`, () => {
     expect(reducer(undefined, {})).toEqual({
-      comments: []
+      comments: [],
+      isLoading: false,
+      error: ``
     });
   });
 
   it(`Reducer should change comments by a given value`, () => {
     expect(reducer({
-      comments: []
+      comments: [],
+      isLoading: false,
+      error: ``
     }, {
       type: ActionType.LOAD_COMMENTS,
       payload: comments
     })).toEqual({
-      comments
+      comments,
+      isLoading: false,
+      error: ``
     });
   });
 
   it(`Reducer should not change comments by the same given value`, () => {
     expect(reducer({
-      comments
+      comments,
+      isLoading: false,
+      error: ``
     }, {
       type: ActionType.LOAD_COMMENTS,
       payload: comments
     })).toEqual({
-      comments
+      comments,
+      isLoading: false,
+      error: ``
+    });
+  });
+
+  it(`Reducer should change isLoading by a given value`, () => {
+    expect(reducer({
+      comments: [],
+      isLoading: false,
+      error: ``
+    }, {
+      type: ActionType.SET_LOADING,
+      payload: true
+    })).toEqual({
+      comments: [],
+      isLoading: true,
+      error: ``
+    });
+  });
+
+  it(`Reducer should not change isLoading by the same given value`, () => {
+    expect(reducer({
+      comments,
+      isLoading: false,
+      error: ``
+    }, {
+      type: ActionType.SET_LOADING,
+      payload: false
+    })).toEqual({
+      comments: [],
+      isLoading: false,
+      error: ``
+    });
+  });
+
+  it(`Reducer should change error by a given value`, () => {
+    expect(reducer({
+      comments: [],
+      isLoading: false,
+      error: ``
+    }, {
+      type: ActionType.SET_ERROR,
+      payload: `text`
+    })).toEqual({
+      comments: [],
+      isLoading: false,
+      error: `text`
     });
   });
 });
@@ -48,6 +103,20 @@ describe(`Action creators work correctly`, () => {
     expect(ActionCreator.loadComments(comments)).toEqual({
       type: ActionType.LOAD_COMMENTS,
       payload: comments,
+    });
+  });
+
+  it(`Action creator for load comments returns correct action`, () => {
+    expect(ActionCreator.setLoading(false)).toEqual({
+      type: ActionType.SET_LOADING,
+      payload: false,
+    });
+  });
+
+  it(`Action creator for load comments returns correct action`, () => {
+    expect(ActionCreator.setError(`text`)).toEqual({
+      type: ActionType.SET_ERROR,
+      payload: `text`,
     });
   });
 });

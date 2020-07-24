@@ -51,6 +51,7 @@
     "node": "10"
   },
   "dependencies": {
+    "@babel/preset-typescript": "^7.10.4",
     "axios": "0.19.2",
     "history": "4.10.1",
     "leaflet": "1.6.0",
@@ -66,7 +67,7 @@
   },
   "jest": {
     "setupFilesAfterEnv": [
-      "<rootDir>/src/jest.config.js"
+      "<rootDir>/src/enzyme.config.js"
     ],
     "moduleNameMapper": {
       "\\.svg": "<rootDir>/__mocks__/svgrMock.js"

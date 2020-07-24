@@ -62,7 +62,6 @@ const Operation = {
     })
       .then((res) => {
         dispatch(ActionCreator.loadComments(res.data));
-        // dispatch(ActionCreator.setLoading(false));
         dispatch(ActionCreator.setError(``));
       })
       .catch((err) => {

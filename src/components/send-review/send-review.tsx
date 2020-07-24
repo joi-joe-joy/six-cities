@@ -18,7 +18,7 @@ const SendReview: React.FC<Props> = (props: Props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit();
-  }
+  };
 
   return (
     <form className="reviews__form form" action="#" method="post"
@@ -33,7 +33,7 @@ const SendReview: React.FC<Props> = (props: Props) => {
       </div>
     </form>
   );
-}
+};
 
 const mapStateToProps = (state) => ({
   isLoading: getIsLoading(state)

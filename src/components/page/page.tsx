@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as classnames from "classnames";
+import classnames from "classnames";
 import Header from "../header/header";
 import Footer from "../footer/footer";
 import {PageType} from "../../types";

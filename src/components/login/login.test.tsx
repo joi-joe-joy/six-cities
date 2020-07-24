@@ -1,10 +1,11 @@
 import * as React from "react";
-import renderer from "react-test-renderer";
+import * as renderer from "react-test-renderer";
 import Login from "./login";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import {NameSpace} from "../../reducer/name-space";
 import {BrowserRouter} from "react-router-dom";
+import {noop} from "../../utils";
 
 const mockStore = configureStore([]);
 
@@ -18,7 +19,7 @@ it(`Render Login correctly`, () => {
       <Provider store={store}>
         <BrowserRouter>
           <Login
-            onSubmit={()=>{}}
+            onSubmit={noop}
           />
         </BrowserRouter>
       </Provider>

@@ -1,11 +1,12 @@
 import * as React from "react";
 import {mount} from "enzyme";
 import PlaceCard from "./place-card";
-import {PlaceCardType} from "../../const";
+import {PlaceCardType} from "../../types";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import {NameSpace} from "../../reducer/name-space";
 import {BrowserRouter} from "react-router-dom";
+import {noop} from "../../utils";
 
 const mockStore = configureStore([]);
 
@@ -78,10 +79,8 @@ it(`Should take card info on hover`, () => {
           <PlaceCard
             offer={offer}
             onCardHover={onCardHover}
-            onCardHoverOut={()=>{}}
+            onCardHoverOut={noop}
             type={PlaceCardType.CITIES}
-            isFavorite={false}
-            onToggleFavorite={()=>{}}
           />
         </BrowserRouter>
       </Provider>
@@ -131,10 +130,8 @@ it(`Should work when hover out`, () => {
         <BrowserRouter>
           <PlaceCard
             offer={offer}
-            onCardHover={()=>{}}
+            onCardHover={noop}
             onCardHoverOut={onCardHoverOut}
-            isFavorite={false}
-            onToggleFavorite={()=>{}}
             type={PlaceCardType.CITIES}
           />
         </BrowserRouter>

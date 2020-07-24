@@ -1,9 +1,10 @@
 import * as React from "react";
-import renderer from "react-test-renderer";
+import * as renderer from "react-test-renderer";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import {CitiesList} from "./cities-list";
 import {NameSpace} from "../../reducer/name-space";
+import {noop} from "../../utils";
 
 const mockStore = configureStore([]);
 
@@ -41,7 +42,7 @@ describe(`Render CitiesList correctly`, () => {
                 zoom: 13
               }
             }]}
-            onLocationClick={()=>{}}
+            onLocationClick={noop}
             currentCity={{
               name: `Paris`,
               location: {
@@ -98,7 +99,7 @@ describe(`Render CitiesList correctly`, () => {
                 zoom: 13
               }
             }]}
-            onLocationClick={()=>{}}
+            onLocationClick={noop}
           />
         </Provider>
     ).toJSON();
