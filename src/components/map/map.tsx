@@ -3,8 +3,8 @@ import {PageType} from "../../types";
 import * as classnames from "classnames";
 
 interface Props {
-  type: PageType.PROPERTY | PageType.MAIN,
-  children: React.ReactNode,
+  type: PageType.PROPERTY | PageType.MAIN;
+  children: React.ReactNode;
 }
 
 const Map: React.FC<Props> = (props: Props) => {
@@ -15,7 +15,7 @@ const Map: React.FC<Props> = (props: Props) => {
   });
 
   return (
-    <section className={classNameMap}>
+    <section className={classNameMap} style={{width: `100%`}}>
       {children}
     </section>
   );

@@ -11,9 +11,9 @@ import {getCity, getOffers} from "../../reducer/data/selectors";
 import {getHoverCard} from "../../reducer/place/selectors";
 
 interface Props {
-  offers: Offer[],
-  city: City,
-  hoverCard: Offer
+  offers: Offer[];
+  city: City;
+  hoverCard: Offer;
 }
 
 const MapWrap = withMap(Map);

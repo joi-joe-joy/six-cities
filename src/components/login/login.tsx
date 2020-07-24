@@ -3,8 +3,8 @@ import {PageType} from "../../types";
 import Page from "../page/page";
 
 interface Props {
-  onSubmit: ({email, password}: {email: string, password: string}) => void
-};
+  onSubmit: ({email, password}: {email: string; password: string}) => void;
+}
 
 class Login extends React.PureComponent<Props, {}> {
   private emailRef: React.RefObject<HTMLInputElement>;

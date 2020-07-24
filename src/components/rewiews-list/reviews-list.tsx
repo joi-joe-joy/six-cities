@@ -4,15 +4,15 @@ import {MAX_REVIEW_COUNT} from "../../const";
 import {Comment} from "../../types";
 
 interface Props {
-  reviews: Comment[]
+  reviews: Comment[];
 }
 
 const ReviewsList: React.FC<Props> = (props: Props) => {
   const {reviews} = props;
 
-  const _generateReviewList = (reviews) => {
-    if (reviews.length) {
-      return (reviews
+  const _generateReviewList = (reviewsList) => {
+    if (reviewsList.length) {
+      return (reviewsList
         .sort((a, b) => +a.date - +b.date)
         .reverse()
         .slice(0, MAX_REVIEW_COUNT)

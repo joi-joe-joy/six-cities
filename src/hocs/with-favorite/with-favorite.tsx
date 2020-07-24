@@ -2,18 +2,19 @@ import * as React from 'react';
 import {connect} from "react-redux";
 import history from "../../history";
 import {AppRoute} from "../../const";
-import {AuthStatus, Offer} from "../../types";
+import {AuthStatus, Offer, PlaceCardType} from "../../types";
 import {Operation as FavoriteOperation} from "../../reducer/favorite/favorite";
 import {getAuthStatus} from "../../reducer/user/selectors";
 
 interface Props {
-  toggleFavorite: ({hotelId, status}: {hotelId: number, status: boolean}) => void,
-  offer: Offer,
-  authStatus: AuthStatus.AUTH | AuthStatus.NO_AUTH
+  toggleFavorite: ({hotelId, status}: {hotelId: number; status: boolean}) => void;
+  offer: Offer;
+  authStatus: AuthStatus.AUTH | AuthStatus.NO_AUTH;
+  type: PlaceCardType.CITIES | PlaceCardType.NEAR | PlaceCardType.FAVORITES | PlaceCardType.PROPERTY;
 }
 
 interface State {
-  isFavorite: boolean
+  isFavorite: boolean;
 }
 
 const withFavorite = (Component) => {

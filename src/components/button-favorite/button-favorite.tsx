@@ -4,9 +4,9 @@ import * as classnames from "classnames";
 import {PlaceCardType} from "../../types";
 
 interface Props {
-  isFavorite: boolean,
-  onToggleFavorite: () => void,
-  type: PlaceCardType.CITIES | PlaceCardType.NEAR | PlaceCardType.FAVORITES | PlaceCardType.PROPERTY
+  isFavorite: boolean;
+  onToggleFavorite: () => void;
+  type: PlaceCardType.CITIES | PlaceCardType.NEAR | PlaceCardType.FAVORITES | PlaceCardType.PROPERTY;
 }
 
 const ButtonFavorite: React.FC<Props> = (props: Props) => {

@@ -1,17 +1,25 @@
 import * as React from 'react';
+import {connect} from "react-redux";
 import IconStar from "../../Icons/icon-star.svg";
 import StarActive from "../../Icons/star-active.svg";
 import {MAX_COMMENT_LENGTH} from "../../const";
+import {getErrorText} from "../../reducer/comments/selectors";
+import {Operation as CommentOperation} from "../../reducer/comments/comments";
 
 interface State {
-  rating: number,
-  comment: string
+  rating: number;
+  comment: string;
+}
+
+interface Props {
+  onSubmit: ({comment, rating}: {comment: string; rating: number}, offerId: number) => void;
+  offerId: number;
+  errorText: string;
 }
 
 const withCommentForm = (Component) => {
-  class WithCommentForm extends React.PureComponent<{}, State> {
-    private ratingCount: number = 5;
-    private radioArray: number[] = [];
+  class WithCommentForm extends React.PureComponent<Props, State> {
+    private radioArray: number[] = [5, 4, 3, 2, 1];
 
     constructor(props) {
       super(props);
@@ -23,13 +31,7 @@ const withCommentForm = (Component) => {
 
       this.handleChange = this.handleChange.bind(this);
       this.handleClickRadio = this.handleClickRadio.bind(this);
-    }
-
-    _createArray() {
-      for (let i = this.ratingCount; i > 0; i--) {
-        this.radioArray.push(i);
-      }
-      return this.radioArray;
+      this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleClickRadio(event) {
@@ -44,15 +46,30 @@ const withCommentForm = (Component) => {
       });
     }
 
+    handleSubmit() {
+      const {onSubmit, offerId} = this.props;
+      const {rating, comment} = this.state;
+  
+      onSubmit({comment, rating}, offerId);
+
+      this.setState({
+        rating: 0,
+        comment: ``
+      });
+    }
+
     render() {
+      const {errorText} = this.props;
+
       return (
         <Component
           {...this.props}
           rating={this.state.rating}
           comment={this.state.comment}
+          onSubmit={this.handleSubmit}
         >
           <div className="reviews__rating-form form__rating">
-            {this._createArray().map((value) => (
+            {this.radioArray.map((value) => (
               <React.Fragment key={`radio-${value}`}>
                 <input className="form__rating-input visually-hidden"
                   name="rating" value={value}
@@ -69,16 +86,30 @@ const withCommentForm = (Component) => {
             ))}
           </div>
           <textarea
+            value={this.state.comment}
             maxLength={MAX_COMMENT_LENGTH}
             onChange={this.handleChange}
             className="reviews__textarea form__textarea" id="review" name="review"
             placeholder="Tell how was your stay, what you like and what can be improved"></textarea>
+          {errorText &&
+            <span style={{color: `red`, fontSize: `13px`}}>{errorText}</span>
+          }
         </Component>
       );
     }
   }
 
-  return WithCommentForm;
+  const mapStateToProps = (state) => ({
+    errorText: getErrorText(state)
+  });
+
+  const mapDispatchToProps = (dispatch) => ({
+    onSubmit(data, offerId) {
+      dispatch(CommentOperation.sendComment(data, offerId));
+    }
+  });
+
+  return connect(mapStateToProps, mapDispatchToProps)(WithCommentForm);
 };
 
 export default withCommentForm;

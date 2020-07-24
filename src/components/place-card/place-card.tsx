@@ -7,11 +7,11 @@ import withFavorite from "../../hocs/with-favorite/with-favorite";
 import ButtonFavorite from "../button-favorite/button-favorite";
 
 interface Props {
-  offer: Offer,
-  onCardHover: (offer: Offer) => void,
-  onCardHoverOut: () => void,
-  type: PlaceCardType.CITIES | PlaceCardType.FAVORITES | PlaceCardType.NEAR | PlaceCardType.PROPERTY
-};
+  offer: Offer;
+  onCardHover?: (offer: Offer) => void;
+  onCardHoverOut?: () => void;
+  type: PlaceCardType.CITIES | PlaceCardType.FAVORITES | PlaceCardType.NEAR | PlaceCardType.PROPERTY;
+}
 
 const ButtonFavoriteWrap = withFavorite(ButtonFavorite);
 
@@ -75,6 +75,7 @@ class PlaceCard extends React.PureComponent<Props, {}> {
             </div>
             <ButtonFavoriteWrap
               offer={offer}
+              type={type}
             />
           </div>
           <div className="place-card__rating rating">

@@ -10,7 +10,7 @@ const initialState = {
 const ActionType = {
   REQUIRE_AUTH_STATUS: `REQUIRE_AUTH_STATUS`,
   GET_AUTH_INFO: `GET_AUTH_INFO`,
-  SET_LOADING: `SET_LOADING`
+  SET_LOADING: `SET_USER_LOADING`
 };
 
 const ActionCreator = {

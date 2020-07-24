@@ -1,21 +1,21 @@
 import {NameSpace} from "../name-space";
+import {renameKeys} from "../../utils";
 
 const NAME_SPACE = NameSpace.COMMENTS;
 
-// TODO! const camelize = (str) => {
-//   return str
-//     .split(`_`)
-//     .map((word, index) => index === 0 ? word : word[0].toUpperCase() + word.slice(1))
-//     .join(``);
-// };
-
 export const getComments = (state) => {
-  const comments = state[NAME_SPACE].comments;
+  const comments = state[NAME_SPACE].comments.slice(0);
+  const newComments = [];
   comments.forEach((comment) => {
-    if (comment.user) {
-      comment.user.isPro = comment.user.is_pro;
-      comment.user.avatarUrl = comment.user.avatar_url;
-    }
+    newComments.push(renameKeys(comment));
   });
-  return comments;
+  return newComments;
+};
+
+export const getIsLoading = (state) => {
+  return state[NAME_SPACE].isLoading;
+};
+
+export const getErrorText = (state) => {
+  return state[NAME_SPACE].error;
 };

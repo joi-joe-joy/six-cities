@@ -6,15 +6,15 @@ import {ActionCreator} from "../../reducer/place/place";
 import IconArrowSelect from "../../Icons/icon-arrow-select.svg";
 
 interface InjectingProps {
-  changeSorting: (string) => void
+  changeSorting: (string) => void;
 }
 
 interface State {
   selected: {
-    value: string,
-    label: string,
-  },
-  isOpen: boolean
+    value: string;
+    label: string;
+  };
+  isOpen: boolean;
 }
 
 const options = [

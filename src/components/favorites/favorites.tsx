@@ -4,13 +4,10 @@ import {PageType, PlaceCardType, Offer} from "../../types";
 import {getSortedFavorites} from "../../reducer/favorite/selectors";
 import Page from "../page/page";
 import PlaceCard from "../place-card/place-card";
-import withFavorite from "../../hocs/with-favorite/with-favorite";
 
 interface Props {
-  favorites: Offer[]
-};
-
-const PlaceCardWrap = withFavorite(PlaceCard);
+  favorites: Offer[];
+}
 
 const Favorites: React.FC<Props> = (props: Props) => {
   const {favorites} = props;
@@ -36,8 +33,9 @@ const Favorites: React.FC<Props> = (props: Props) => {
                     </div>
                   </div>
                   <div className="favorites__places">
-                    <PlaceCardWrap
+                    <PlaceCard
                       offer={offer}
+                      type={PlaceCardType.FAVORITES}
                     />
                   </div>
                 </li>

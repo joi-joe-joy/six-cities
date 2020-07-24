@@ -9,8 +9,8 @@ import {getCity} from "../../reducer/data/selectors";
 import {getSortedOffers} from "../../reducer/data/selectors";
 
 interface Props {
-  offers: Offer[],
-  currentCity: City,
+  offers: Offer[];
+  currentCity: City;
 }
 
 const SortVariantsWrap = withSort(SortVariants);

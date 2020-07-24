@@ -1,62 +1,36 @@
 import * as React from "react";
 import {connect} from 'react-redux';
 import {HouseTypeTemplate} from "../../const";
-import {HouseType, PageType, PlaceCardType, AuthStatus, Offer, City, Location, Comment} from "../../types";
+import {PageType, PlaceCardType, Offer, City, Location} from "../../types";
 import withMap from "../../hocs/with-map/with-map";
-import withCommentForm from "../../hocs/with-comment-form/with-comment-form";
-import withActiveItem from "../../hocs/with-active-item/with-active-item";
 import withFavorite from "../../hocs/with-favorite/with-favorite";
-import {getCity, getNearbyOffers, getOfferByRouteId, getNearbyLocations} from "../../reducer/data/selectors";
-import {getAuthStatus} from "../../reducer/user/selectors";
-import {getComments} from "../../reducer/comments/selectors";
-import {Operation as DataOperation} from "../../reducer/data/data";
-import {Operation as CommentOperation} from "../../reducer/comments/comments";
-import ReviewsList from "../rewiews-list/reviews-list";
-import PlacesList from "../places-list/places-list";
-import SendReview from "../send-review/send-review";
+import {getCity, getOfferByRouteId, getNearbyLocations} from "../../reducer/data/selectors";
+import ReviewBox from "../reviews-box/review-box";
+import NearPlaces from "../near-places/near-places";
 import ButtonFavorite from "../button-favorite/button-favorite";
 import Page from "../page/page";
 import Map from "../map/map";
 
 interface Props {
-  offer: Offer,
-  city: City,
-  authStatus: AuthStatus.AUTH | AuthStatus.NO_AUTH,
+  offer: Offer;
+  city: City;
   match: {
     params: {
-      id: string
-    }
-  },
-  nearbyOffers: Offer[],
-  loadNearOffers: (id: number) => void,
-  loadComments: (id: number) => void,
-  nearLocations: Location[],
-  comments: Comment[]
+      id: string;
+    };
+  };
+  nearLocations: Location[];
 }
 
 const MapWrap = withMap(Map);
-const PlacesListWrap = withActiveItem(PlacesList);
-const SendReviewWrap = withCommentForm(SendReview);
 const ButtonFavoriteWrap = withFavorite(ButtonFavorite);
 
 const Property: React.FC<Props> = (props: Props) => {
   const {
     city,
-    authStatus,
-    nearbyOffers,
     offer,
-    loadNearOffers,
     nearLocations,
-    comments,
-    loadComments
   } = props;
-
-  React.useEffect(() => {
-    if (offer && offer.id) {
-      loadNearOffers(offer.id);
-      loadComments(offer.id);
-    }
-  }, [offer, loadNearOffers, loadComments]);
 
   if (!offer) {
     return null;
@@ -88,6 +62,7 @@ const Property: React.FC<Props> = (props: Props) => {
                 </h1>
                 <ButtonFavoriteWrap
                   offer={offer}
+                  type={PlaceCardType.PROPERTY}
                 />
               </div>
               <div className="property__rating rating">
@@ -142,15 +117,7 @@ const Property: React.FC<Props> = (props: Props) => {
                   ))}
                 </div>
               </div>
-              <section className="property__reviews reviews">
-                <h2 className="reviews__title">Reviews &middot;
-                  <span className="reviews__amount">{comments && comments.length || `0`}</span>
-                </h2>
-                {comments &&
-                  <ReviewsList reviews={comments}/>
-                }
-                {authStatus === AuthStatus.AUTH && <SendReviewWrap/>}
-              </section>
+              <ReviewBox offerId={offer.id}/>
             </div>
           </div>
           {nearLocations && nearLocations.length &&
@@ -161,17 +128,7 @@ const Property: React.FC<Props> = (props: Props) => {
             />
           }
         </section>
-        {nearbyOffers &&
-          <div className="container">
-            <section className="near-places places">
-              <h2 className="near-places__title">Other places in the neighbourhood</h2>
-              <PlacesListWrap
-                type={PlaceCardType.NEAR}
-                offers={nearbyOffers}
-              />
-            </section>
-          </div>
-        }
+        <NearPlaces offerId={offer.id}/>
       </main>
     </Page>
   );
@@ -179,21 +136,9 @@ const Property: React.FC<Props> = (props: Props) => {
 
 const mapStateToProps = (state, props) => ({
   offer: getOfferByRouteId(state, props),
-  nearbyOffers: getNearbyOffers(state),
   city: getCity(state),
-  authStatus: getAuthStatus(state),
   nearLocations: getNearbyLocations(state),
-  comments: getComments(state),
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  loadNearOffers(offerId) {
-    dispatch(DataOperation.loadNearbyOffers(offerId));
-  },
-  loadComments(offerId) {
-    dispatch(CommentOperation.loadComments(offerId));
-  }
 });
 
 export {Property};
-export default connect(mapStateToProps, mapDispatchToProps)(Property);
+export default connect(mapStateToProps)(Property);

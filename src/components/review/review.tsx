@@ -3,7 +3,7 @@ import * as moment from "moment";
 import {Comment} from "../../types";
 
 interface Props {
-  review: Comment
+  review: Comment;
 }
 
 const Review: React.FC<Props> = (props: Props) => {

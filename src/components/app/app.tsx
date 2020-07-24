@@ -15,51 +15,45 @@ import Main from "../main/main";
 import Login from "../login/login";
 
 interface Props {
-  login: () => void,
-  authorizationStatus: AuthStatus.AUTH | AuthStatus.NO_AUTH,
-  favoritesExist: boolean,
-  isLoading: boolean
+  login: () => void;
+  authorizationStatus: AuthStatus.AUTH | AuthStatus.NO_AUTH;
+  favoritesExist: boolean;
+  isLoading: boolean;
 }
 
-class App extends React.PureComponent<Props, {}> {
-  constructor(props) {
-    super(props);
+const App: React.FC<Props> = (props: Props) => {
+  const {login, authorizationStatus, favoritesExist, isLoading} = props;
+
+  if (isLoading) {
+    return null;
   }
 
-  render() {
-    const {login, authorizationStatus, favoritesExist, isLoading} = this.props;
-
-    if (isLoading) {
-      return null;
-    }
-
-    return (
-      <Router history={history}>
-        <Switch>
-          <Route exact path={AppRoute.MAIN} component={Main}/>
-          <Route exact path={AppRoute.OFFER_ID} component={Property}/>
-          <PrivateRoute exact path={AppRoute.FAVORITES}
-            render={() => {
-              if (favoritesExist) {
-                return <Favorites/>;
-              }
-              return <FavoritesEmpty/>;
-            }}
-          />
-          <Route exact path={AppRoute.LOGIN}
-            render={() => {
-              return (
-                authorizationStatus === AuthStatus.NO_AUTH
-                  ? <Login onSubmit={login}/>
-                  : <Redirect to={AppRoute.MAIN}/>
-              );
-            }}
-          />
-        </Switch>
-      </Router>
-    );
-  }
-}
+  return (
+    <Router history={history}>
+      <Switch>
+        <Route exact path={AppRoute.MAIN} component={Main}/>
+        <Route exact path={AppRoute.OFFER_ID} component={Property}/>
+        <PrivateRoute exact path={AppRoute.FAVORITES}
+          render={() => {
+            if (favoritesExist) {
+              return <Favorites/>;
+            }
+            return <FavoritesEmpty/>;
+          }}
+        />
+        <Route exact path={AppRoute.LOGIN}
+          render={() => {
+            return (
+              authorizationStatus === AuthStatus.NO_AUTH
+                ? <Login onSubmit={login}/>
+                : <Redirect to={AppRoute.MAIN}/>
+            );
+          }}
+        />
+      </Switch>
+    </Router>
+  );
+};
 
 const mapStateToProps = (state) => ({
   authorizationStatus: getAuthStatus(state),

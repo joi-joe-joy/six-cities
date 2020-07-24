@@ -6,8 +6,8 @@ import {AuthStatus} from "../../types";
 import {getAuthStatus} from "../../reducer/user/selectors";
 
 type Props = RouteProps & {
-  render: () => React.ReactNode,
-  authorizationStatus: AuthStatus.AUTH | AuthStatus.NO_AUTH
+  render: () => React.ReactNode;
+  authorizationStatus: AuthStatus.AUTH | AuthStatus.NO_AUTH;
 }
 
 const PrivateRoute: React.FC<Props> = (props: Props) => {

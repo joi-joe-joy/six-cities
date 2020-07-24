@@ -6,8 +6,8 @@ import {AuthStatus, AuthInfo} from "../../types";
 import {getAuthStatus, getAuthInfo} from "../../reducer/user/selectors";
 
 interface Props {
-  authStatus: AuthStatus.AUTH | AuthStatus.NO_AUTH,
-  authInfo: AuthInfo
+  authStatus: AuthStatus.AUTH | AuthStatus.NO_AUTH;
+  authInfo: AuthInfo;
 }
 
 const Header: React.FC<Props> = (props: Props) => {

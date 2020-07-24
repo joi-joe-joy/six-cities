@@ -1,8 +1,10 @@
+import {HouseType} from "./types";
+
 export const HouseTypeTemplate = {
-  apartment: `Apartment`,
-  hotel: `Hotel`,
-  house: `House`,
-  room: `Private Room`
+  [HouseType.APARTMENT]: `Apartment`,
+  [HouseType.HOTEL]: `Hotel`,
+  [HouseType.HOUSE]: `House`,
+  [HouseType.ROOM]: `Private Room`
 };
 
 export const MAX_REVIEW_COUNT = 10;

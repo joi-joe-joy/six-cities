@@ -5,11 +5,11 @@ import {ActionCreator} from "../../reducer/place/place";
 import {Offer} from '../../types';
 
 interface InjectingProps {
-  changeHoverCard: (card?: Offer) => void
+  changeHoverCard: (card?: Offer) => void;
 }
 
 interface State {
-  activeCard: Offer
+  activeCard: Offer;
 }
 
 const withActiveItem = (Component) => {

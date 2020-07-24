@@ -1,4 +1,5 @@
 import {NameSpace} from "../name-space";
+import {renameKeys} from "../../utils";
 
 const NAME_SPACE = NameSpace.USER;
 
@@ -8,10 +9,11 @@ export const getAuthStatus = (state) => {
 
 export const getAuthInfo = (state) => {
   const info = state[NAME_SPACE].authInfo;
+  let newInfo = {};
   if (info) {
-    info.avatarUrl = info.avatar_url;
+    newInfo = renameKeys(info);
   }
-  return info;
+  return newInfo;
 };
 
 export const getIsLoading = (state) => {

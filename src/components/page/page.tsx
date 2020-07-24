@@ -5,11 +5,11 @@ import Footer from "../footer/footer";
 import {PageType} from "../../types";
 
 interface Props {
-  type: PageType.MAIN | PageType.LOGIN | PageType.FAVORITES_EMPTY | PageType.PROPERTY | PageType.FAVORITES,
-  children: React.ReactNode
+  type: PageType.MAIN | PageType.LOGIN | PageType.FAVORITES_EMPTY | PageType.PROPERTY | PageType.FAVORITES;
+  children: React.ReactNode;
 }
 
-const Page = (props) => {
+const Page: React.FC<Props> = (props: Props) => {
   const {type, children} = props;
   const className = classnames(`page`, {
     'page--gray': type === PageType.MAIN || type === PageType.LOGIN,

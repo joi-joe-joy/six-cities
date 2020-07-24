@@ -6,9 +6,9 @@ import {getCity, getCitiesList} from "../../reducer/data/selectors";
 import {City} from "../../types";
 
 interface Props {
-  onLocationClick: (city: City) => void,
-  citiesList: City[],
-  currentCity: City,
+  onLocationClick: (city: City) => void;
+  citiesList: City[];
+  currentCity: City;
 }
 
 const CitiesList: React.FC<Props> = (props: Props) => {

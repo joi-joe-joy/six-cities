@@ -1,19 +1,19 @@
 import * as React from 'react';
-import leaflet from "leaflet";
+import * as leaflet from "leaflet";
 import {Location} from "../../types";
 
 interface Props {
-  offersCords: Location[],
-  currentCords: Location,
-  cityLocation: Location
+  offersCords: Location[];
+  currentCords: Location;
+  cityLocation: Location;
 }
 
 const withMap = (Component) => {
   class WithMap extends React.PureComponent<Props, {}> {
     private mapRef: React.RefObject<HTMLDivElement>;
     private map: {
-      remove: () => void,
-      setView: (city: number[], zoom: number) => void
+      remove: () => void;
+      setView: (city: number[], zoom: number) => void;
     };
 
     constructor(props) {
