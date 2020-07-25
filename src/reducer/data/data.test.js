@@ -1,6 +1,6 @@
-import {reducer, ActionType, ActionCreator, Operation} from "./data.js";
+import {reducer, ActionType, ActionCreator, Operation} from "./data";
 import MockAdapter from "axios-mock-adapter";
-import {createAPI} from "../../api.js";
+import {createAPI} from "../../api";
 
 const api = createAPI(() => {});
 
@@ -39,7 +39,7 @@ describe(`Reducer work correctly`, () => {
     expect(reducer(undefined, {})).toEqual({
       city: null,
       offers: [],
-      offersNearby: []
+      nearbyOffers: []
     });
   });
 
@@ -54,7 +54,7 @@ describe(`Reducer work correctly`, () => {
         }
       },
       offers: offersList,
-      offersNearby: []
+      nearbyOffers: []
     }, {
       type: ActionType.CHANGE_CITY,
       payload: {
@@ -75,7 +75,7 @@ describe(`Reducer work correctly`, () => {
         }
       },
       offers: offersList,
-      offersNearby: []
+      nearbyOffers: []
     });
   });
 
@@ -90,7 +90,7 @@ describe(`Reducer work correctly`, () => {
         }
       },
       offers: offersList,
-      offersNearby: []
+      nearbyOffers: []
     }, {
       type: ActionType.CHANGE_CITY,
       payload: {
@@ -111,7 +111,7 @@ describe(`Reducer work correctly`, () => {
         }
       },
       offers: offersList,
-      offersNearby: []
+      nearbyOffers: []
     });
   });
 
@@ -126,7 +126,7 @@ describe(`Reducer work correctly`, () => {
         }
       },
       offers: [],
-      offersNearby: []
+      nearbyOffers: []
     }, {
       type: ActionType.LOAD_OFFERS,
       payload: offersList
@@ -140,7 +140,7 @@ describe(`Reducer work correctly`, () => {
         }
       },
       offers: offersList,
-      offersNearby: []
+      nearbyOffers: []
     });
   });
 
@@ -155,7 +155,7 @@ describe(`Reducer work correctly`, () => {
         }
       },
       offers: [],
-      offersNearby: []
+      nearbyOffers: []
     }, {
       type: ActionType.LOAD_NEARBY_OFFERS,
       payload: offersList
@@ -169,7 +169,7 @@ describe(`Reducer work correctly`, () => {
         }
       },
       offers: [],
-      offersNearby: offersList
+      nearbyOffers: offersList
     });
   });
 });

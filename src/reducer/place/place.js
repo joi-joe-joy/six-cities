@@ -1,5 +1,5 @@
-import {extend} from "../../utils.js";
-import {SortType} from "../../const";
+import {extend} from "../../utils";
+import {SortType} from "../../types";
 
 const initialState = {
   sorting: SortType.POPULAR,

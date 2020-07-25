@@ -1,16 +1,18 @@
-import {extend} from "../../utils.js";
-import {AuthStatus} from "../../const.js";
+import {extend} from "../../utils";
+import {AuthStatus} from "../../types";
 
 const initialState = {
   authorizationStatus: AuthStatus.NO_AUTH,
   authInfo: null,
-  isLoading: false
+  isLoading: false,
+  errorText: ``
 };
 
 const ActionType = {
   REQUIRE_AUTH_STATUS: `REQUIRE_AUTH_STATUS`,
   GET_AUTH_INFO: `GET_AUTH_INFO`,
-  SET_LOADING: `SET_LOADING`
+  SET_LOADING: `SET_USER_LOADING`,
+  GET_ERROR_LOGIN: `GET_ERROR_LOGIN`
 };
 
 const ActionCreator = {
@@ -31,6 +33,12 @@ const ActionCreator = {
       type: ActionType.SET_LOADING,
       payload: status
     };
+  },
+  getErrorLogin: (payload) => {
+    return {
+      type: ActionType.GET_ERROR_LOGIN,
+      payload
+    };
   }
 };
 
@@ -47,6 +55,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.SET_LOADING:
       return extend(state, {
         isLoading: action.payload
+      });
+    case ActionType.GET_ERROR_LOGIN:
+      return extend(state, {
+        errorText: action.payload
       });
     default:
       return state;
@@ -75,9 +87,10 @@ const Operation = {
       .then((res) => {
         dispatch(ActionCreator.requireAuthStatus(AuthStatus.AUTH));
         dispatch(ActionCreator.getAuthInfo(res.data));
+        dispatch(ActionCreator.getErrorLogin(``));
       })
       .catch((err) => {
-        throw err;
+        dispatch(ActionCreator.getErrorLogin(err.response.data.error));
       });
   },
 };

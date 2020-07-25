@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render Map Renderer Map correctly 1`] = `
+<section
+  className="map property__map"
+>
+  <div />
+</section>
+`;
+
+exports[`Render Map Renderer Map correctly with current 1`] = `
+<section
+  className="map cities__map"
+>
+  <div />
+</section>
+`;

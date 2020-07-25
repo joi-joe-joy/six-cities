@@ -19,15 +19,19 @@ export const createAPI = (onUnauthorized) => {
   const onFail = (err) => {
     const {response} = err;
 
-    switch (response.status) {
-      case ErrorType.UNAUTHORIZED:
-        onUnauthorized();
-        throw err;
-      case ErrorType.BAD_REQUEST:
-        throw err;
-      default:
-        throw err;
+    if (response) {
+      switch (response.status) {
+        case ErrorType.UNAUTHORIZED:
+          onUnauthorized();
+          throw err;
+        case ErrorType.BAD_REQUEST:
+          throw err;
+        default:
+          throw err;
+      }
     }
+
+    throw err;
   };
 
   api.interceptors.response.use(onSuccess, onFail);

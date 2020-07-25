@@ -1,7 +1,8 @@
-import {NameSpace} from "../name-space.js";
+import {NameSpace} from "../name-space";
 import {createSelector} from "reselect";
-import {SortType} from "../../const";
-import {getSorting} from "../place/selectors.js";
+import {SortType} from "../../types";
+import {getSorting} from "../place/selectors";
+import {renameKeys} from "../../utils";
 
 const NAME_SPACE = NameSpace.DATA;
 
@@ -9,43 +10,23 @@ export const getCity = (state) => {
   return state[NAME_SPACE].city;
 };
 
-// TODO! const camelize = (str) => {
-//   return str
-//     .split(`_`)
-//     .map((word, index) => index === 0 ? word : word[0].toUpperCase() + word.slice(1))
-//     .join(``);
-// };
-
 export const getOffers = (state) => {
-  const hotels = state[NAME_SPACE].offers;
-  hotels.slice(0).forEach((hotel) => {
-    if (hotel.host) {
-      hotel.host.isPro = hotel.host.is_pro;
-      hotel.host.avatarUrl = hotel.host.avatar_url;
-    }
-    hotel.isPremium = hotel.is_premium;
-    hotel.isFavorite = hotel.is_favorite;
-    hotel.maxAdults = hotel.max_adults;
-    hotel.previewImage = hotel.preview_image;
+  const hotels = state[NAME_SPACE].offers.slice(0);
+  const newHotels = [];
+  hotels.forEach((hotel) => {
+    newHotels.push(renameKeys(hotel));
   });
-
-  return hotels;
+  return newHotels;
 };
 
 export const getNearbyOffers = (state) => {
-  const hotels = state[NAME_SPACE].offersNearby;
-  hotels.slice(0).forEach((hotel) => {
-    if (hotel.host) {
-      hotel.host.isPro = hotel.host.is_pro;
-      hotel.host.avatarUrl = hotel.host.avatar_url;
-    }
-    hotel.isPremium = hotel.is_premium;
-    hotel.isFavorite = hotel.is_favorite;
-    hotel.maxAdults = hotel.max_adults;
-    hotel.previewImage = hotel.preview_image;
+  const hotels = state[NAME_SPACE].nearbyOffers.slice(0);
+  const newHotels = [];
+  hotels.forEach((hotel) => {
+    newHotels.push(renameKeys(hotel));
   });
 
-  return hotels;
+  return newHotels;
 };
 
 export const getOffersCityList = createSelector(
@@ -125,7 +106,3 @@ export const getSortedOffers = createSelector(
       }
     }
 );
-
-export const getIsLoading = (state) => {
-  return state[NAME_SPACE].isLoading;
-};

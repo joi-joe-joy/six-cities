@@ -1,5 +1,5 @@
-import {reducer, ActionType, ActionCreator} from "./user.js";
-import {AuthStatus} from "../../const.js";
+import {reducer, ActionType, ActionCreator} from "./user";
+import {AuthStatus} from "../../types";
 
 const userInfo = {
   avatarUrl: `/static/avatar/7.jpg`,
@@ -14,7 +14,8 @@ describe(`Reducer work correctly`, () => {
     expect(reducer(undefined, {})).toEqual({
       authorizationStatus: AuthStatus.NO_AUTH,
       authInfo: null,
-      isLoading: false
+      isLoading: false,
+      errorText: ``
     });
   });
 
@@ -22,14 +23,16 @@ describe(`Reducer work correctly`, () => {
     expect(reducer({
       authorizationStatus: AuthStatus.NO_AUTH,
       authInfo: null,
-      isLoading: false
+      isLoading: false,
+      errorText: ``
     }, {
       type: ActionType.REQUIRE_AUTH_STATUS,
       payload: AuthStatus.AUTH
     })).toEqual({
       authorizationStatus: AuthStatus.AUTH,
       authInfo: null,
-      isLoading: false
+      isLoading: false,
+      errorText: ``
     });
   });
 
@@ -37,14 +40,16 @@ describe(`Reducer work correctly`, () => {
     expect(reducer({
       authorizationStatus: AuthStatus.NO_AUTH,
       authInfo: null,
-      isLoading: false
+      isLoading: false,
+      errorText: ``
     }, {
       type: ActionType.REQUIRE_AUTH_STATUS,
       payload: AuthStatus.NO_AUTH
     })).toEqual({
       authorizationStatus: AuthStatus.NO_AUTH,
       authInfo: null,
-      isLoading: false
+      isLoading: false,
+      errorText: ``
     });
   });
 
@@ -52,14 +57,16 @@ describe(`Reducer work correctly`, () => {
     expect(reducer({
       authorizationStatus: AuthStatus.NO_AUTH,
       authInfo: null,
-      isLoading: false
+      isLoading: false,
+      errorText: ``
     }, {
       type: ActionType.GET_AUTH_INFO,
       payload: userInfo
     })).toEqual({
       authorizationStatus: AuthStatus.NO_AUTH,
       authInfo: userInfo,
-      isLoading: false
+      isLoading: false,
+      errorText: ``
     });
   });
 
@@ -67,14 +74,16 @@ describe(`Reducer work correctly`, () => {
     expect(reducer({
       authorizationStatus: AuthStatus.AUTH,
       authInfo: null,
-      isLoading: false
+      isLoading: false,
+      errorText: ``
     }, {
       type: ActionType.SET_LOADING,
       payload: true
     })).toEqual({
       authorizationStatus: AuthStatus.AUTH,
       authInfo: null,
-      isLoading: true
+      isLoading: true,
+      errorText: ``
     });
   });
 
@@ -82,14 +91,50 @@ describe(`Reducer work correctly`, () => {
     expect(reducer({
       authorizationStatus: AuthStatus.NO_AUTH,
       authInfo: null,
-      isLoading: false
+      isLoading: false,
+      errorText: ``
     }, {
       type: ActionType.SET_LOADING,
       payload: false
     })).toEqual({
       authorizationStatus: AuthStatus.NO_AUTH,
       authInfo: null,
-      isLoading: false
+      isLoading: false,
+      errorText: ``
+    });
+  });
+
+  it(`Reducer should change error text by given value`, () => {
+    expect(reducer({
+      authorizationStatus: AuthStatus.AUTH,
+      authInfo: null,
+      isLoading: false,
+      errorText: ``
+    }, {
+      type: ActionType.GET_ERROR_LOGIN,
+      payload: `text`
+    })).toEqual({
+      authorizationStatus: AuthStatus.AUTH,
+      authInfo: null,
+      isLoading: false,
+      errorText: `text`
+    });
+  });
+
+  it(`Reducer should not change error text by the same given value`, () => {
+    expect(reducer({
+      authorizationStatus: AuthStatus.NO_AUTH,
+      authInfo: null,
+      isLoading: false,
+      errorText: `text`
+    }, {
+      type: ActionType.GET_ERROR_LOGIN,
+      payload: `text`
+    })).toEqual({
+      authorizationStatus: AuthStatus.NO_AUTH,
+      authInfo: null,
+      isLoading: false,
+      errorText: `text`
     });
   });
 });
@@ -113,6 +158,13 @@ describe(`Action creators work correctly`, () => {
     expect(ActionCreator.setLoading(false)).toEqual({
       type: ActionType.SET_LOADING,
       payload: false,
+    });
+  });
+
+  it(`Action creator for get error returns correct action`, () => {
+    expect(ActionCreator.getErrorLogin(`text`)).toEqual({
+      type: ActionType.GET_ERROR_LOGIN,
+      payload: `text`,
     });
   });
 });
