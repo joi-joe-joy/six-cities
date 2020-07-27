@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import {HouseTypeTemplate, MAX_PREVIEW_IMAGE_COUNT, KEY_LENGTH} from "../../const";
 import {PageType, PlaceCardType, Offer, City, Location} from "../../types";
 import withMap from "../../hocs/with-map/with-map";
-import withFavorite from "../../hocs/with-favorite/with-favorite";
 import {getCity, getOfferByRouteId, getNearbyLocations} from "../../reducer/data/selectors";
 import ReviewBox from "../reviews-box/review-box";
 import NearPlaces from "../near-places/near-places";
@@ -23,7 +22,6 @@ interface Props {
 }
 
 const MapWrap = withMap(Map);
-const ButtonFavoriteWrap = withFavorite(ButtonFavorite);
 
 const Property: React.FC<Props> = (props: Props) => {
   const {
@@ -60,7 +58,7 @@ const Property: React.FC<Props> = (props: Props) => {
                 <h1 className="property__name">
                   {offer.title}
                 </h1>
-                <ButtonFavoriteWrap
+                <ButtonFavorite
                   offer={offer}
                   type={PlaceCardType.PROPERTY}
                 />

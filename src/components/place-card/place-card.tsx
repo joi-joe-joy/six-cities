@@ -3,7 +3,6 @@ import classnames from "classnames";
 import {Link} from "react-router-dom";
 import {HouseTypeTemplate, AppRoute} from "../../const";
 import {PlaceCardType, Offer} from "../../types";
-import withFavorite from "../../hocs/with-favorite/with-favorite";
 import ButtonFavorite from "../button-favorite/button-favorite";
 
 interface Props {
@@ -12,8 +11,6 @@ interface Props {
   onCardHoverOut?: () => void;
   type: PlaceCardType.CITIES | PlaceCardType.FAVORITES | PlaceCardType.NEAR | PlaceCardType.PROPERTY;
 }
-
-const ButtonFavoriteWrap = withFavorite(ButtonFavorite);
 
 const PlaceCard: React.FC<Props> = (props: Props) => {
   const {offer, type, onCardHover, onCardHoverOut} = props;
@@ -58,7 +55,7 @@ const PlaceCard: React.FC<Props> = (props: Props) => {
             <b className="place-card__price-value">&euro;{offer.price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <ButtonFavoriteWrap
+          <ButtonFavorite
             offer={offer}
             type={type}
           />
