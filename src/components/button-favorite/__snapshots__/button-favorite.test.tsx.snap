@@ -10,7 +10,7 @@ exports[`Render ButtonFavorite correctly 1`] = `
     height="18"
     style={
       Object {
-        "fill": "#ff9000",
+        "fill": "#000000",
       }
     }
     width="17"
