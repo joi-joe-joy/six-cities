@@ -9,7 +9,8 @@ const initialState = {
 const ActionType = {
   CHANGE_CITY: `CHANGE_CITY`,
   LOAD_OFFERS: `LOAD_OFFERS`,
-  LOAD_NEARBY_OFFERS: `LOAD_NEARBY_OFFERS`
+  LOAD_NEARBY_OFFERS: `LOAD_NEARBY_OFFERS`,
+  CHANGE_FAVORITE: `CHANGE_FAVORITE`
 };
 
 const ActionCreator = {
@@ -29,6 +30,12 @@ const ActionCreator = {
     return {
       type: ActionType.LOAD_NEARBY_OFFERS,
       payload: offers
+    };
+  },
+  changeFavorite: (offer) => {
+    return {
+      type: ActionType.CHANGE_FAVORITE,
+      payload: offer
     };
   }
 };
@@ -51,6 +58,15 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_NEARBY_OFFERS:
       return extend(state, {
         nearbyOffers: action.payload
+      });
+    case ActionType.CHANGE_FAVORITE:
+      const index = state.offers.findIndex((offer) => offer.id === action.payload.id);
+      return extend(state, {
+        offers: [
+          ...state.offers.slice(0, index),
+          action.payload,
+          ...state.offers.slice(index + 1)
+        ]
       });
     default:
       return state;

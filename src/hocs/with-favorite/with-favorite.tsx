@@ -4,26 +4,20 @@ import history from "../../history";
 import {AppRoute} from "../../const";
 import {AuthStatus, Offer, PlaceCardType} from "../../types";
 import {Operation as FavoriteOperation} from "../../reducer/favorite/favorite";
+import {ActionCreator} from "../../reducer/data/data";
 import {getAuthStatus} from "../../reducer/user/selectors";
 
 interface Props {
-  onToggleFavorite: ({hotelId, status}: {hotelId: number; status: boolean}) => void;
+  onToggleFavorite: ({hotelId, status}: {hotelId: number; status: boolean}, offer: Offer) => void;
   offer: Offer;
   authStatus: AuthStatus.AUTH | AuthStatus.NO_AUTH;
   type: PlaceCardType.CITIES | PlaceCardType.NEAR | PlaceCardType.FAVORITES | PlaceCardType.PROPERTY;
 }
 
-interface State {
-  isFavorite: boolean;
-}
-
 const withFavorite = (Component) => {
-  class WithFavorite extends React.PureComponent<Props, State> {
+  class WithFavorite extends React.PureComponent<Props, {}> {
     constructor(props) {
       super(props);
-      this.state = {
-        isFavorite: props.offer.isFavorite
-      };
       this.handleButtonBookClick = this.handleButtonBookClick.bind(this);
     }
 
@@ -31,26 +25,22 @@ const withFavorite = (Component) => {
       const {onToggleFavorite, offer, authStatus} = this.props;
 
       if (authStatus === AuthStatus.AUTH) {
+        offer.isFavorite = !offer.isFavorite;
         onToggleFavorite({
           hotelId: offer.id,
-          status: !this.state.isFavorite
-        });
-        this.setState((state) => {
-          return {
-            isFavorite: !state.isFavorite
-          };
-        });
+          status: offer.isFavorite
+        }, offer);
       } else {
         history.push(AppRoute.LOGIN);
       }
     }
 
     render() {
-      const {isFavorite} = this.state;
+      const {offer} = this.props;
       return (
         <Component
           {...this.props}
-          isFavorite={isFavorite}
+          isFavorite={offer.isFavorite}
           onToggleFavorite={this.handleButtonBookClick}
         />
       );
@@ -62,8 +52,9 @@ const withFavorite = (Component) => {
   });
 
   const mapDispatchToProps = (dispatch) => ({
-    onToggleFavorite(data) {
+    onToggleFavorite(data, offer) {
       dispatch(FavoriteOperation.toggleFavorite(data));
+      dispatch(ActionCreator.changeFavorite(offer));
     }
   });
 

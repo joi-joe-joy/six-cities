@@ -7,10 +7,6 @@ export const HouseTypeTemplate = {
   [HouseType.ROOM]: `Private Room`
 };
 
-export const MAX_REVIEW_COUNT = 10;
-
-export const MAX_COMMENT_LENGTH = 300;
-
 export const AppRoute = {
   MAIN: `/`,
   LOGIN: `/login`,
@@ -18,3 +14,18 @@ export const AppRoute = {
   OFFER_ID: `/offer/:id`,
   OFFER: `/offer`
 };
+
+export const ErrorType = {
+  UNAUTHORIZED: 401,
+  BAD_REQUEST: 400,
+};
+
+export const MAX_REVIEW_COUNT = 10;
+
+export const MAX_COMMENT_LENGTH = 300;
+
+export const MAX_PREVIEW_IMAGE_COUNT = 6;
+
+export const KEY_LENGTH = 10;
+
+export const NEARBY_OFFERS_COUNT = 3;
