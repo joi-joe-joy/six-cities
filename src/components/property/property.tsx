@@ -1,6 +1,6 @@
 import * as React from "react";
 import {connect} from 'react-redux';
-import {HouseTypeTemplate} from "../../const";
+import {HouseTypeTemplate, MAX_PREVIEW_IMAGE_COUNT, KEY_LENGTH} from "../../const";
 import {PageType, PlaceCardType, Offer, City, Location} from "../../types";
 import withMap from "../../hocs/with-map/with-map";
 import withFavorite from "../../hocs/with-favorite/with-favorite";
@@ -42,7 +42,7 @@ const Property: React.FC<Props> = (props: Props) => {
         <section className="property">
           <div className="property__gallery-container container">
             <div className="property__gallery">
-              {offer.images.slice(0, 6).map((picture, i) => (
+              {offer.images.slice(0, MAX_PREVIEW_IMAGE_COUNT).map((picture, i) => (
                 <div key={`${picture}-${i}`} className="property__image-wrapper">
                   <img className="property__image" src={picture} alt={offer.title}></img>
                 </div>
@@ -111,7 +111,7 @@ const Property: React.FC<Props> = (props: Props) => {
                 </div>
                 <div className="property__description">
                   {offer.description.split(`\n`).map((paragraph, i) => (
-                    <p key={`${paragraph.slice(0, 10)}-${i}`} className="property__text">
+                    <p key={`${paragraph.slice(0, KEY_LENGTH)}-${i}`} className="property__text">
                       {paragraph}
                     </p>
                   ))}

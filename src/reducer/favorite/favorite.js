@@ -5,7 +5,7 @@ const initialState = {
 };
 
 const ActionType = {
-  GET_FAVORITES: `GET_FAVORITES`,
+  GET_FAVORITES: `GET_FAVORITES`
 };
 
 const ActionCreator = {
@@ -14,7 +14,7 @@ const ActionCreator = {
       type: ActionType.GET_FAVORITES,
       payload: favorites
     };
-  },
+  }
 };
 
 const reducer = (state = initialState, action) => {

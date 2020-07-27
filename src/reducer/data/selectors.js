@@ -3,6 +3,7 @@ import {createSelector} from "reselect";
 import {SortType} from "../../types";
 import {getSorting} from "../place/selectors";
 import {renameKeys} from "../../utils";
+import {NEARBY_OFFERS_COUNT} from "../../const";
 
 const NAME_SPACE = NameSpace.DATA;
 
@@ -39,7 +40,7 @@ export const getOffersCityList = createSelector(
 
 const getLocations = (offers) => {
   if (offers) {
-    return offers.slice(0, 3).map((item) => item.location);
+    return offers.slice(0, NEARBY_OFFERS_COUNT).map((item) => item.location);
   }
 
   return null;
